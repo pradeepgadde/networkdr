@@ -1,0 +1,15 @@
+# Keep local build inputs, credentials and editor/OS junk out of the repo
+*.json
+!package.json
+.env
+.env.*
+*.pem
+*.key
+*.p12
+id_rsa*
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/
+*.log
