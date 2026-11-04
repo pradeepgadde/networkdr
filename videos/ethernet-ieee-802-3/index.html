@@ -9,14 +9,14 @@
 <meta property="og:title" content="Ethernet IEEE 802 3 · Network Dr">
 <meta property="og:description" content="Welcome to episode 9, the start of our protocol deep dives where we open each protocol up field by field. First up is the protocol almost every packet rides on Ethernet Ale 802.3. ">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/vR5_7zJfe0Y?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Ethernet IEEE 802 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">9</span>
     <div>
+      <p class="crumb"><a href="../../series/protocol-deep-dives/">Protocol Deep Dives</a>, Episode 9</p>
       <h1>Ethernet IEEE 802 3</h1>
       <p class="meta"><time datetime="2026-10-17T20:56:15-07:00">17 Oct 2026</time><span>5:00</span><a href="https://www.youtube.com/watch?v=vR5_7zJfe0Y" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -62,13 +64,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=254s" data-seek="254" aria-label="Play from 4:14">4:14</a><span data-t="254">MTU must match end to end or big packets are dropped while small pins still work.</span> <span data-t="261">Let&#x27;s read a real frame in hex. Six bytes of destination, six a source, then 8 1 0 0 a VLAN tag, VLAN 10, then 08 0 0</span> <span data-t="272">for IPv4, and the IP header begins with 45. Know the offsets and any capture becomes readable.</span> <span data-t="280">To recap, MAC addresses say who. The ether type says what. The payload carries the packet and the FCS checks it</span> <span data-t="287">all at 802.1Q adds four bytes for VLANs and MTU is the payload limit. Next in the protocol deep dives, ARP, how a host</span> <span data-t="295">finds the MAC address behind an IP address. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../network-automation-2/"><small>Previous</small>Network Automation</a><a class="next" href="../arp/"><small>Next</small>ARP</a></nav>
+  <nav class="pager" aria-label="More in this series"><span></span><a class="next" href="../arp/"><small>Next: Episode 10</small>ARP</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

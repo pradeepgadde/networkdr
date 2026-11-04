@@ -9,14 +9,14 @@
 <meta property="og:title" content="AI Cluster · Network Dr">
 <meta property="og:description" content="Welcome to episode 52, a deep dive inside an I training cluster. In episode 7, we saw I networking from a distance. And in episode 24, we studied RDMA. Today, we open the whole mac">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/v1bOdWr045M?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="AI Cluster" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">52</span>
     <div>
+      <p class="crumb"><a href="../../series/bonus-deep-dives/">Bonus Deep Dives</a>, Episode 52</p>
       <h1>AI Cluster</h1>
       <p class="meta"><time datetime="2026-10-22T13:11:43-07:00">22 Oct 2026</time><span>14:58</span><a href="https://www.youtube.com/watch?v=v1bOdWr045M" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -79,13 +81,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=v1bOdWr045M&amp;t=841s" data-seek="841" aria-label="Play from 14:01">14:01</a><span data-t="841">To recap, AI training is a synchronized job across thousands of GPS. So the slowest link sets the pace. Each step</span> <span data-t="848">computes then communicates, ideally overlapping the two. Inside a server, NVL link and NV switch form the scale up</span> <span data-t="855">domain, now growing to a rack. between them. The scaleout network gives each GPU its own RDM a capable nick alongside</span> <span data-t="863">separate front-end storage and management networks. Data tensor pipeline and expert parallelism each</span> <span data-t="870">create different traffic carried by collectives like all reduce and all to all implemented by libraries over rings</span> <span data-t="877">and trees. Rail optimized non-block enclosed fabrics carry few huge synchronized flows which need adaptive</span> <span data-t="885">routing, packet spraying and fast congestion control over infini band or ultra ethernet. Fast checkpoints, failure handling and constant</span> <span data-t="894">measurement keep it all running. Thanks for watching.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../rpki/"><small>Previous</small>RPKI</a><a class="next" href="../mpls-layer3-vpns/"><small>Next</small>MPLS Layer3 VPNs</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../rpki/"><small>Previous: Episode 51</small>RPKI</a><a class="next" href="../mpls-layer3-vpns/"><small>Next: Episode 53</small>MPLS Layer3 VPNs</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

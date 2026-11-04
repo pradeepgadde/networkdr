@@ -9,14 +9,14 @@
 <meta property="og:title" content="Firewalls · Network Dr">
 <meta property="og:description" content="Welcome to episode 31. Load balancers decide where traffic goes. Firewalls decide whether it goes at all. Today we follow firewalls from simple access control lists through statefu">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Kzewgg17ct4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Firewalls" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">31</span>
     <div>
+      <p class="crumb"><a href="../../series/protocol-deep-dives/">Protocol Deep Dives</a>, Episode 31</p>
       <h1>Firewalls</h1>
       <p class="meta"><time datetime="2026-10-20T12:44:43-07:00">20 Oct 2026</time><span>10:46</span><a href="https://www.youtube.com/watch?v=Kzewgg17ct4" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -71,13 +73,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Kzewgg17ct4&amp;t=586s" data-seek="586" aria-label="Play from 9:46">9:46</a><span data-t="586">Idle connections that silently die usually hit a state timeout. Database and SSH sessions need keepives shorter than the firewalls idle timeout and</span> <span data-t="595">don&#x27;t block all ICMP path. MTU discovery depends on ICMP messages and without them large transfers hang while small ones work.</span> <span data-t="606">To recap, firewalls enforce policy with default deny. A CLS match addresses and ports. Top down first match wins with an</span> <span data-t="615">implicit deny. Dateful firewalls track connections so replies are allowed automatically. Zones and DMZs contain</span> <span data-t="622">compromises and ALGS handle protocols with embedded addresses. Next generation firewalls identify applications and</span> <span data-t="630">users with TLS inspection and IPS and the same ideas live on an NF tables, security groups, network policies and</span> <span data-t="638">micro segmentation. Next in the protocol deep dives, Wi-Fi from 802.11 to Wi-Fi 7. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../load-balancing/"><small>Previous</small>Load Balancing</a><a class="next" href="../wi-fi/"><small>Next</small>Wi-Fi</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../load-balancing/"><small>Previous: Episode 30</small>Load Balancing</a><a class="next" href="../wi-fi/"><small>Next: Episode 32</small>Wi-Fi</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

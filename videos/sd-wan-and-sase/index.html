@@ -9,14 +9,14 @@
 <meta property="og:title" content="SD-WAN and SASE · Network Dr">
 <meta property="og:description" content="Welcome to episode 37. So far, we&#x27;ve looked inside data centers and the cloud. Today, we look at how an enterprise connects everything else, branch offices, stores, factories, and ">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/xw_Z_M9-F9E?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="SD-WAN and SASE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">37</span>
     <div>
+      <p class="crumb"><a href="../../series/protocol-deep-dives/">Protocol Deep Dives</a>, Episode 37</p>
       <h1>SD-WAN and SASE</h1>
       <p class="meta"><time datetime="2026-10-20T13:09:17-07:00">20 Oct 2026</time><span>9:18</span><a href="https://www.youtube.com/watch?v=xw_Z_M9-F9E" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -67,13 +69,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=462s" data-seek="462" aria-label="Play from 7:42">7:42</a><span data-t="462">SDW gives operators far more visibility than a classic W. Dashboards show each application&#x27;s experience at each site,</span> <span data-t="470">latency, loss, and which path it took, minuteby minute. Brown outs where a lake is up but degraded finally become visible. Sassy adds user level insight.</span> <span data-t="481">Who accessed which application from which device and what was blocked?</span> <span data-t="487">A few problems are common. MTU the IPSAC and overlay headers had overhead. So</span> <span data-t="493">clamp the TCPMSS around 1360 or large transfer stall net it is behind carriern</span> <span data-t="500">need net traversal over UDP4500 certificates an expired edge certificate or wrong clock from last episode breaks</span> <span data-t="508">the tunnels and when every probe is healthy but SAS app is still slow the problem may be the SAS provider itself</span> <span data-t="515">or the popular users were steered to to recap the classic W backhalled</span> <span data-t="522">everything over MLS cloud apps and cheap broadband broke that model. SDWAN builds encrypted overlays across any transport</span> <span data-t="531">with central orchestration, zero-ouch provisioning and application aware routing on measured SLS plus FEC and duplication for resilience. Sassy moves</span> <span data-t="540">security to cloud pops secure web gateways, CASBY firewall as a service, DLP and ZTNA which grants access per</span> <span data-t="548">application by identity instead of the whole network. Next in the protocol deep dives multiccast with IGMP and PIM. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../time-synchronization/"><small>Previous</small>Time Synchronization</a><a class="next" href="../multicast/"><small>Next</small>Multicast</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../time-synchronization/"><small>Previous: Episode 36</small>Time Synchronization</a><a class="next" href="../multicast/"><small>Next: Episode 38</small>Multicast</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

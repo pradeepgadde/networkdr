@@ -9,14 +9,14 @@
 <meta property="og:title" content="Life of a Packet · Network Dr">
 <meta property="og:description" content="In the first episode, we saw the big picture of networking. Now, we zoom in on a single packet. We&#x27;ll follow one web request from a laptop on a home network to a server across the ">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/_Ym6RIqQSp8?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Life of a Packet" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">2</span>
     <div>
+      <p class="crumb"><a href="../../series/the-big-picture/">The Big Picture</a>, Episode 2</p>
       <h1>Life of a Packet</h1>
       <p class="meta"><time datetime="2026-10-17T11:53:26-07:00">17 Oct 2026</time><span>14:59</span><a href="https://www.youtube.com/watch?v=_Ym6RIqQSp8" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -76,13 +78,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_Ym6RIqQSp8&amp;t=867s" data-seek="867" aria-label="Play from 14:27">14:27</a><span data-t="867">Let&#x27;s recap the life of a packet. The host uses its mask to decide local or remote. ARP finds the next hops MAC address and the switch forwards the</span> <span data-t="875">frame. Each router strips the frame, finds the longest prefix match, decrements the TTL, and builds a new frame that rewrites addresses at the</span> <span data-t="883">edge. MAC addresses change at every hop and IP addresses stay the same end to end except where NAT steps in. In the</span> <span data-t="891">next episode, we&#x27;ll go deeper into switching VLANs, trunks, spanning tree, and link aggregation. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../welcome-to-networking/"><small>Previous</small>Welcome to Networking</a><a class="next" href="../switching-deep-dive/"><small>Next</small>Switching Deep Dive</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../welcome-to-networking/"><small>Previous: Episode 1</small>Welcome to Networking</a><a class="next" href="../switching-deep-dive/"><small>Next: Episode 3</small>Switching Deep Dive</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

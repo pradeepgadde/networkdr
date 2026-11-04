@@ -9,14 +9,14 @@
 <meta property="og:title" content="Multicast · Network Dr">
 <meta property="og:description" content="Welcome to episode 38. Most traffic we&#x27;ve seen goes from one sender to one receiver. Today we look at sending one stream to many receivers at once without sending it many times. Th">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/SarKGm4N1gA?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Multicast" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">38</span>
     <div>
+      <p class="crumb"><a href="../../series/protocol-deep-dives/">Protocol Deep Dives</a>, Episode 38</p>
       <h1>Multicast</h1>
       <p class="meta"><time datetime="2026-10-20T13:11:44-07:00">20 Oct 2026</time><span>12:17</span><a href="https://www.youtube.com/watch?v=SarKGm4N1gA" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -72,13 +74,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=SarKGm4N1gA&amp;t=694s" data-seek="694" aria-label="Play from 11:34">11:34</a><span data-t="694">To recap, multiccast sends one copy to a group replicated only where paths split.</span> <span data-t="699">Groups use 224.0.0 0.80/4 map to MAC starting 01 0005e</span> <span data-t="707">hosts join with amp or mld for IPv6 switches use a hooping to forward only to members and need a querer router use</span> <span data-t="716">pim checking every packet with RPF bars joins a shared tree at the RP registers sources and switches to the shortest</span> <span data-t="724">path tree SSM skips the RP entirely and Bidier scales many to many next in the protocol deep dives</span> <span data-t="731">Kubernetes networking from pods to services and service meshes. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../sd-wan-and-sase/"><small>Previous</small>SD-WAN and SASE</a><a class="next" href="../kubernetes-networking/"><small>Next</small>Kubernetes Networking</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../sd-wan-and-sase/"><small>Previous: Episode 37</small>SD-WAN and SASE</a><a class="next" href="../kubernetes-networking/"><small>Next: Episode 39</small>Kubernetes Networking</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

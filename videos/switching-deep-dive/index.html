@@ -9,14 +9,14 @@
 <meta property="og:title" content="Switching Deep Dive · Network Dr">
 <meta property="og:description" content="Welcome to episode 3. Last time we followed a packet across many networks. Now we zoom into the place where most packets start and end, the switched local network. This is the swit">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/3fO32oxrJEk?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Switching Deep Dive" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">3</span>
     <div>
+      <p class="crumb"><a href="../../series/the-big-picture/">The Big Picture</a>, Episode 3</p>
       <h1>Switching Deep Dive</h1>
       <p class="meta"><time datetime="2026-10-17T12:03:18-07:00">17 Oct 2026</time><span>13:42</span><a href="https://www.youtube.com/watch?v=3fO32oxrJEk" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -77,13 +79,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=3fO32oxrJEk&amp;t=788s" data-seek="788" aria-label="Play from 13:08">13:08</a><span data-t="788">Switches learn source MAC addresses, forward known destinations, and flood the rest. VLANs split a switch into separate broadcast domains, one subnet</span> <span data-t="796">each. Trunks carry many VLANs using 802.1 Q tags and layer 3 switches route between VLANs with SV. It is vanning</span> <span data-t="804">tree blocks loops. Rapid spanning tree makes recovery fast and link aggregation with LACP and Mlag puts every link to work. In the next episode, we leave</span> <span data-t="813">layer 2 behind for the routing deep dive. OPF areas, BGP path selection and route redistribution. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../life-of-a-packet/"><small>Previous</small>Life of a Packet</a><a class="next" href="../routing-deep-dive/"><small>Next</small>Routing Deep Dive</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../life-of-a-packet/"><small>Previous: Episode 2</small>Life of a Packet</a><a class="next" href="../routing-deep-dive/"><small>Next: Episode 4</small>Routing Deep Dive</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

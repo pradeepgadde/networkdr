@@ -4,10 +4,11 @@ Every video from the [Network Dr YouTube channel](https://www.youtube.com/@netwo
 
 Live site: https://pradeepgadde.com/networkdr/
 
-- `index.html` lists every episode, newest first, with search.
-- `videos/<slug>/index.html` holds one page per video. Click any timestamp or line in the transcript to jump the player there; "Follow along" highlights the line being spoken.
-- `assets/` holds the shared stylesheet and scripts.
+- `index.html`: home page with the latest upload, the Big Picture course as a starting route, and a shelf per series.
+- `all/`: every video, searchable and filterable by series.
+- `series/<name>/`: one page per series, in episode order.
+- `videos/<slug>/`: one page per video. Click any timestamp or line in the transcript to jump the player there; "Follow along" highlights the line being spoken.
+- `assets/`: stylesheet, scripts, logo (`logo.svg`), banner and icons. To change the logo, replace `assets/logo.svg`.
+- `tools/generate.py`: rebuilds the site from a JSON export of video metadata and transcripts.
 
-Transcripts come from YouTube's automatic captions and may contain errors.
-
-The site is plain static HTML served by GitHub Pages from the `main` branch.
+Transcripts come from YouTube's automatic captions and may contain errors. The site is plain static HTML served by GitHub Pages from the `main` branch.

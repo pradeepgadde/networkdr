@@ -9,14 +9,14 @@
 <meta property="og:title" content="ARP · Network Dr">
 <meta property="og:description" content="Welcome to episode 10. Last time we built the Ethernet frame and every frame needs a destination MAC address. But applications only know IP addresses ARP the address resolution pro">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Xvzo8spseqY?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="ARP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">10</span>
     <div>
+      <p class="crumb"><a href="../../series/protocol-deep-dives/">Protocol Deep Dives</a>, Episode 10</p>
       <h1>ARP</h1>
       <p class="meta"><time datetime="2026-10-17T21:00:35-07:00">17 Oct 2026</time><span>4:57</span><a href="https://www.youtube.com/watch?v=Xvzo8spseqY" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -63,13 +65,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Xvzo8spseqY&amp;t=274s" data-seek="274" aria-label="Play from 4:34">4:34</a><span data-t="274">To recap, ARP maps an IPv4 address to a MAC address. The request is broadcast, the reply is uniccast, and the answer is</span> <span data-t="282">cached. Ratuitous ARP announces dynamic ARP inspection protects and IPv6 uses neighbor discovery instead. Next in the</span> <span data-t="290">protocol deep dives, the IPv4 header field by field. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../ethernet-ieee-802-3/"><small>Previous</small>Ethernet IEEE 802 3</a><a class="next" href="../ipv4/"><small>Next</small>IPv4</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../ethernet-ieee-802-3/"><small>Previous: Episode 9</small>Ethernet IEEE 802 3</a><a class="next" href="../ipv4/"><small>Next: Episode 11</small>IPv4</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

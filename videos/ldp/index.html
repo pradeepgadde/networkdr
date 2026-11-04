@@ -9,14 +9,14 @@
 <meta property="og:title" content="LDP · Network Dr">
 <meta property="og:description" content="Welcome to episode 49. Last time ISIS built the map of a provider backbone, but NLS forwards on labels, not maps, and someone has to hand those labels out. The classic answer is LD">
 <meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#1C2125">
 <meta property="og:image:alt" content="Network Dr street sign over a map of network links">
 <meta property="og:site_name" content="Network Dr">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
@@ -26,9 +26,10 @@
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
+  <a class="brand" href="../../" aria-label="Network Dr home"><img src="../../assets/logo.svg" alt="" width="44" height="44"><span>Network Dr</span></a>
   <nav aria-label="Primary">
-    <a href="../../">Episodes</a>
+    <a href="../../">Home</a>
+    <a href="../../all/">All videos</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
   </nav>
 </header>
@@ -37,8 +38,9 @@
 <article class="episode">
   <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Rf7WNgJXl2c?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="LDP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
   <header class="ep-head">
-    
+    <span class="sign sign-lg" aria-hidden="true">49</span>
     <div>
+      <p class="crumb"><a href="../../series/bonus-deep-dives/">Bonus Deep Dives</a>, Episode 49</p>
       <h1>LDP</h1>
       <p class="meta"><time datetime="2026-10-21T12:45:37-07:00">21 Oct 2026</time><span>14:39</span><a href="https://www.youtube.com/watch?v=Rf7WNgJXl2c" rel="noopener">Watch on YouTube</a></p>
     </div>
@@ -75,13 +77,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Rf7WNgJXl2c&amp;t=844s" data-seek="844" aria-label="Play from 14:04">14:04</a><span data-t="844">Let&#x27;s recap. LDP finds neighbors with UDP hoss on port 646, then runs a TCP session on port 646. The higher</span> <span data-t="852">transport address opens it. Address messages map next hops to peers, and label mapping messages bind labels to</span> <span data-t="859">FECS, which flow upstream to build each LSP along the IGP shortest path.</span> <span data-t="865">Implicit null gives penultimate hop hopping and IGP synchronization and session protection keep it robust. Next time RSVP and how traffic engineering</span> <span data-t="875">takes the path away from the IGP. See you there.</span></p>
     </div>
   </section>
-  <nav class="pager" aria-label="More episodes"><a class="prev" href="../is-is/"><small>Previous</small>IS-IS</a><a class="next" href="../rsvp/"><small>Next</small>RSVP</a></nav>
+  <nav class="pager" aria-label="More in this series"><a class="prev" href="../is-is/"><small>Previous: Episode 48</small>IS-IS</a><a class="next" href="../rsvp/"><small>Next: Episode 50</small>RSVP</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
-  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>
