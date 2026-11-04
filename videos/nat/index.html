@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAT · Network Dr</title>
+<meta name="description" content="Welcome to episode 18. DHCP gave your laptop the address 192 168 157, but the internet can&#x27;t reach that address. So, how do replies find their way back? The answer is that network ">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/nat/">
+<meta property="og:title" content="NAT · Network Dr">
+<meta property="og:description" content="Welcome to episode 18. DHCP gave your laptop the address 192 168 157, but the internet can&#x27;t reach that address. So, how do replies find their way back? The answer is that network ">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/hYTJnnlGMy0?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="NAT" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>NAT</h1>
+          <p class="meta"><time datetime="2026-10-18T16:10:30-07:00">18 Oct 2026</time><span>4:48</span><a href="https://www.youtube.com/watch?v=hYTJnnlGMy0" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../dhcp/"><small>Previous</small>DHCP</a><a class="next" href="../ipv6/"><small>Next</small>IPv6</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">650 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 18. DHCP gave your laptop the address 192 168 157, but the</span> <span data-t="8">internet can&#x27;t reach that address. So, how do replies find their way back? The answer is that network address translation. The trick that has kept IPv4 alive for decades.</span> <span data-t="20">IPv4 has about 4.3 billion addresses, fewer than the devices online, and the central pool ran dry in 2011. So RFC1918</span> <span data-t="29">set aside private ranges 10.0/8 172.16/12 and 192.168/16.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=39s" data-seek="39" aria-label="Play from 0:39">0:39</a><span data-t="39">Anyone can use them inside a network but they&#x27;re never routed on the internet.</span> <span data-t="44">Net connects the two worlds, swapping private addresses for public ones at the edge.</span> <span data-t="50">Your laptop connects from 192, 168, 157, port 51,334</span> <span data-t="57">to a web server at 198, 51, 120, port 443.</span> <span data-t="64">The router replaces the source with its public address 203 0137, records the mapping, and recalculates</span> <span data-t="72">the checksums. When the reply comes back, the router looks up the mapping, rewrites the destination to 192, 168,</span> <span data-t="80">157, and forwards it inside.NAT comes in three flavors. ThaddicNet maps one private address to one public</span> <span data-t="89">address permanently. DynamicNat borrows one from a pool, but the most common is port address translation or PAT. Cisco</span> <span data-t="96">calls it net overload and Linux calls it masquerading. Many hosts share one public address told apart by ports.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=105s" data-seek="105" aria-label="Play from 1:45">1:45</a><span data-t="105">Suppose your laptop and phone both pick source port 51,334 to the same server. The router can&#x27;t give them the same public port, so it</span> <span data-t="114">assigns new ones. 40,0001 for the laptop and 40,0002 for the phone. Each translation is one row in a table with</span> <span data-t="122">about 65,000 ports per address per protocol. One public IP can serve a whole office.</span> <span data-t="129">On Linux, these mappings live in the connection tracking table and contract-l lists them. Entries expire. TCP entries</span> <span data-t="137">last until the connection closes or a long idle timeout. UDP entries expire after seconds or minutes of silence, which is why long live UDP apps send keys.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=149s" data-seek="149" aria-label="Play from 2:29">2:29</a><span data-t="149">Now, a packet arrives from the internet that nobody inside asked for. There&#x27;s no table entry, so it&#x27;s dropped. To run a server inside, you add port forwarding.</span> <span data-t="159">Anything arriving on public port 8443 goes to 192, 168, 120, port 443.</span> <span data-t="167">This looks like a firewall, but NAT is not a security feature. You still need real firewall rules.</span> <span data-t="174">NAT breaks the internet&#x27;s original end toend model. Protocols that put addresses inside their payload like classic FTP and SIP carry the wrong</span> <span data-t="183">private address. Application layer gateways rewrite them which is fragile.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=188s" data-seek="188" aria-label="Play from 3:08">3:08</a><span data-t="188">IP sec struggles too. Its fix net traversal wraps encrypted packets in UDP port 4500.</span> <span data-t="197">Video calls and games want to connect peer-to-peer even when both sides are behind net. Each side asks a stun server what its public address and port are.</span> <span data-t="206">Then both send to each other at once opening matching entries. That&#x27;s hole punching. When that fails, a turn server release the traffic. Ice tries every option and WebRTC uses all three.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=219s" data-seek="219" aria-label="Play from 3:39">3:39</a><span data-t="219">Many ISPS have run out of public addresses too. So they add carrier grade net inside their own network using the shared range 100.64/10.</span> <span data-t="229">That&#x27;s doublenet. Port forwarding becomes impossible and the ISP must log port mappings to trace abuse back to a customer.</span> <span data-t="238">On Linux, IP tables or NF tables do with masquerade for outbound traffic and DNA for poor forwarding in the cloud. ANAT</span> <span data-t="246">gateway lets private subnets reach the internet. Kubernetes uses NAT everywhere. Q proxy service addresses to</span> <span data-t="254">pods and traffic leaving the cluster is snatted to the node&#x27;s address. IPv6 has enough addresses to make NAT unnecessary and NAT 64 bridges the two.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=265s" data-seek="265" aria-label="Play from 4:25">4:25</a><span data-t="265">To recap, NAT rewrites addresses at the edge so private ranges can reach the internet. Patch shares one public</span> <span data-t="272">address using ports tracked in a table with timeouts. Inbound needs port forwarding. Peer-to-peer needs done and turn and carriers add another layer.</span> <span data-t="281">Next in the protocol deep dives, IPv6 built so we wouldn&#x27;t need NAT. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

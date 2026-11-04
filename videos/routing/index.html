@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Routing · Network Dr</title>
+<meta name="description" content="Welcome to episode 20. We&#x27;ve built packets, addressed them, and translated them. Now, how do they find their way across a network of networks? That&#x27;s routing. Every router makes on">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/routing/">
+<meta property="og:title" content="Routing · Network Dr">
+<meta property="og:description" content="Welcome to episode 20. We&#x27;ve built packets, addressed them, and translated them. Now, how do they find their way across a network of networks? That&#x27;s routing. Every router makes on">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/R5v7NIa4Kgs?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Routing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>Routing</h1>
+          <p class="meta"><time datetime="2026-10-18T16:15:38-07:00">18 Oct 2026</time><span>4:51</span><a href="https://www.youtube.com/watch?v=R5v7NIa4Kgs" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../ipv6/"><small>Previous</small>IPv6</a><a class="next" href="../ospf/"><small>Next</small>OSPF</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">731 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=R5v7NIa4Kgs&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 20. We&#x27;ve built packets, addressed them, and translated them. Now, how do they find their way across a network of networks? That&#x27;s</span> <span data-t="9">routing. Every router makes one small decision over and over. For this destination, where does the packet go next?</span> <span data-t="18">No router knows the whole path. Each one only picks the next hop and trusts the next router to do the same. A packet from your laptop to a server might cross</span> <span data-t="27">a dozen routers. At each one, the destination IP address is looked up and the packet moves one step closer. It&#x27;s</span> <span data-t="34">like road signs at each junction. None shows the whole route, but each one points the right way.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=R5v7NIa4Kgs&amp;t=41s" data-seek="41" aria-label="Play from 0:41">0:41</a><span data-t="41">The decision comes from the routing table. Each entry holds a destination prefix, a next top route going interface, and where the route came</span> <span data-t="48">from. Connected routes appear automatically for the router&#x27;s own subnets. Static routes are typed in by an administrator. Dynamic routes are</span> <span data-t="57">learned from routing protocols like OPF and the default route 0000/ matches anything the route of last resort.</span> <span data-t="68">A packet arrives for 10 2 5 9 three entries match it 1020 0/16</span> <span data-t="75">10250/24 and the default route. The router always picks the most specific match, the longest prefix here. That&#x27;s the /24.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=R5v7NIa4Kgs&amp;t=85s" data-seek="85" aria-label="Play from 1:25">1:25</a><span data-t="85">This one rule lets network summarize huge ranges with short prefixes and still carve out exceptions with longer ones.</span> <span data-t="94">What if two sources offer the same prefix? Routers rank sources by trust called administrative distance on Cisco.</span> <span data-t="101">Lower winds connected is zero, static is one, external BGP 20, OPF 110 and RIP</span> <span data-t="109">120 within one protocol. The metric breaks ties hop count for RIP a cost based on bandwidth for OPF. Only the winner is installed.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=R5v7NIa4Kgs&amp;t=120s" data-seek="120" aria-label="Play from 2:00">2:00</a><span data-t="120">Now follow one packet through a router.</span> <span data-t="122">It checks the IP header checksum and decrements the TTL. If the TTL hits zero, the packet is dropped and an ICMP</span> <span data-t="129">time exceeded message goes back. It looks up the destination, finds the next hop, and resolves that next hop&#x27;s MAC</span> <span data-t="136">address with ARP. Then it builds a new Ethernet frame. The MAC addresses change at every hop, but the IP addresses stay the same end to end.</span> <span data-t="146">Routers split the job in two. The control plane runs routing protocols and builds the RIB, the routing information base. The best routes are pushed into</span> <span data-t="155">the fib. The four ring table in hardware special memory called TCAM finds the longest match in a single lookup. That&#x27;s</span> <span data-t="162">how a switch chip forwards billions of packets per second while its CPU handles the protocols.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=R5v7NIa4Kgs&amp;t=170s" data-seek="170" aria-label="Play from 2:50">2:50</a><span data-t="170">Sometimes two or more paths tie exactly with ECMP. The router installs them all and spreads traffic across them. It</span> <span data-t="178">hashes each packet&#x27;s five tupole. So one flow always takes the same path and its packets don&#x27;t arrive out of order. Data</span> <span data-t="185">center leaf and spine fabrics depend on this. Every leaf has an equal path through every spine. I clusters push it hardest where a few huge flows can collide on one link.</span> <span data-t="196">Dynamic routing protocols come in families. Distance vector protocols like RIP tell their neighbors, &quot;Here&#x27;s how</span> <span data-t="203">far I am from each network.&quot; Simple but slow to converge. Link state protocols like OSPF and ISIS flood the map of</span> <span data-t="212">every link and each router computes shortest paths itself and path vector BGP connects the internet&#x27;s autonomous</span> <span data-t="218">systems choosing routes by policy not just distance when a link fails routers must agree on</span> <span data-t="226">UPaths that&#x27;s convergence until they do packets can be dropped or loop between routers until their TTL runs out fast</span> <span data-t="234">detection with protocols like BF FD cuts that window to milliseconds. All distance spectra protocols could count</span> <span data-t="242">to infinity for minutes. Modern link state networks converge in well under a second.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=R5v7NIa4Kgs&amp;t=248s" data-seek="248" aria-label="Play from 4:08">4:08</a><span data-t="248">On Linux, IP route shows the table and IP route get shows exactly which route a destination would use. On a Cisco</span> <span data-t="255">router, show IP route lists every route with a code for its source and the distance and metric in brackets. and</span> <span data-t="262">trace route from episode 12 reveals the hops themselves.</span> <span data-t="268">To recap, routing is hop by hop. Each router looks up the destination and the longest prefix match wins.</span> <span data-t="275">Administrative distance picks between sources, metrics pick within one ECMP shares equal paths and the fib forwards</span> <span data-t="282">in hardware. Next in the protocol deep dives, OPF, the link state protocol inside most enterprise networks. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

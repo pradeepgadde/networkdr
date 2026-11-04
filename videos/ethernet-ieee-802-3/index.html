@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ethernet IEEE 802 3 · Network Dr</title>
+<meta name="description" content="Welcome to episode 9, the start of our protocol deep dives where we open each protocol up field by field. First up is the protocol almost every packet rides on Ethernet Ale 802.3. ">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ethernet-ieee-802-3/">
+<meta property="og:title" content="Ethernet IEEE 802 3 · Network Dr">
+<meta property="og:description" content="Welcome to episode 9, the start of our protocol deep dives where we open each protocol up field by field. First up is the protocol almost every packet rides on Ethernet Ale 802.3. ">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/vR5_7zJfe0Y?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Ethernet IEEE 802 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>Ethernet IEEE 802 3</h1>
+          <p class="meta"><time datetime="2026-10-17T20:56:15-07:00">17 Oct 2026</time><span>5:00</span><a href="https://www.youtube.com/watch?v=vR5_7zJfe0Y" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../network-automation-2/"><small>Previous</small>Network Automation</a><a class="next" href="../arp/"><small>Next</small>ARP</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">758 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 9, the start of our protocol deep dives where we open each protocol up field by field. First up is</span> <span data-t="8">the protocol almost every packet rides on Ethernet Ale 802.3. We&#x27;ll build the frame at the 802.1 QVL tag and pin down MTU.</span> <span data-t="20">Ethernet was born at Xerox Park in 1973 as standardized as 802.3 in 1983.</span> <span data-t="27">fees have climbed from 10 megabits to 1.6 terabs, yet the frame format has barely changed. Learn it once and it pays off for your whole career.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=37s" data-seek="37" aria-label="Play from 0:37">0:37</a><span data-t="37">Here is a complete Ethernet frame, a preamble, two MAC addresses, a type field, the payload, and a frame check sequence. The header is 14 bytes and the</span> <span data-t="47">trailer 4. So, every frame carries 18 bytes of overhead. Measured from destination address to FCS, a frame is between 64 and 158 bytes.</span> <span data-t="58">The preamble is seven bytes of alternating ones and zeros or rhythm.</span> <span data-t="62">The receiver locks its clock onto the start frame delimter ends in two ones, meaning the frame starts. Now these</span> <span data-t="69">eight bytes plus a 12 byt gap between frames belong to the physical layer. So they don&#x27;t count toward frame size.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=77s" data-seek="77" aria-label="Play from 1:17">1:17</a><span data-t="77">Next, the destination and source MAC addresses six bytes each. Destination comes first, so a switch can start its lookup right away. The first three bytes</span> <span data-t="86">are the OUI, a vendor ID assigned by the ILE E, the vendor numbers, the rest. In the first bite, the IG bit marks</span> <span data-t="94">multiccast and the UL bit marks a locally assigned address. All ones FF FF FF FF FF FF is broadcast.</span> <span data-t="104">The two byte type field says which protocol is inside. 0800 for IPv486 DDD</span> <span data-t="110">for IPv6, 0806 for ARP and 810 0 for a VLAN tag. Original 802.3 use this field</span> <span data-t="119">as a length. The rule 1536 and above is an ether type 1500 and below is a length. Today nearly everything uses ether type.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=130s" data-seek="130" aria-label="Play from 2:10">2:10</a><span data-t="130">The payload carries the upper layer packet 46 to 1500 bytes. Why a minimum on shared Ethernet a sender had to still</span> <span data-t="138">be transmitting when a collision echoed back at 10 megabits that took 64 bytes.</span> <span data-t="142">So a short payload like a 28 byt ARP message is padded with zeros up to 46.</span> <span data-t="148">The receiver reads the real length from the packet inside and ignores the pad.</span> <span data-t="154">The FCS is a 32-bit CRC over everything from the destination address to the end of the payload. The receiver repeats the</span> <span data-t="162">calculation. If the results differ, a bit flipped in transit and the frame is silently dropped. Ethernet detects errors but never ret-ransmits. TCP and</span> <span data-t="171">other upper layers recover. Plining CRC counters usually mean a bad cable, optic, or port.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=178s" data-seek="178" aria-label="Play from 2:58">2:58</a><span data-t="178">A trunk carries many VLANs over one link, so each frame needs a label, the 802.1 Q tag. Four bytes are inserted</span> <span data-t="186">after the source MAC, and the FCS is recalculated. The first two bytes 810 0 0 say exactly where the type field is</span> <span data-t="194">expected. That&#x27;s how a receiver knows a tag follows. Then three bits of priority for quality of service, a drop eligible</span> <span data-t="201">bit and a 12-bit VLAN ID, VLANs 1 to 4094. A tagged frame can reach 1522</span> <span data-t="208">bytes. Providers can even stack a second outer tag called Q and Q.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=215s" data-seek="215" aria-label="Play from 3:35">3:35</a><span data-t="215">NTU is the largest payload a link carries 1500 bytes on standard Ethernet at header and FCS and the frame is 1518</span> <span data-t="223">with a tag 1522 on the wire add 8 bytes of preamble and 12 of gap 1538 byt times per full frame</span> <span data-t="232">carrying TCP over IPv460 of those bytes are data about 95% efficiency tiny frames are the opposite</span> <span data-t="241">64 bytes plus 20 of overhead caps a 10 GB link at 14.8 888 million packets per second. Data centers and I fabrics often</span> <span data-t="249">use 9,000 byt jumbo frames and tunnels like Vex LAN add 50 bytes of their own.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vR5_7zJfe0Y&amp;t=254s" data-seek="254" aria-label="Play from 4:14">4:14</a><span data-t="254">MTU must match end to end or big packets are dropped while small pins still work.</span> <span data-t="261">Let&#x27;s read a real frame in hex. Six bytes of destination, six a source, then 8 1 0 0 a VLAN tag, VLAN 10, then 08 0 0</span> <span data-t="272">for IPv4, and the IP header begins with 45. Know the offsets and any capture becomes readable.</span> <span data-t="280">To recap, MAC addresses say who. The ether type says what. The payload carries the packet and the FCS checks it</span> <span data-t="287">all at 802.1Q adds four bytes for VLANs and MTU is the payload limit. Next in the protocol deep dives, ARP, how a host</span> <span data-t="295">finds the MAC address behind an IP address. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

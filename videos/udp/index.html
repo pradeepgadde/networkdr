@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UDP · Network Dr</title>
+<meta name="description" content="Welcome to episode 13. We&#x27;ve climbed from Ethernet to IP. Now we reach the transport layer, starting with its simplest protocol, UDP. UDP adds just enough to IP for applications to">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/udp/">
+<meta property="og:title" content="UDP · Network Dr">
+<meta property="og:description" content="Welcome to episode 13. We&#x27;ve climbed from Ethernet to IP. Now we reach the transport layer, starting with its simplest protocol, UDP. UDP adds just enough to IP for applications to">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/vHm3_Qb6uw8?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="UDP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>UDP</h1>
+          <p class="meta"><time datetime="2026-10-18T13:36:11-07:00">18 Oct 2026</time><span>5:02</span><a href="https://www.youtube.com/watch?v=vHm3_Qb6uw8" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../icmp/"><small>Previous</small>ICMP</a><a class="next" href="../tcp-part1/"><small>Next</small>TCP Part1</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">706 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vHm3_Qb6uw8&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 13. We&#x27;ve climbed from Ethernet to IP. Now we reach the transport layer, starting with its</span> <span data-t="7">simplest protocol, UDP. UDP adds just enough to IP for applications to talk, ports, a length, and a checksum, nothing</span> <span data-t="16">more. And that turns out to be a feature.</span> <span data-t="20">IP delivers a packet to a host, but one host runs many applications at once. A browser, a DNS resolver, a video call.</span> <span data-t="28">Ports decide which application gets the data. UDP carries them as IP protocol 17. It&#x27;s the user datagramgram protocol</span> <span data-t="36">RFC 768 from 1980. The whole standard is about three pages long.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vHm3_Qb6uw8&amp;t=43s" data-seek="43" aria-label="Play from 0:43">0:43</a><span data-t="43">The UDP header is just 8 bytes in four 16 bit fields. Source port and destination port come first, then the</span> <span data-t="51">length covering the header plus the data, so it&#x27;s at least eight. And finally, the checksum.</span> <span data-t="58">Ports are 16- bit numbers from 0 to 65,535.</span> <span data-t="62">Ports below 1,024 are wellknown like 53 for DNS. The registered range runs up to 49,151</span> <span data-t="70">and the rest are dynamic. A client usually picks a temporary ephemeral port for itself and sends to the server&#x27;s well-known port. The reply simply swaps</span> <span data-t="79">them. An IP address plus a port is a socket. source and destination addresses and ports plus the protocol form the five tupil that identifies a flow.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vHm3_Qb6uw8&amp;t=90s" data-seek="90" aria-label="Play from 1:30">1:30</a><span data-t="90">The checksum covers the UDP header, the data and a pseudo header taken from IP, the two addresses, the protocol and the</span> <span data-t="98">length. That way, a datagramgram delivered to the wrong host fails the check. In IPv4, the checksum is optional</span> <span data-t="104">and zero means none. In IPv6, it&#x27;s mandatory. Either way, a bad datagramgram is simply dropped.</span> <span data-t="112">Now what UDP leaves out there&#x27;s no handshake. The first datagramgram is the data. No acknowledgements and no retransmission. A lost datagramgram is</span> <span data-t="121">just gone. No ordering. Datagramgrams can arrive shuffled and no congestion control. What it does keep is message</span> <span data-t="128">boundaries. Each send is one datagramgram and the receiver reads exactly that datagramgram whole.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vHm3_Qb6uw8&amp;t=136s" data-seek="136" aria-label="Play from 2:16">2:16</a><span data-t="136">So why use it? Feed and simplicity. For a voice or video call, a late packet is useless anyway. It&#x27;s better to skip it</span> <span data-t="143">than to wait for a retransmission. For a quick question like a DNS lookup, one datagramgram out and one back beat setting up a connection. And UDP can</span> <span data-t="152">broadcast and multiccast which connection based TCP cannot.</span> <span data-t="158">You&#x27;ll meet UDP everywhere. DNS on port 53, DHCP on 67 and 68, NTP time sync on</span> <span data-t="166">123, and SNMP on 161, SIS log on 514, BX land tunnels on 4789, wire guard on</span> <span data-t="174">51820, voice and video over RTP and quick on 443.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vHm3_Qb6uw8&amp;t=182s" data-seek="182" aria-label="Play from 3:02">3:02</a><span data-t="182">Here&#x27;s a real DNS query from 10101011 to a resolver asking for example.com.</span> <span data-t="188">C8 86 is source port 51,334 an ephemeral port 0035 is destination</span> <span data-t="195">port 53 0025 is a length of 37 bytes. 8 of header and 29 of DNS. Then the checksum and the DNS question itself.</span> <span data-t="206">A UDP datagramgram can carry up to 65,57 bytes over IPv4, but anything bigger than the path MTU gets fragmented and</span> <span data-t="215">one lost fragment loses it all. So, well- behaved applications stay small.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vHm3_Qb6uw8&amp;t=220s" data-seek="220" aria-label="Play from 3:40">3:40</a><span data-t="220">DNS answers that don&#x27;t fit or mark truncated and the client retries over TCP. Net devices also forget idle UDP</span> <span data-t="228">flows often within a minute or two. So long lived UDP applications send small keepives</span> <span data-t="235">with no handshake. Nothing proves a datagramgram source address is real.</span> <span data-t="239">Attackers exploit this. They send small requests with a victim&#x27;s address as the source to servers that send back much larger replies. That&#x27;s reflection and amplification.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=vHm3_Qb6uw8&amp;t=250s" data-seek="250" aria-label="Play from 4:10">4:10</a><span data-t="250">Exposed memached servers once amplified attacks by tens of thousands of times.</span> <span data-t="254">The defenses are source address filtering at the network edge and rate limiting on servers.</span> <span data-t="261">UDP&#x27;s minimalism made it the foundation for something bigger. Quick quick runs over UDP port 443 and adds reliability,</span> <span data-t="269">encryption, and multiple streams all inside the application. It carries HTTP3 which much of the web now uses.</span> <span data-t="279">To recap, UDP adds ports, a length, and a checksum to IP in just eight bytes. No handshake, no retransmission, no</span> <span data-t="287">ordering, but fast, simple, and message-based. That&#x27;s why it carries DNS, PO tunnels, and now quick. Next in</span> <span data-t="295">the protocol deep dives, TCP, where reliability gets built from the ground up. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

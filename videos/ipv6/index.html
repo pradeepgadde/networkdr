@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IPv6 · Network Dr</title>
+<meta name="description" content="Welcome to episode 19. Net kept IPv4 alive, but it&#x27;s a workaround. IPv6 is the real fix. Addresses four times as long, a simpler header, no broadcast, and no need for MAT. Let&#x27;s ta">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ipv6/">
+<meta property="og:title" content="IPv6 · Network Dr">
+<meta property="og:description" content="Welcome to episode 19. Net kept IPv4 alive, but it&#x27;s a workaround. IPv6 is the real fix. Addresses four times as long, a simpler header, no broadcast, and no need for MAT. Let&#x27;s ta">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/fbM7siDvB8I?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPv6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>IPv6</h1>
+          <p class="meta"><time datetime="2026-10-18T16:13:08-07:00">18 Oct 2026</time><span>4:51</span><a href="https://www.youtube.com/watch?v=fbM7siDvB8I" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../nat/"><small>Previous</small>NAT</a><a class="next" href="../routing/"><small>Next</small>Routing</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">688 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 19. Net kept IPv4 alive, but it&#x27;s a workaround. IPv6 is the real fix. Addresses four times as</span> <span data-t="9">long, a simpler header, no broadcast, and no need for MAT. Let&#x27;s take it apart.</span> <span data-t="16">IPv4 addresses are 32 bits. IPv6 addresses are 128 bits. That&#x27;s about 340</span> <span data-t="23">and addresses, a three followed by 38 digits. A typical home network gets 2 to the 64 addresses, more than the entire</span> <span data-t="30">IPv4 internet squared. IPv6 was standardized in 1998, and today close to half of Google&#x27;s users reach it over IPv6.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=41s" data-seek="41" aria-label="Play from 0:41">0:41</a><span data-t="41">An IPv6 address is written as eight groups of four hex digits separated by colons. Two rules shorten it. Leading</span> <span data-t="48">zeros in a group can be dropped, and one run of all zero groups can be replaced by a double colon only once per address.</span> <span data-t="55">Most addresses split in half, a 64-bit prefix that identifies the network and a 64-bit interface ID for the host.</span> <span data-t="65">Global uniccast addresses starting with two or three are routable on the internet. Every interface also has a link local address starting with FE80.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=74s" data-seek="74" aria-label="Play from 1:14">1:14</a><span data-t="74">It works only on the local link and it&#x27;s used for neighbor discovery and routing protocols. Unique local addresses starting with FD are private like RFC1918.</span> <span data-t="84">Multiccast starts with FF and the loop back is col 1. There&#x27;s no broadcast at all. Multiccast does that job. More</span> <span data-t="92">precisely, the IPv6 header is a fixed 40 bytes with just eight fields. Version six, the</span> <span data-t="100">traffic class for QoS and a 20 bit flow label to keep a flows packets together.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=106s" data-seek="106" aria-label="Play from 1:46">1:46</a><span data-t="106">Then the payload length, the next header, which works like IPv4&#x27;s protocol field, and hop limit, which replaces TTL. Then the two 128 bit addresses.</span> <span data-t="116">Gone are the header checksum. The fragmentation fields and options. Routers have less to do.</span> <span data-t="123">Options moved into extension headers chained together by next header values.</span> <span data-t="127">Hop by hop. Routing fragment and IP sec headers. Then finally TCP or UDP.</span> <span data-t="134">Routers never fragment IPv6. Only the sender can using path MTU discovery. So I see MPV6 packet too big must not be</span> <span data-t="142">blocked. Every link must carry at least 12 e bytes.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=147s" data-seek="147" aria-label="Play from 2:27">2:27</a><span data-t="147">IPv6 has no ARP. Neighbor discovery built on ICMPv6 does that job. To find a neighbors MAC,</span> <span data-t="154">a host sends a neighbor solicitation to a solicited node multiccast group built from the last 24 bits of the target address. Only that host is listening so</span> <span data-t="162">others aren&#x27;t bothered. It answers with a neighbor advertisement. And before using any new address, a host checks that nobody else has it. That&#x27;s duplicate address detection.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=174s" data-seek="174" aria-label="Play from 2:54">2:54</a><span data-t="174">Routers send router advertisements, the prefix, the default gateway, and flags that say whether deed HCPv6 is in use.</span> <span data-t="182">With Slack, a host combines the prefix with its own interface ID and configures itself. No server needed. The interface ID used to come from the MAC address.</span> <span data-t="193">Today, it&#x27;s usually random, so devices can&#x27;t be tracked across networks.</span> <span data-t="199">The two protocols don&#x27;t interoperate directly. So most networks run dual stack both at once. When a name has both</span> <span data-t="206">a and quad records, Happy Eyeballs tries IPv6 first and falls back to IPv4 within a fraction of a second. IPv6 only</span> <span data-t="214">networks reach old IPv4 sites through NAT 64 with DNS 64 synthesizing addresses in the 64 FF9B/96</span> <span data-t="223">prefix. Mobile carriers do this at huge scale.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=228s" data-seek="228" aria-label="Play from 3:48">3:48</a><span data-t="228">At data center scale, even private IPv4 space runs out. Some of the largest networks now run IPv6 only inside and</span> <span data-t="236">Kubernetes supports dual stack pods and services. Huge clusters with hundreds of thousands of endpoints are a natural fit for IPv6&#x27;s flat plentiful addressing.</span> <span data-t="248">On Linux, IP-6 header shows each interface addresses lake local global and their lifetimes. IP-6 shows the</span> <span data-t="257">neighbor cache. IPv6&#x27;s version of the ARP table and pin col 1 tests the loop back.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=265s" data-seek="265" aria-label="Play from 4:25">4:25</a><span data-t="265">To recap, IPv6 uses 128 bit addresses written in hex with double shorthand, usually split into a 64-bit prefix and</span> <span data-t="274">interface ID. A fixed 40 byt header, extension headers, no router fragmentation, neighbor discovery instead of ARP, and Slack for self-configuration.</span> <span data-t="283">Next in the protocol deep dives.</span> <span data-t="285">Routing. How routers decide where packets go. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

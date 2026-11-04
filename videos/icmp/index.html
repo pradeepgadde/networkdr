@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICMP · Network Dr</title>
+<meta name="description" content="Welcome to episode 12. Last time ICMP kept turning up when a TTL ran out and when a packet was too big. Today it gets its own episode. The messages behind ping and trace route and ">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/icmp/">
+<meta property="og:title" content="ICMP · Network Dr">
+<meta property="og:description" content="Welcome to episode 12. Last time ICMP kept turning up when a TTL ran out and when a packet was too big. Today it gets its own episode. The messages behind ping and trace route and ">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/p0jg-0-lnzg?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="ICMP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>ICMP</h1>
+          <p class="meta"><time datetime="2026-10-18T13:32:24-07:00">18 Oct 2026</time><span>4:57</span><a href="https://www.youtube.com/watch?v=p0jg-0-lnzg" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../ipv4/"><small>Previous</small>IPv4</a><a class="next" href="../udp/"><small>Next</small>UDP</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">761 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 12. Last time ICMP kept turning up when a TTL ran out and when a packet was too big. Today it gets</span> <span data-t="9">its own episode. The messages behind ping and trace route and the error reports that keep the internet working.</span> <span data-t="17">ICMP the internet control message protocol is IP&#x27;s messaging system is defined in RFC 792, a companion to the</span> <span data-t="25">IPv4 standard. It rides directly inside IP with protocol number one. There are no ports and it carries no application data. Its messages come in two kinds.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=36s" data-seek="36" aria-label="Play from 0:36">0:36</a><span data-t="36">Errors sent when something goes wrong with a packet and queries like ping.</span> <span data-t="42">Every MP message starts the same way. A one bite type, a one byte code and a two byte checksum. The type says what kind of message it is. The code adds detail.</span> <span data-t="53">The next four bytes depend on the type.</span> <span data-t="55">An error message also quotes the packet that caused it, the original IP header, plus at least the first eight bytes of its payload. That&#x27;s enough for the</span> <span data-t="63">sender to match the error to the right connection.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=67s" data-seek="67" aria-label="Play from 1:07">1:07</a><span data-t="67">A handful of types cover nearly everything you&#x27;ll see. Eight is an echo request and zero is the echo reply.</span> <span data-t="74">That&#x27;s ping. Three is destination unreachable. 11 is time exceeded. Five is a redirect. And 12 reports a broken header.</span> <span data-t="83">Ping sends echo requests each with an identifier and a sequence number and waits for the matching replies. The time between request and reply is the</span> <span data-t="92">roundtrip time and missing sequence numbers show packet loss. The replies TTL is a clue to a reply arriving with</span> <span data-t="99">TTL56 from a host that probably started at 64 crossed about eight routers. Ping has useful options too. Set the packet size</span> <span data-t="108">and the don&#x27;t fragment bit and you can find a path MTU by hand.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=114s" data-seek="114" aria-label="Play from 1:54">1:54</a><span data-t="114">Trace route maps the path. It sends probes with TTL 1 2 3 and so on. Usually three per hop. Each router that drops a</span> <span data-t="122">probe returns a time exceeded message revealing its address and the delay to reach it. On Linux, the probes are UDP</span> <span data-t="129">packets to unlikely ports. So the destination answers with poor unreachable and trace rut knows has arrived. Windows uses echo requests</span> <span data-t="136">instead. Three stars on a line just mean that hop didn&#x27;t answer. It may be filtering or rate limiting ICMP while still forwarding traffic normally.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=148s" data-seek="148" aria-label="Play from 2:28">2:28</a><span data-t="148">Type three, destination unreachable, uses its code to say why. Code zero or one, the router has no route to that</span> <span data-t="155">network or host. Code three, the host is there, but nothing is listening on that UDP port. Router send most of these. The</span> <span data-t="162">destination host itself sends port unreachable. Code 13, a firewall prohibited it. and code four</span> <span data-t="169">fragmentation needed but don&#x27;t fragment was set.</span> <span data-t="174">Code four is the heart of path MTU discovery. The router includes the next links MTU in the message so the sender knows exactly how small to go. If a</span> <span data-t="183">firewall drops these messages, large packets vanish without a trace. That&#x27;s a PMTU black hole. The connection opens</span> <span data-t="190">then stalls on the first big transfer. A common workaround is MSS clamping where routers shrink TCP segment sizes during the handshake.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=201s" data-seek="201" aria-label="Play from 3:21">3:21</a><span data-t="201">ICMP follows strict rules. No errors ever sent about another ICMP error, about a broadcast or about a non-first fragment, so errors can&#x27;t snowball.</span> <span data-t="211">Routers also rate limit ICMP because it&#x27;s generated by their CPU, not their forwarding hardware. That&#x27;s why a middle</span> <span data-t="218">hop and trace route can show high latency or loss while the hops after it look fine. The router is busy not broken.</span> <span data-t="226">Blocking all ICMP feels safe but it breaks path MTU discovery and makes troubleshooting blind. A better policy</span> <span data-t="234">allow unreachable and time exceeded messages. Allow echo with a rate limit and disable redirects which attackers could use to reroute traffic. Old</span> <span data-t="242">attacks like the ping of death and smurf floods were fixed long ago, but their why ICMP still makes people nervous.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=250s" data-seek="250" aria-label="Play from 4:10">4:10</a><span data-t="250">In IPv6, ICMP becomes even more essential. Neighbor discovery, which replaces ARP, is built on ICMPv6, and so</span> <span data-t="259">is packet too big because IPv6 routers never fragment. Block ICMPv6 carelessly, and IPv6 simply stops working.</span> <span data-t="267">Well-built firewalls allow the required types by number.</span> <span data-t="272">To recap, ICMP is IP&#x27;s messenger. Type and codes say what happened and errors quote the packet that caused them. Ping</span> <span data-t="280">uses echo request and reply. Trace route uses time exceeded and fragmentation needed drives path. MTU discovery rake limits and filters shape what you see.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=p0jg-0-lnzg&amp;t=291s" data-seek="291" aria-label="Play from 4:51">4:51</a><span data-t="291">Next in the protocol deep dives UDP, the simplest transport. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

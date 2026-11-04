@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QoS · Network Dr</title>
+<meta name="description" content="Welcome to episode 25. Last time Rocky needed its own lossless class marked with DP26 cued separately and protected by ECN. That was quality of service at its most extreme. Today w">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/qos/">
+<meta property="og:title" content="QoS · Network Dr">
+<meta property="og:description" content="Welcome to episode 25. Last time Rocky needed its own lossless class marked with DP26 cued separately and protected by ECN. That was quality of service at its most extreme. Today w">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/-7ivtyOLUzk?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="QoS" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>QoS</h1>
+          <p class="meta"><time datetime="2026-10-19T13:06:11-07:00">19 Oct 2026</time><span>9:28</span><a href="https://www.youtube.com/watch?v=-7ivtyOLUzk" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../rdma-roce/"><small>Previous</small>RDMA + RoCE</a><a class="next" href="../mpls-sr/"><small>Next</small>MPLS + SR</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">1,450 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 25. Last time Rocky needed its own lossless class marked with DP26 cued separately and protected by ECN.</span> <span data-t="10">That was quality of service at its most extreme. Today we cover QoS in general.</span> <span data-t="16">How networks decide which packets wait, which go first, and which get dropped when there isn&#x27;t enough bandwidth for everyone.</span> <span data-t="24">Every link congests. Sometimes a burst arrives faster than the outgoing link can drain it and packets wait in a queue. But traffic isn&#x27;t equal. A voice</span> <span data-t="33">call needs oneway delay under about 150 milliseconds. Low jitter and almost no loss. A backup job barely cares if it&#x27;s</span> <span data-t="41">delayed by a second. QoS doesn&#x27;t create bandwidth. It decides who waits, who goes first, and who gets dropped when the link is full.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=51s" data-seek="51" aria-label="Play from 0:51">0:51</a><span data-t="51">QoS manages four properties. Bandwidth, delay, jitter, and loss. Delay has several parts. Serialization delay to</span> <span data-t="59">clock bits onto the wire. Propagation delay limited by the speed of light and queuing delay waiting behind other packets. The first two are fixed by</span> <span data-t="68">physics and link speed. Queuing delay is the one that varies and it&#x27;s what QoS controls. Its varidation is jitter.</span> <span data-t="76">There are three broad models. Best effort treats every packet the same.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=81s" data-seek="81" aria-label="Play from 1:21">1:21</a><span data-t="81">Simple and fine when there is enough capacity. Integrated services using RSVP reserves resources for each flow along</span> <span data-t="89">the whole path. Precise, but every router must track every flow which doesn&#x27;t scale. Differentiated services or diff serve is what everyone uses.</span> <span data-t="97">Packets are sorted into a handful of classes and marked. Each router then treats each class according to a per hop behavior with no perflow state.</span> <span data-t="107">The mark has to travel with the packet.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=109s" data-seek="109" aria-label="Play from 1:49">1:49</a><span data-t="109">At layer three, it&#x27;s the DSCP, the top six bits of the old type of service bite in the IP header, getting 64 possible</span> <span data-t="116">values. The last two bits are ECN. At layer 2, the 802.1 QVLAN tag carries a three-bit priority called class of</span> <span data-t="125">service or PCP from episode 9 and MLS has its own three-bit traffic class field. Twitches and routers map between</span> <span data-t="133">them so a packet keeps its meaning as it crosses different kinds of links.</span> <span data-t="139">Differine standard behaviors each with recommended DSCP values. Expedited forwarding EF DP 46 is for voice low</span> <span data-t="149">delay low jitter lows. Short forwarding has four classes each with three drop precedences written AF11 through F43.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=158s" data-seek="158" aria-label="Play from 2:38">2:38</a><span data-t="158">The value is eight times the class plus two times the drop precedence. So AF41 is 34 and AF31 used by Rocky is 26.</span> <span data-t="168">Class selectors CS0 to CS7 keep compatibility with the old 3-bit precedence. CS6 is for network control</span> <span data-t="176">like routing protocols and default DCP0 is best effort.</span> <span data-t="182">Packets are classified as close to the source as possible by address, port, protocol, or by inspecting the application. Then they&#x27;re marked and</span> <span data-t="191">every hop after that just reads the mark. But should a switch believe the mark a device sends, that&#x27;s the trust boundary. An IP phone is usually</span> <span data-t="198">trusted. A laptop that marks all its traffic, EF is not. So the access switch remarks it, get this wrong, and anyone can jump the queue.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=208s" data-seek="208" aria-label="Play from 3:28">3:28</a><span data-t="208">Each class gets its own queue on the outgoing interface. Auler decides which Q sends next. A strict priority Q always</span> <span data-t="216">goes first. That&#x27;s ideal for voice. But if it&#x27;s never empty, the other Q&#x27;s starve, so the priority Q is placed to a maximum, often a third of the link. That</span> <span data-t="225">combination is called low latency queuing. The other classes share what&#x27;s left by weight with class-based weighted fair queuing on routers or deficit weighted roundroin in switch hardware.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=235s" data-seek="235" aria-label="Play from 3:55">3:55</a><span data-t="235">Each class gets at least its share and can borrow idle bandwidth.</span> <span data-t="241">When a queue fills completely, every new packet is dropped. That&#x27;s tail drop.</span> <span data-t="246">With TCP, tail drop hits many flows at once. They all back off together, then all speed up together and the link swings between congested and idle.</span> <span data-t="254">That&#x27;s global synchronization. Random early detection drops a few packets early with a probability that rises as the queue grows. So flows back off at</span> <span data-t="263">different times. Weighted red uses different thresholds per class dropping AF high drop precedence first or with</span> <span data-t="270">ECN the router marks instead of dropping and the senders slow down without losing anything.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=277s" data-seek="277" aria-label="Play from 4:37">4:37</a><span data-t="277">Two tools limit a rate and they behave very differently. A policer enforces a rate by dropping or remarking traffic</span> <span data-t="284">that exceeds it. It adds no delay but TCP sees losses and the throughput looks like a sawtooth. A shaper holds excess</span> <span data-t="292">traffic in a buffer and sends it later at the allowed rate. The output is smooth at the cost of some delay.</span> <span data-t="298">Service providers police what customers send them. Customers shape what they send to stay under the contracted rate.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=306s" data-seek="306" aria-label="Play from 5:06">5:06</a><span data-t="306">Both are built on a token bucket. Token strip into a bucket at the committed information rate. The CIR the bucket holds at most a burst size worth of</span> <span data-t="315">tokens. Sending a packet spends tokens equal to its size. If enough tokens are there, the packet conforms. If not, a</span> <span data-t="322">policer drops or remarks it and a shaper waits for tokens to refill. To rate, three color markers at a second bucket,</span> <span data-t="329">labeling traffic green, yellow, or red, so it can be treated differently further on.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=335s" data-seek="335" aria-label="Play from 5:35">5:35</a><span data-t="335">On Cisco routers, QoS uses the modular QoS command line in three steps. A class map matches traffic, for example, DSPF.</span> <span data-t="345">A policy map says what to do with each class. priority with a limit, a bandwidth percentage, a shaper or random</span> <span data-t="352">detect and a service policy attaches the policy to an interface in a direction.</span> <span data-t="357">The class named class default catches everything else.</span> <span data-t="362">Linux does the same with TC traffic control and queuing disciplines. The default on most distributions is FQC</span> <span data-t="369">codle which gives each flow its own small queue and keeps latency low. HTB builds shaped class hierarchies and K</span> <span data-t="376">combines shaping, fairness, and active Q management in one. TC-S QISK shows each Q sent byes, drops, and backlog.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=388s" data-seek="388" aria-label="Play from 6:28">6:28</a><span data-t="388">Data center switches usually have eight hardware cues per port mapped from DSCP or COS, sharing a buffer that is surprisingly small for the speed that</span> <span data-t="397">makes micro bursts the real enemy. Many ports sending to one at the same instant for just microsconds. Average utilization looks low yet the Q</span> <span data-t="405">overflows and drops. Jared buffer tuning, ECN marking and lossless classes from the last episode are how fabrics cope.</span> <span data-t="414">QoS matters most where bandwidth is scarce or traffic is sensitive. At the W edge, a 1 GB port might connect to a 200</span> <span data-t="423">megabit circuit. Chipping to 200 moves the queue into your router where your policy controls it instead of the providers. Wi-Fi uses WM with four</span> <span data-t="432">access categories, voice, video, best effort, and background. Data centers protect storage and RDMA classes. And in</span> <span data-t="441">clouds, PSCP markings are often ignored, so rate limits and fair sharing do the work.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=448s" data-seek="448" aria-label="Play from 7:28">7:28</a><span data-t="448">Most networks use a small consistent model. Voice as EF in a police priority Q, interactive video as F41, business</span> <span data-t="456">critical data as F31 or F21. Bulk transfers as F11. Network control is CS6. A scavenger class CS1 for traffic</span> <span data-t="465">you&#x27;d rather drop first and everything else as default. Four to eight classes is plenty. Consistency end to end matters far more than clever tuning on one box.</span> <span data-t="476">One hard truth. QoS works within a network you control. DSCP markings are usually ignored or reset when packets</span> <span data-t="485">cross into another provider and there&#x27;s no end-to-end reservation on the public internet across the internet. What helps most is good congestion control in the</span> <span data-t="493">end points like BBR from episode 15 and active Q management which keeps buffers from bloating.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=502s" data-seek="502" aria-label="Play from 8:22">8:22</a><span data-t="502">Always verify show policy map interface lists every class, how many packets matched, how many were dropped and the Q depth. capture packets to confirm the</span> <span data-t="510">DSCP values are what you expect at several points along the path. Remarking where you didn&#x27;t expect it is a common surprise and watch drops per Q over</span> <span data-t="520">time. Drops in the scavenger class are fine. Drops in the voice class mean the priority queue is too small or too much traffic is marked DF.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=-7ivtyOLUzk&amp;t=529s" data-seek="529" aria-label="Play from 8:49">8:49</a><span data-t="529">To recap, QoS decides who waits and who drops when links are full. Diff serve classifies and marks packets with DSP,</span> <span data-t="537">COS or MLS traffic class for hot behaviors like EF, F and CS map to Q&#x27;s.</span> <span data-t="544">Priority queuing protects voice weighted queuing shares the rest and W red or EC and avoids synchronized drops. Police</span> <span data-t="552">drop, chers delay both using token buckets and it all only works with consistent trust and marking end to end.</span> <span data-t="559">Next in the protocol deep dives, MLS and segment routing, forwarding by labels instead of addresses. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

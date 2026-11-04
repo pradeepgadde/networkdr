@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DHCP · Network Dr</title>
+<meta name="description" content="Welcome to episode 17. DNS turned names into addresses. But how does a device get its own address in the first place? Join a network and within a second you have an address, a gate">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/dhcp/">
+<meta property="og:title" content="DHCP · Network Dr">
+<meta property="og:description" content="Welcome to episode 17. DNS turned names into addresses. But how does a device get its own address in the first place? Join a network and within a second you have an address, a gate">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/UAqJuDCKzEM?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="DHCP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>DHCP</h1>
+          <p class="meta"><time datetime="2026-10-18T13:45:44-07:00">18 Oct 2026</time><span>4:52</span><a href="https://www.youtube.com/watch?v=UAqJuDCKzEM" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../dns/"><small>Previous</small>DNS</a><a class="next" href="../nat/"><small>Next</small>NAT</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">705 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 17. DNS turned names into addresses. But how does a device get its own address in the first place?</span> <span data-t="8">Join a network and within a second you have an address, a gateway, and DNS servers. That&#x27;s DHCP, the dynamic host configuration protocol.</span> <span data-t="19">Every host needs an address, a subnet mask, a default gateway, and DNS servers. Typing them in by hand doesn&#x27;t scale, and duplicates cause conflicts.</span> <span data-t="29">DHCP grew out of bootp and was standardized in RFC 2131 in 1997. It</span> <span data-t="35">runs over UDP servers listen on port 67 and clients on port 68.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=42s" data-seek="42" aria-label="Play from 0:42">0:42</a><span data-t="42">Getting an address takes four messages remembered as d o r a dora. The client has no address yet. So it broadcasts a</span> <span data-t="50">discover from 000000 to 255 255 255 255.</span> <span data-t="57">Each server that hears it replies with an offer. You can have 192, 168, 157 for 24 hours. The client broadcasts a</span> <span data-t="66">request for the offer it picked, which also tells other servers they weren&#x27;t chosen. The server confirms with an act, and the client configures its interface.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=77s" data-seek="77" aria-label="Play from 1:17">1:17</a><span data-t="77">Every DHCP message shares one layout inherited from boot p. An up code, one for request and two for a reply, the</span> <span data-t="85">hardware type and length, and a hop count. A random transaction ID ties replies to the request. The broadcast flag asks the server to broadcast its</span> <span data-t="94">reply for clients that can&#x27;t receive uniccast yet. Then four addresses, the client&#x27;s current address, your address,</span> <span data-t="101">which is the one being offered, the next server, and the relay agents address.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=106s" data-seek="106" aria-label="Play from 1:46">1:46</a><span data-t="106">Then the client&#x27;s MAC address, a magic cookie, and the options.</span> <span data-t="111">Options carry almost everything that matters. Each is a code, a length, and a value. Option 53 is the message type,</span> <span data-t="119">one is the subnet mask, three the router, six the DNS servers, and 51 the least sign. 50 requests a specific</span> <span data-t="126">address, 54 identifies the server, and 255 marks the end. Option 66 and 67 name</span> <span data-t="133">a boot server and file. That&#x27;s how Pixie boots machines over the network.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=139s" data-seek="139" aria-label="Play from 2:19">2:19</a><span data-t="139">An address is leased, not owned. A half the lease. T1, the client uniccasts a request to its server to renew. If</span> <span data-t="147">there&#x27;s no answer at 87 and 12%, T2, it broadcasts to any server. If the lease expires, it must stop using the address.</span> <span data-t="156">Clients can also send a release. Servers can refuse with an act. and a client that finds its address already in you sends a decline.</span> <span data-t="165">Broadcasts don&#x27;t cross routers, so a relay agent forwards them to a central server. On Cisco, that&#x27;s IP helper address. The relay writes its own</span> <span data-t="174">interface address into the relay agent field and uniccasts the message to the server. The server uses that address to pick the right pool. Here 10 20 30 0/24.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=185s" data-seek="185" aria-label="Play from 3:05">3:05</a><span data-t="185">Option 82 can add the client&#x27;s switch and port. Here&#x27;s the exchange in a capture discover and</span> <span data-t="192">request go from 000000 port 68 to broadcast port 67 offer and out come back from the server. All four share one</span> <span data-t="201">transaction ID and IP adder shows the result the address and the least time left.</span> <span data-t="208">Like ARP DHCP trusts whoever answers first. A rogue server, malicious or just a misplaced home router, can name itself</span> <span data-t="217">as the gateway or DNS server and intercept traffic. A starvation attack floods discovers from fake MAC addresses until the pool is empty.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=227s" data-seek="227" aria-label="Play from 3:47">3:47</a><span data-t="227">Twitches defend with DHCP snooping.</span> <span data-t="230">Server messages are only allowed in untrusted ports toward the real server. From client ports, they&#x27;re dropped.</span> <span data-t="236">Snooping also builds a binding table of MAC, IP, VLAN, and port which feeds dynamic ARP inspection and IP source guard.</span> <span data-t="246">IPv6 is different. Routers advertise a prefix and hosts can build their own address with Slack. DHCPV6</span> <span data-t="253">on ports 546 and 547 can add DNS or assign addresses. In the cloud, every VM</span> <span data-t="260">in a VPC gets its address this way and deny clusters. DHCP with Pixie Boots thousands of bare metal servers and switches automatically.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=UAqJuDCKzEM&amp;t=271s" data-seek="271" aria-label="Play from 4:31">4:31</a><span data-t="271">To recap, DHCP hands out addresses in four steps. Discover, offer, request, act. Leases renew at T1 and rebind at</span> <span data-t="279">T2. Relays carry broadcasts across routers and snooping blocks rogue servers. Next in a protocol deep dives.</span> <span data-t="287">Nat, how many private addresses share one public one? See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

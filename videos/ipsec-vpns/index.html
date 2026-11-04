@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>IPsec VPNs · Network Dr</title>
+<meta name="description" content="Welcome to episode 27. MLSVPNs keep customers apart, but they trust the provider&#x27;s network. Why if you don&#x27;t trust the network at all, like the public internet? Then you encrypt to">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ipsec-vpns/">
+<meta property="og:title" content="IPsec VPNs · Network Dr">
+<meta property="og:description" content="Welcome to episode 27. MLSVPNs keep customers apart, but they trust the provider&#x27;s network. Why if you don&#x27;t trust the network at all, like the public internet? Then you encrypt to">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/hOBKRdIGmf4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPsec VPNs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>IPsec VPNs</h1>
+          <p class="meta"><time datetime="2026-10-19T13:15:11-07:00">19 Oct 2026</time><span>9:27</span><a href="https://www.youtube.com/watch?v=hOBKRdIGmf4" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../mpls-sr/"><small>Previous</small>MPLS + SR</a><a class="next" href="../tls-https/"><small>Next</small>TLS + HTTPS</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">1,322 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 27. MLSVPNs keep customers apart, but they trust the provider&#x27;s network. Why if you don&#x27;t</span> <span data-t="8">trust the network at all, like the public internet? Then you encrypt today, ipseack, the standard for encrypting IP</span> <span data-t="15">packets, plus the VPNs built on it, and modern alternatives like wire guard and max.</span> <span data-t="22">A secure tunnel has to provide four things. Confidentiality. Nobody on the path can read the data. Integrity.</span> <span data-t="30">Nobody can change it without being detected. Authentication. You&#x27;re really talking to the gateway you think you are. And anti-re replay. An attacker</span> <span data-t="38">can&#x27;t record packets and send them again later.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=43s" data-seek="43" aria-label="Play from 0:43">0:43</a><span data-t="43">Three kinds of cryptography make this work. Symmetric ciphers like AES and GCM mode encrypt bulk data fast using a key</span> <span data-t="50">both sides share. GCM also produces an authentication tag. So one operation gives both confidentiality and</span> <span data-t="57">integrity. But how do two gateways agree on a shared key over an open network with diffy helman key exchange? Each</span> <span data-t="64">side sends a public value and both compute the same secret which an eavesdropper can&#x27;t derive. Fresh divy helman keys for every session give</span> <span data-t="73">perfect forward secrecy stealing a long-term key can&#x27;t decrypt past traffic.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=80s" data-seek="80" aria-label="Play from 1:20">1:20</a><span data-t="80">IPSAC isn&#x27;t one protocol. It&#x27;s a suite working at layer three protecting any IP traffic regardless of the application.</span> <span data-t="88">Ike the internet key exchange is the control plane. It authenticates the peers and negotiates keys and algorithms. ESP the encapsulating</span> <span data-t="97">security payload is the data plane. It encrypts and authenticates the actual packets.</span> <span data-t="104">There are two data protocols. ah the authentication header IP protocol 51 provides integrity including parts of</span> <span data-t="112">the outer IP header but it doesn&#x27;t encrypt and since net changes that header IH breaks behind net ESP IP</span> <span data-t="120">protocol 50 encrypts and authenticates the payload it&#x27;s what virtually everyone uses today</span> <span data-t="128">can run in two modes in transport mode the original IP header stays and only the payload is protected It&#x27;s used</span> <span data-t="136">between two hosts that are themselves the end points. In tunnel mode, the entire original packet header and all is</span> <span data-t="143">encrypted and wrapped in a new outer IP header between the two gateways. Sight to sight VPNs use tunnel mode on the</span> <span data-t="150">internet. An observer sees only the two gateway addresses, never the internal ones.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=157s" data-seek="157" aria-label="Play from 2:37">2:37</a><span data-t="157">Here&#x27;s a tunnel mode ESP packet. The outer IP header between the gateways.</span> <span data-t="162">Then the ESP header, a 32-bit security parameter index or SPI that identifies the tunnel and a 32-bit sequence number.</span> <span data-t="171">Then an initialization vector and the encrypted part, the original IP packet padding and a next header field.</span> <span data-t="178">Finally, the integrity check value. The ESP header and the encrypted part are authenticated so any tampering is detected</span> <span data-t="186">before any ESP packet flows. The gateways run Ike version two over UDP port 500. The first exchange I guess in</span> <span data-t="195">it proposes algorithms and swaps defy helman values and nonses. Now the two sides share keys and everything after is</span> <span data-t="203">encrypted. The second exchange IO proves identities using a pre-shared key or certificates and creates the first child SA which carries the actual traffic.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=214s" data-seek="214" aria-label="Play from 3:34">3:34</a><span data-t="214">just four messages later. Create child s exchanges rekey the tunnels before their lifetimes run out.</span> <span data-t="222">Each security association is one way. A tunnel needs a pair, one for each direction, each with its own SPI and</span> <span data-t="229">keys. The security policy database decides which traffic to protect using traffic selectors. For example, from 10.1/16 to 10.2/16.</span> <span data-t="240">Matching packets are encrypted. Everything else passes or is dropped.</span> <span data-t="244">The security association database holds the active SS keys, algorithms, sequence counters, and lifetimes.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=254s" data-seek="254" aria-label="Play from 4:14">4:14</a><span data-t="254">Every ESP packet carries a sequence number that only increases. The receiver tracks a sliding window of recently seen</span> <span data-t="261">numbers. A duplicate or a number older than the window is dropped as a replay.</span> <span data-t="266">Packets may arrive slightly out of order, so the window allows some slack, often 64 packets or more.</span> <span data-t="273">ESP is its own IP protocol with no ports, so a net device, which translates using ports, can&#x27;t handle it. During Ike, the peers detect net on the path.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=283s" data-seek="283" aria-label="Play from 4:43">4:43</a><span data-t="283">If they find it, they wrap ESP inside UDP port 4500, that&#x27;s net traversal from episode 18. They also send small keepers</span> <span data-t="292">so the net mapping doesn&#x27;t expire while the tunnel is idle.</span> <span data-t="297">A sight to-sightVPN joins two networks through their gateways. Policybased VPNs encrypt whatever matches the traffic</span> <span data-t="305">selectors. Route based VPNs create a virtual tunnel interface and anything routed into it is encrypted. Routebased designs are easier to run because normal</span> <span data-t="314">routing even BGP can run over the tunnel. CloudVPN and gateways work this way. A typical connection uses two</span> <span data-t="322">tunnels to two cloud endpoints with BGP over both. So a failure just shifts the routes.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=330s" data-seek="330" aria-label="Play from 5:30">5:30</a><span data-t="330">Remote access BPNS connect individual laptops and phones. Clients use IKE version 2 or a TLS-based VPN that runs</span> <span data-t="338">over port 443 which passes through almost any firewall. With full tunneling, all traffic goes through the company. With split tunneling, only</span> <span data-t="347">company networks use the VPN and everything else goes straight to the internet.</span> <span data-t="353">WireGuard is a modern alternative built into the Linux kernel. It has no negotiation. The cryptography is fixed.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=360s" data-seek="360" aria-label="Play from 6:00">6:00</a><span data-t="360">Curve 25519 for key exchange and chacha 20 poly305 for encryption. Peers are identified by public keys. Much like</span> <span data-t="369">SSH, it uses one UDP port and its code base is a few thousand lines, small enough to audit. It also stays silent to</span> <span data-t="377">anyone without a valid key, so scanners see nothing. Each peer lists allowed IPs, the addresses it may send from, and</span> <span data-t="385">the routes to send to it. That&#x27;s called crypto key routing.</span> <span data-t="390">MAX sec 802.1E encrypts it layer 2 instead, one link at a time. Each Ethernet frame is encrypted and</span> <span data-t="398">authenticated between two directly connected devices in hardware at full line rate even at 400 Gbits per second.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=406s" data-seek="406" aria-label="Play from 6:46">6:46</a><span data-t="406">It&#x27;s common on links between data centers where every switch to switch hop over least fiber is protected.</span> <span data-t="413">Encryption has costs. ESP adds headers, an IV padding, and an integrity tag, often 50 to 70 bytes more with net</span> <span data-t="422">traversal. Packets that were full-sized no longer fit. So, tunnels lower their MTU and clamp the TCPMSS to avoid fragmentation. And crypto take CPU.</span> <span data-t="432">Modern processors have AES instructions and many network cards can encrypt inline at line rate.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=440s" data-seek="440" aria-label="Play from 7:20">7:20</a><span data-t="440">In Kubernetes, CNI plugins like silly and calico can encrypt all traffic between nodes with wire guard or IPSC</span> <span data-t="448">transparently that protects data between machines. Service meshes add mutual TLS between individual services at a higher</span> <span data-t="456">layer and zero trust approaches go further authenticating every user and service directly instead of trusting anything just because it&#x27;s inside the VPN.</span> <span data-t="466">Here&#x27;s a sight to sight tunnel in Strong Swan on Linux. Name the connection and set the remote gateways address.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=473s" data-seek="473" aria-label="Play from 7:53">7:53</a><span data-t="473">Authenticate both sides with certificates. Define a child s with traffic selectors local 10.1/16</span> <span data-t="481">remote 10.2/16 and choose proposals a sgcm with x25519 key exchange. The wireguard equivalent</span> <span data-t="490">is just a private key a listen port and for each pier a public key an endpoint and allowed IPs.</span> <span data-t="498">Twan control- list SS shows established tunnels, their SP is and bite counters.</span> <span data-t="504">On Linux, ipxfrm state shows the kernels SS and WG show does the same for wireguard. When tunnels fail, the Ike</span> <span data-t="513">error usually tells you why. No proposal chosen means the algorithms don&#x27;t match.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=518s" data-seek="518" aria-label="Play from 8:38">8:38</a><span data-t="518">TS unacceptable means the traffic selectors don&#x27;t match. Authentication failed means a wrong key or certificate.</span> <span data-t="525">And if the tunnel is up but large transfers stall, suspect the MTU just like with the XLAN.</span> <span data-t="532">To recap, IPSec protects IP packets with confidentiality, integrity, authentication, and anti-replay.</span> <span data-t="540">IKE version 2 authenticates peers and negotiates keys with Diffy Helman ESP encrypts in tunnel mode for sight to</span> <span data-t="547">sightvpns wrapped in UDP4500 when ad is in the way. Wire Guard offers a simpler fixed design and max second crypts links</span> <span data-t="556">at line rate. Next in the protocol deep dives TLS and HTTPS the encryption behind almost every web connection. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

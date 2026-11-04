@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MPLS + SR · Network Dr</title>
+<meta name="description" content="Welcome to episode 26. Every router we&#x27;ve studied so far forwards by looking up the destination IP address. Hop I hop. MLS takes a different approach. Put a short label on the pack">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/mpls-sr/">
+<meta property="og:title" content="MPLS + SR · Network Dr">
+<meta property="og:description" content="Welcome to episode 26. Every router we&#x27;ve studied so far forwards by looking up the destination IP address. Hop I hop. MLS takes a different approach. Put a short label on the pack">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/q8zTsFQ1kbw?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="MPLS + SR" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>MPLS + SR</h1>
+          <p class="meta"><time datetime="2026-10-19T13:09:45-07:00">19 Oct 2026</time><span>9:38</span><a href="https://www.youtube.com/watch?v=q8zTsFQ1kbw" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../qos/"><small>Previous</small>QoS</a><a class="next" href="../ipsec-vpns/"><small>Next</small>IPsec VPNs</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">1,444 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 26. Every router we&#x27;ve studied so far forwards by looking up the destination IP address. Hop I</span> <span data-t="7">hop. MLS takes a different approach. Put a short label on the packet at the edge and forward on the label in the core.</span> <span data-t="14">Segment routing then takes the idea further letting the source choose the path. Together they run most service provider and backbone networks.</span> <span data-t="24">MLS multiprotocol label switching appeared in the late 1990s. Back then, longest prefix match lookups were slow</span> <span data-t="32">while matching a short fixed label was fast. Hardware has since made IP lookups fast, too. But MLS survived because</span> <span data-t="40">labels turned out to be useful for much more than speed. They let a network build VPNs for thousands of customers, steer traffic along chosen paths, and reroute around failures in milliseconds.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=53s" data-seek="53" aria-label="Play from 0:53">0:53</a><span data-t="53">An MLS label is a four byte shim inserted between the Ethernet header and the IP header. That&#x27;s why MLS is sometimes called layer 2 and a half.</span> <span data-t="62">Ethernet marks it with ether type 8847.</span> <span data-t="65">It is four fields. A 20 bit label value, a three-bit traffic class for QoS. From the last episode, a one bit bottom of</span> <span data-t="72">stack flag and an 8 bit TTL. Labels 0 to 15 are reserved for special meanings.</span> <span data-t="78">Label three implicit null, for example, tells the upstream router to remove the label entirely.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=86s" data-seek="86" aria-label="Play from 1:26">1:26</a><span data-t="86">An MLS network has two kinds of routers.</span> <span data-t="89">Label edge routers, also called provider edge or PE routers, sit at the boundary.</span> <span data-t="94">The ingress PE classifies each packet into a forwarding equivalence class and pushes a label. Label switching routers</span> <span data-t="101">in the core called P routers never look at the IP header. They look up the incoming label, swap it for an outgoing label, and forward. The path a labeled</span> <span data-t="110">packet follows is a label switched path or lsps are one way.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=117s" data-seek="117" aria-label="Play from 1:57">1:57</a><span data-t="117">Let&#x27;s follow a packet to 10.9/16 across PE1, P1, P2, and PE2. PE1 looks up the destination and pushes label 100.</span> <span data-t="129">P1 sees label 100 in its label forwarding table, swaps it for 200, and sends it on. P2 is the second to last</span> <span data-t="137">hop. PE2 asked for implicit null. So P2 pops the label and sends a plain IP packet. That&#x27;s penultimate hop popping.</span> <span data-t="144">It saves PE2 a second lookup. Notice that labels are local. Each router chooses its own labels and they only mean something to its direct neighbor.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=155s" data-seek="155" aria-label="Play from 2:35">2:35</a><span data-t="155">So how do routers agree on labels? The classic answer is LDP, the label distribution protocol. Neighbors</span> <span data-t="162">discover each other with UDP hellos on port 646, then for a TCP session on port 646. Each router assigns a label to</span> <span data-t="170">every prefix in its routing table, usually the loop backs of other routers, and advertises the binding to all its neighbors. LDP simply follows the IGP.</span> <span data-t="180">The label switched paths take exactly the same shortest paths that OPF or ISIS computed.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=188s" data-seek="188" aria-label="Play from 3:08">3:08</a><span data-t="188">A packet can carry more than one label.</span> <span data-t="190">That&#x27;s a label stack. The outer label is the transport label. It gets the packet across the core to the right egress PE.</span> <span data-t="197">The inner label is the service label. It tells the egress PE what to do with the packet like which customer VP then it</span> <span data-t="204">belongs to. The bottom of stack bit is set on the last label. So each router knows where the labels end and the payload begins.</span> <span data-t="213">The killer application is the layer 3VPN defined in RFC 4364.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=218s" data-seek="218" aria-label="Play from 3:38">3:38</a><span data-t="218">Each PE keeps a separate VRF for each customer. Customer red and customer blue can both use 10.1/16</span> <span data-t="226">and never collide. PE exchange customer routes with multi-protocol BGP as VPN v4 routes with a route distinguisher for</span> <span data-t="234">uniqueness, a route target for import, and a VPN label. The same ideas we saw with EVPN. And the P routers in the core</span> <span data-t="242">know nothing about any customer. They just switch transport labels. That&#x27;s what lets one network serve thousands of VPNs.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=251s" data-seek="251" aria-label="Play from 4:11">4:11</a><span data-t="251">MLS carries layer 2 services too. A pseudo wire emulates a pointto-point Ethernet link between two sites. VLS</span> <span data-t="259">emulates a whole switched LAN across many sites. Today, EVPN over MLS is replacing both, bringing the same BGP control plane we used with VXLAN.</span> <span data-t="272">IGP shortest paths ignore load. If every flow takes the shortest path, some links overflow while others sit idle. MLS</span> <span data-t="280">traffic engineering fixes this. With RSVPT, the headend router computes a path that meets constraints such as available bandwidth and signals at hop</span> <span data-t="289">by hop, reserving bandwidth along the way. It works and it&#x27;s widely deployed, but every router along every tunnel keeps state with thousands of tunnels that becomes heavy.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=300s" data-seek="300" aria-label="Play from 5:00">5:00</a><span data-t="300">MLS can also recover from failures faster than any routing protocol can converge. With fast reroute, routers</span> <span data-t="308">premputee backup paths before anything fails. When a link dies, the router next to it immediately switches traffic onto the backup, usually within 50</span> <span data-t="316">milliseconds. Meanwhile, the routing protocol converges in the background and traffic moves to the new best path.</span> <span data-t="324">Segment routing simplifies all of this.</span> <span data-t="327">It source routing. The ingress router writes the path into the packet as an ordered list of segments. There is no</span> <span data-t="333">LDP and no RSVP. The IP, ISIS or OSPF with small extensions advertises the segment identifiers along with the</span> <span data-t="342">topology. Core routers keep no per path state at all. They just follow the instruction on top of the stack. The state lives only in the packet and at the head end.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=353s" data-seek="353" aria-label="Play from 5:53">5:53</a><span data-t="353">There are two main kinds of segments. A prefix segment or node SID means reach this router by the shortest path. It&#x27;s</span> <span data-t="360">global. Each router gets an index added to a shared label block called the sRGB, often starting at 16,000. So, router 5</span> <span data-t="368">with index 5 is labeled 16,05 everywhere. An adjacency segment means leave through this specific link. It&#x27;s</span> <span data-t="376">local to one router and forces the packet onto a link that shortest path wouldn&#x27;t choose.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=382s" data-seek="382" aria-label="Play from 6:22">6:22</a><span data-t="382">To reach R5 by the shortest path, R1 pushes just one label 16,05. Every router forwards it toward R5. But suppose the shortest path is congested.</span> <span data-t="393">R1 can push 16,03, then 24,35.</span> <span data-t="397">First go to R3, then take the link from R3 to R5. Each segment is popped when it&#x27;s done. No router in the middle</span> <span data-t="405">needed any setup. The path is entirely in the packet.</span> <span data-t="409">Segment routing makes faster route much easier too. With topology independent loop-f free alternate or TIFFA, each</span> <span data-t="417">router computes a backup for every link and node using a few segments to steer around the failure along the path the network will use once it reconverges. It</span> <span data-t="426">covers every topology, needs no extra signaling, and switches in under 50 milliseconds.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=433s" data-seek="433" aria-label="Play from 7:13">7:13</a><span data-t="433">Segment routing can also run without MPLS at all. With SRV6 segments are IPv6 addresses. The segment list travels in</span> <span data-t="441">an IPv6 extension header, the segment routing header. Each sit is split into a locator which routes to a node and a function which says what that node</span> <span data-t="450">should do like to capsulate into a VRF that brings BPNS and traffic engineering to a pure IPv6 network. Compressed micro SIDs keep the headers small.</span> <span data-t="463">Segment routing paths are expressed as SR policies identified by a head end, a color for the intent and an end point. A</span> <span data-t="471">path computation element or controller can see the whole network, compute paths for latency, bandwidth or disjointness,</span> <span data-t="478">and push them to headends using PC or BGP. Traffic is steered into a policy by color. For example, routes tagged low</span> <span data-t="486">latency automatically follow the low latency path. That&#x27;s how operators build network slices.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=494s" data-seek="494" aria-label="Play from 8:14">8:14</a><span data-t="494">MLS and segment routing dominate service provider backbones, mobile networks, and large enterprise WNS. Inside data</span> <span data-t="502">centers, VXLAN and EVPN are more common, though some operators use MLS or SR too.</span> <span data-t="509">And the huge backbones connecting cloud regions and AI clusters rely on centralized traffic engineering to keep expensive long-d distanceance links busy without congesting them.</span> <span data-t="520">Chls forwarding table shows the label forwarding table, each local label, what to do with it, swap, pop or push, and</span> <span data-t="528">the outgoing interface and next hop and trace route through an NLS network often reveals the labels hop by hop because</span> <span data-t="535">routers quote them in their ICMP replies.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=540s" data-seek="540" aria-label="Play from 9:00">9:00</a><span data-t="540">To recap, MLS forwards on short labels pushed at the edge, swapped in the core, and popped near the exit. LDP follows</span> <span data-t="548">the IGP label stack separate transport from service and NLSDPNS keep thousands of customers apart. RSVP and fast reroute add control and resilience.</span> <span data-t="559">Segment routing puts the path into the packet using node and adjacency SIDS with TIFFI for protection and SRV6</span> <span data-t="567">brings it all to IPv6. Next in the protocol deep dives IPS and VPNs encrypting traffic across networks you don&#x27;t trust. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>

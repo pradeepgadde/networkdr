@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SD-WAN and SASE · Network Dr</title>
+<meta name="description" content="Welcome to episode 37. So far, we&#x27;ve looked inside data centers and the cloud. Today, we look at how an enterprise connects everything else, branch offices, stores, factories, and ">
+<link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/sd-wan-and-sase/">
+<meta property="og:title" content="SD-WAN and SASE · Network Dr">
+<meta property="og:description" content="Welcome to episode 37. So far, we&#x27;ve looked inside data centers and the cloud. Today, we look at how an enterprise connects everything else, branch offices, stores, factories, and ">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="masthead">
+  <a class="brand" href="../../" aria-label="Network Dr home">
+    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
+    <span>Network Dr</span>
+  </a>
+  <nav aria-label="Primary">
+    <a href="../../">Episodes</a>
+    <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
+  </nav>
+</header>
+<main id="main">
+
+<article class="episode">
+  <div class="stage">
+    <div class="stage-inner">
+      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/xw_Z_M9-F9E?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="SD-WAN and SASE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+      <div class="ep-head">
+        
+        <div>
+          <h1>SD-WAN and SASE</h1>
+          <p class="meta"><time datetime="2026-10-20T13:09:17-07:00">20 Oct 2026</time><span>9:18</span><a href="https://www.youtube.com/watch?v=xw_Z_M9-F9E" rel="noopener">Watch on YouTube</a></p>
+        </div>
+      </div>
+      
+      <nav class="pager" aria-label="More episodes"><a class="prev" href="../time-synchronization/"><small>Previous</small>Time Synchronization</a><a class="next" href="../multicast/"><small>Next</small>Multicast</a></nav>
+    </div>
+  </div>
+  <section class="transcript" aria-labelledby="tx-h">
+    <div class="tx-bar">
+      <h2 id="tx-h">Transcript</h2>
+      <span class="tx-count">1,368 words</span>
+      <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="copy-tx" class="btn">Copy text</button>
+    </div>
+    <div class="tx-body" id="tx">
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 37. So far, we&#x27;ve looked inside data centers and the cloud. Today, we look at how an enterprise connects everything else,</span> <span data-t="9">branch offices, stores, factories, and people working from anywhere. That&#x27;s the world of SDW and Sassy. We&#x27;ll see why</span> <span data-t="17">the classic W broke down, how SDWAN builds an overlay across any kind of link, how it routes each application on</span> <span data-t="24">the best path, and how Sassy moves security into the cloud with zero trust access replacing the old VPN.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=32s" data-seek="32" aria-label="Play from 0:32">0:32</a><span data-t="32">The traditional enterprise WN was hub and spoke. Every branch had a private MLS circuit from episode 26 back to the</span> <span data-t="40">headquarters or data center. Internet traffic from branches was backhauled over MLS to the data center and sent out through one central set of firewalls. It</span> <span data-t="49">was predictable and secure but expensive. New circuits took weeks or months to install and bandwidth was costly.</span> <span data-t="57">Then applications moved. Email, office suites, CRM and video calls became SAS hosted in the cloud not in the data</span> <span data-t="65">center. Back hauling the traffic branch in Denver reached a SAS service in Denver by way of a data center in Virginia. The airbin added latency and</span> <span data-t="73">filled expensive MLS links. Meanwhile, broadband and 5G became fast and cheap.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=79s" data-seek="79" aria-label="Play from 1:19">1:19</a><span data-t="79">Enterprises wanted to use them without losing control or security.</span> <span data-t="85">SDWAN softwaredefined WN builds an overlay on top of whatever transports a site has. MLS, broadband, LTE or 5G. An</span> <span data-t="96">edge device at each site builds encrypted tunnels, usually IPS SEC from episode 27 over every transport to the</span> <span data-t="103">other sites and hubs. Then a central brain decides for each application which tunnel to use. The transports become interchangeable pipes and policy lives above them.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=114s" data-seek="114" aria-label="Play from 1:54">1:54</a><span data-t="114">SDWAN has three layers much like the networks we&#x27;ve seen before. The orchestrator is the management plane,</span> <span data-t="121">the portal where you define sites, templates, and policies. The controller is the control plane. It distributes routes, keys, and policies to every</span> <span data-t="129">edge. And the edges are the data plane, forwarding packets. Because control is centralized, a policy change like</span> <span data-t="137">prioritizing a new video app reaches thousands of sites in minutes.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=142s" data-seek="142" aria-label="Play from 2:22">2:22</a><span data-t="142">Deploying a new branch used to need a skilled engineer on site. With zero touch provisioning, the box is shipped to the store. Someone plugs in power and</span> <span data-t="151">an internet cable. The edge gets an address by DHCP, calls home to a known cloud address, proves its identity with</span> <span data-t="158">a certificate, and downloads its configuration. Minutes later, the site is part of the overlay combined with broadband or 5G. A branch can be online the day it opens.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=170s" data-seek="170" aria-label="Play from 2:50">2:50</a><span data-t="170">The overlay can take several shapes. Hub and spoke sends everything through regional hubs. Full Mesh builds tunnels between every pair of sites to branchto</span> <span data-t="178">branch traffic like voice calls goes direct. Many designs mix the two with dynamic tunnels created on demand. Every</span> <span data-t="186">tunnel is constantly probed so the edge always knows the current latency, jitter and loss on every path.</span> <span data-t="193">This is the heart of SDW routing by application and by path quality not just by destination. Each</span> <span data-t="201">application class gets an SLA. Voice, for example, might require latency under 150 milliseconds, jitter under 30, and</span> <span data-t="209">loss under 1%. When the broadband paths loss climbs to 3%, voice moves to the MLS path within a second, while bulk</span> <span data-t="217">traffic stays where it is. When broadband recovers, voice can move back to route by application. The edge must</span> <span data-t="225">know what each flow is. It uses D packet inspection, TLS server names, DNS answers, and known address ranges of SAS</span> <span data-t="233">providers, often from the very first packets of a flow. Then policies follow intent. Voice prefers MLS. Office apps</span> <span data-t="241">break out locally to the internet and backups use the cheapest broadband link at low priority.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=249s" data-seek="249" aria-label="Play from 4:09">4:09</a><span data-t="249">SDWAN can also hide bad links. With active active links, traffic is spread across all transports and a failure</span> <span data-t="256">moves flows in under a second. Forward error correction sends extra parity packets so lost packets can be rebuilt at the far end. And packet duplication</span> <span data-t="265">sends critical traffic like a voice call over two paths at once. The far edge keeps whichever copy arrives first.</span> <span data-t="274">With local internet breakout, SAS traffic leaves directly from the branch with no hairpin through the data center.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=280s" data-seek="280" aria-label="Play from 4:40">4:40</a><span data-t="280">performance improves dramatically. But now every branch is an internet edge.</span> <span data-t="284">Where do the firewalls, web filtering, and thread inspection happen? Putting a full security stack in every store is expensive and hard to manage. That problem is what sassy solves.</span> <span data-t="297">Sassy, secure access service edge, a term coined by Gartner in 2019, combines SDWA and networking with security services delivered from the cloud.</span> <span data-t="307">Instead of central firewalls, a provider runs a global network of points of presence. Branches and users connect to the nearest one and inspection happens</span> <span data-t="315">there close to the user. The security half on its own is often called as SE security service hedge.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=324s" data-seek="324" aria-label="Play from 5:24">5:24</a><span data-t="324">SSE bundles several services. A secure web gateway filters web traffic, blocks malware, and enforces acceptable use. A</span> <span data-t="333">CASBY cloud access security broker controls which SAS apps are used and how. Firewall as a service applies network policy to all other traffic.</span> <span data-t="342">Data loss prevention watches for sensitive data leaving and ZTNA zero trust network access replaces the remote access VPN.</span> <span data-t="352">A traditional VPN puts the user on the network. Once connected, they can often reach far more than they need. ZTNA</span> <span data-t="360">grants access to one application at a time. After checking the user&#x27;s identity and the devices health, like disk encryption and patches, everything else</span> <span data-t="368">stays invisible. The application itself is hidden, too. A small connector next to it makes an outbound connection to the broker, so nothing listens on the internet for attackers to scan.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=380s" data-seek="380" aria-label="Play from 6:20">6:20</a><span data-t="380">How does traffic reach the sassy cloud?</span> <span data-t="382">Branches send it through IPSC or Gre tunnels to the nearest point of presence. Remote users run a lightweight agent which tunnels their traffic to.</span> <span data-t="391">May providers use anycast from episode 30. So the nearest POP is chosen automatically. Inside the POP, traffic</span> <span data-t="398">is decrypted, inspected with the same TLS inspection we saw in episode 31, and sent on often over the provider&#x27;s own backbone closer to the SAS destination.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=410s" data-seek="410" aria-label="Play from 6:50">6:50</a><span data-t="410">SDWAN extends into public clouds, too. A virtual edge runs inside a VPC or connects to a cloud transit gateway. So</span> <span data-t="418">branches reach cloud workloads over the same overlay and policies. Some providers also offer a private middle mile. Traffic enters their backbone near</span> <span data-t="427">the branch and leaves near the cloud region, avoiding the unpredictable public internet in between.</span> <span data-t="434">Most enterprises migrate gradually.</span> <span data-t="437">Start with dual transports at each site, often keeping a smaller MLS circuit alongside broadband. carry segmentation end to end with separate VRFS for</span> <span data-t="446">corporate guest and payment traffic. And remember QoS from episode 25. The overlay can prioritize inside tunnels,</span> <span data-t="454">but the underlay must also honor the markings or shape below the link speed, so cues build where you control them.</span></p>
+<p><a class="stamp" href="https://www.youtube.com/watch?v=xw_Z_M9-F9E&amp;t=462s" data-seek="462" aria-label="Play from 7:42">7:42</a><span data-t="462">SDW gives operators far more visibility than a classic W. Dashboards show each application&#x27;s experience at each site,</span> <span data-t="470">latency, loss, and which path it took, minuteby minute. Brown outs where a lake is up but degraded finally become visible. Sassy adds user level insight.</span> <span data-t="481">Who accessed which application from which device and what was blocked?</span> <span data-t="487">A few problems are common. MTU the IPSAC and overlay headers had overhead. So</span> <span data-t="493">clamp the TCPMSS around 1360 or large transfer stall net it is behind carriern</span> <span data-t="500">need net traversal over UDP4500 certificates an expired edge certificate or wrong clock from last episode breaks</span> <span data-t="508">the tunnels and when every probe is healthy but SAS app is still slow the problem may be the SAS provider itself</span> <span data-t="515">or the popular users were steered to to recap the classic W backhalled</span> <span data-t="522">everything over MLS cloud apps and cheap broadband broke that model. SDWAN builds encrypted overlays across any transport</span> <span data-t="531">with central orchestration, zero-ouch provisioning and application aware routing on measured SLS plus FEC and duplication for resilience. Sassy moves</span> <span data-t="540">security to cloud pops secure web gateways, CASBY firewall as a service, DLP and ZTNA which grants access per</span> <span data-t="548">application by identity instead of the whole network. Next in the protocol deep dives multiccast with IGMP and PIM. See you there.</span></p>
+    </div>
+  </section>
+</article>
+<script src="../../assets/player.js" defer></script>
+
+</main>
+<footer class="foot">
+  <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
+</footer>
+</body>
+</html>
