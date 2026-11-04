@@ -76,20 +76,25 @@ def page(title, body, desc, depth, canonical, extra_head=""):
 <link rel="canonical" href="{canonical}">
 <meta property="og:title" content="{html.escape(title)}">
 <meta property="og:description" content="{html.escape(desc)}">
+<meta property="og:image" content="{SITE_URL}assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{pre}assets/style.css">
 <link rel="icon" href="{pre}assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="{pre}assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="{pre}assets/apple-touch-icon-180.png">
+<link rel="manifest" href="{pre}assets/site.webmanifest">
 {extra_head}</head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="{pre}" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="{pre}"><img src="{pre}assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="{pre}">Episodes</a>
     <a href="{CHANNEL}" rel="noopener">YouTube</a>
@@ -99,6 +104,7 @@ def page(title, body, desc, depth, canonical, extra_head=""):
 {body}
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="{CHANNEL}" rel="noopener"><img src="{pre}assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>
@@ -157,31 +163,28 @@ def build(data_path, out):
             pager += "</nav>"
         body = f"""
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/{v['id']}?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="{html.escape(v['title'])}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        {f'<span class="ep-no" aria-label="Episode {ep}">{ep}</span>' if ep else ''}
-        <div>
-          <h1>{html.escape(v['title'])}</h1>
-          <p class="meta"><time datetime="{html.escape(v.get('date') or '')}">{fmt_date(v.get('date'))}</time><span>{fmt_dur(v.get('len'))}</span><a href="https://www.youtube.com/watch?v={v['id']}" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      {f'<p class="desc">{html.escape(desc)}</p>' if desc else ''}
-      {pager}
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/{v['id']}?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="{html.escape(v['title'])}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    {f'<span class="ep-no" aria-label="Episode {ep}">{ep}</span>' if ep else ''}
+    <div>
+      <h1>{html.escape(v['title'])}</h1>
+      <p class="meta"><time datetime="{html.escape(v.get('date') or '')}">{fmt_date(v.get('date'))}</time><span>{fmt_dur(v.get('len'))}</span><a href="https://www.youtube.com/watch?v={v['id']}" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  {f'<p class="desc">{html.escape(desc)}</p>' if desc else ''}
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">{words:,} words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 {transcript}
     </div>
   </section>
+  {pager}
 </article>
 <script src="../../assets/player.js" defer></script>
 """
@@ -206,9 +209,12 @@ def build(data_path, out):
     total = sum(int(v.get("len") or 0) for v in vids)
     body = f"""
 <section class="hero">
-  <h1>Network Dr</h1>
-  <p class="lede">How networks work, and the histories of the companies that build them. Every video, with its full transcript.</p>
-  <p class="stats">{len(vids)} episodes, {round(total/3600, 1)} hours of video</p>
+  <div class="banner"><img src="assets/banner.svg" alt="Network Dr: a green street sign over a map of network links" width="2560" height="1100"></div>
+  <h1 class="sr">Network Dr</h1>
+  <div class="intro">
+    <p class="lede">Where every packet finds its route. Clear explainers on how networks work, and the histories of the companies that build them, each with its full transcript.</p>
+    <p class="stats">{len(vids)} videos, {round(total/3600, 1)} hours</p>
+  </div>
 </section>
 <section class="library" aria-labelledby="lib-h">
   <div class="lib-bar">

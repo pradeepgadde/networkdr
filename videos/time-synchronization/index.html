@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/time-synchronization/">
 <meta property="og:title" content="Time Synchronization · Network Dr">
 <meta property="og:description" content="Welcome to episode 36. Two episodes ago, we said that without synchronized clocks, correlating logs across devices is guesswork. Today, we look at how clocks actually get synchroni">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/l0QSXhTV1Jg?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Time Synchronization" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Time Synchronization</h1>
-          <p class="meta"><time datetime="2026-10-20T13:03:38-07:00">20 Oct 2026</time><span>10:18</span><a href="https://www.youtube.com/watch?v=l0QSXhTV1Jg" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../network-automation/"><small>Previous</small>Network Automation</a><a class="next" href="../sd-wan-and-sase/"><small>Next</small>SD-WAN and SASE</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/l0QSXhTV1Jg?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Time Synchronization" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Time Synchronization</h1>
+      <p class="meta"><time datetime="2026-10-20T13:03:38-07:00">20 Oct 2026</time><span>10:18</span><a href="https://www.youtube.com/watch?v=l0QSXhTV1Jg" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,476 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=l0QSXhTV1Jg&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 36. Two episodes ago, we said that without synchronized clocks, correlating logs across devices is guesswork. Today, we look at how</span> <span data-t="9">clocks actually get synchronized. We&#x27;ll cover why time matters, how clocks drift, NTP and its four timestamps,</span> <span data-t="17">strata, sloowing, leap seconds, and security. Then PTP, the precision time protocol with hardware timestamps,</span> <span data-t="24">grandmasters, and boundary and transparent clocks down to Linux tools and AI data centers.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=l0QSXhTV1Jg&amp;t=31s" data-seek="31" aria-label="Play from 0:31">0:31</a><span data-t="31">Almost everything in a network depends on agreeing what time it is. Logs and traces from different devices only line up if their clocks agree. TLS</span> <span data-t="39">certificates are checked against the current date. Cerberos rejects login if clocks differ by more than about 5 minutes. Some systems need far more.</span> <span data-t="47">Distributed databases order transactions by time. Financial trading rules require time stamps within 100 microsconds and</span> <span data-t="55">5G radios need microscond alignment between cell sites.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=l0QSXhTV1Jg&amp;t=61s" data-seek="61" aria-label="Play from 1:01">1:01</a><span data-t="61">Every computer keeps time with a quartz crystal oscillator and no two crystals stick at exactly the same rate. Errors are measured in parts per million. A</span> <span data-t="69">clock off by 20 parts per million gains or loses about 1.7 seconds every day.</span> <span data-t="74">Temperature changes the rate, too. So a clock left alone drifts further and further. It needs to be disciplined compared against a better reference again and again with its rate corrected.</span></p>
@@ -70,11 +71,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=l0QSXhTV1Jg&amp;t=580s" data-seek="580" aria-label="Play from 9:40">9:40</a><span data-t="580">To recap, clocks drift, so they must be disciplined against GNSS and atomic references. NTP uses four time steps</span> <span data-t="588">over UDP 123 to compute offset and delay, assume symmetric paths, filters across several servers, slooh gently,</span> <span data-t="596">and can be secured with NTS. PTP adds hardware timestamps, a grandmaster chosen by the BMCA, and boundary and</span> <span data-t="603">transparent clocks reaching nanconds with Linux PTP on Linux. Next in the protocol deep dives SDWAN and Sassy how</span> <span data-t="613">enterprises connect sites and users today. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../network-automation/"><small>Previous</small>Network Automation</a><a class="next" href="../sd-wan-and-sase/"><small>Next</small>SD-WAN and SASE</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

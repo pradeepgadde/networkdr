@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/mpls-layer3-vpns/">
 <meta property="og:title" content="MPLS Layer3 VPNs · Network Dr">
 <meta property="og:description" content="Welcome to episode 53, a deep dive into MLS layer 3VPNs. We met them briefly in episode 26. Today we build one end to end on Juniper routers running Junos. We&#x27;ll cover via RFS rout">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/dULabCahGOc?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="MPLS Layer3 VPNs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>MPLS Layer3 VPNs</h1>
-          <p class="meta"><time datetime="2026-10-22T13:21:11-07:00">22 Oct 2026</time><span>18:18</span><a href="https://www.youtube.com/watch?v=dULabCahGOc" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../ai-cluster/"><small>Previous</small>AI Cluster</a><a class="next" href="../internet-exchanges-and-peering/"><small>Next</small>Internet Exchanges and Peering</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/dULabCahGOc?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="MPLS Layer3 VPNs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>MPLS Layer3 VPNs</h1>
+      <p class="meta"><time datetime="2026-10-22T13:21:11-07:00">22 Oct 2026</time><span>18:18</span><a href="https://www.youtube.com/watch?v=dULabCahGOc" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">2,655 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=dULabCahGOc&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 53, a deep dive into MLS layer 3VPNs. We met them briefly in episode 26. Today we build one end to end on Juniper routers running Junos.</span> <span data-t="12">We&#x27;ll cover via RFS route distinguishers and route targets, the VPN routes carried in multi-rotocol BGP, the two</span> <span data-t="20">label stack, a control plane and a data plane walk, then the full June O configuration, the routing tables and verification. After that label</span> <span data-t="29">allocation, PE to CE routing with BGP and OSPF, hub and spoke and extraneet designs, scaling, interas options, 6VP, and troubleshooting.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=dULabCahGOc&amp;t=41s" data-seek="41" aria-label="Play from 0:41">0:41</a><span data-t="41">A company has offices in many cities and wants them connected privately as if they shared one routed network. With a</span> <span data-t="48">layer 3VPN, the provider becomes part of the customer&#x27;s routing. Each site hands its routes to the provider and the provider delivers them to every other</span> <span data-t="56">site of the same customer and to nobody else. The provider can sell this to thousands of customers over one shared network even when those customers use exactly the same private addresses.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=dULabCahGOc&amp;t=67s" data-seek="67" aria-label="Play from 1:07">1:07</a><span data-t="67">That&#x27;s the problem this whole design solves.</span> <span data-t="71">There are three kinds of router in the picture. The customer edge router, the CE belongs to the customer or is managed</span> <span data-t="78">for them. It knows nothing about MLS. It just runs a normal routing protocol or a static route toward the provider. The</span> <span data-t="86">provider edge router, the PE is where all the VPN intelligence lives. The provider routers, the P routers, form the core. They only switch labels</span> <span data-t="94">between pees and hold no customer routes at all. Our lab has two customers A and B on PE1 and PE2 with P1 and P2 in the core in provider AS65,000.</span></p>
@@ -80,11 +81,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=dULabCahGOc&amp;t=1095s" data-seek="1095" aria-label="Play from 18:15">18:15</a><span data-t="1095">Thanks for watching.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../ai-cluster/"><small>Previous</small>AI Cluster</a><a class="next" href="../internet-exchanges-and-peering/"><small>Next</small>Internet Exchanges and Peering</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

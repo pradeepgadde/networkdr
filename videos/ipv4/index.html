@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ipv4/">
 <meta property="og:title" content="IPv4 · Network Dr">
 <meta property="og:description" content="Welcome to episode 11. ARP got our frame to the next hop. Now we open the packet inside it. IPv4. Every router on the internet reads this header to decide what happens next. So let">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/zhn8vmWRQ7A?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPv4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>IPv4</h1>
-          <p class="meta"><time datetime="2026-10-18T13:29:44-07:00">18 Oct 2026</time><span>4:54</span><a href="https://www.youtube.com/watch?v=zhn8vmWRQ7A" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../arp/"><small>Previous</small>ARP</a><a class="next" href="../icmp/"><small>Next</small>ICMP</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/zhn8vmWRQ7A?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPv4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>IPv4</h1>
+      <p class="meta"><time datetime="2026-10-18T13:29:44-07:00">18 Oct 2026</time><span>4:54</span><a href="https://www.youtube.com/watch?v=zhn8vmWRQ7A" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">722 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=zhn8vmWRQ7A&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 11. ARP got our frame to the next hop. Now we open the packet inside it. IPv4.</span> <span data-t="7">Every router on the internet reads this header to decide what happens next. So let&#x27;s go through it field by field along</span> <span data-t="14">the way. Fragmentation. The TTL trick behind trace route and the checksum. Every router recalculates.</span> <span data-t="22">The IPv4 header is usually 20 bytes drawn as five rows of 32 bits. It holds 12 fields. Some describe the packet,</span> <span data-t="30">some handle fragments, some guide its journey and to carry the addresses. It&#x27;s defined in RFC791</span> <span data-t="37">from 1900 A1 and it still carries most of the internet&#x27;s traffic.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=zhn8vmWRQ7A&amp;t=43s" data-seek="43" aria-label="Play from 0:43">0:43</a><span data-t="43">The first four bits are the version four for IPv4. The next four bits are the header length counted in four by words.</span> <span data-t="51">Five means 20 bytes, the normal case.</span> <span data-t="54">The maximum 15 means 60 bytes with options. That&#x27;s why most IPv4 packets start with a bite hex45.</span> <span data-t="63">The second bite is about treatment. Its first six bits are the DS SCP, a quality of service marking. Routers use it to</span> <span data-t="70">pick a Q. 46. Expedited forwarding is typical for voice. Zero means best effort. Networks often rewrite it at</span> <span data-t="78">trust boundaries. The last two bits are ECN. Instead of dropping a packet, a congested router can mark it and the sender slows down.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=zhn8vmWRQ7A&amp;t=87s" data-seek="87" aria-label="Play from 1:27">1:27</a><span data-t="87">Total length is the size of a whole packet header plus data in bytes. It&#x27;s 16 bits to the limit is 65,535</span> <span data-t="96">bytes. Though on Ethernet packets usually stop at the 1500 byt MTU. This is the field a receiver uses to strip</span> <span data-t="103">the Ethernet padding we saw two episodes ago.</span> <span data-t="107">The next 32 bits handle fragmentation, an identification number, three flag bits, and a 13 bit fragment offset. Say</span> <span data-t="115">a 4,000 byt packet meets a 1500 byt link. It&#x27;s split into three fragments carrying 1480, 1480 and 1020 bytes of</span> <span data-t="123">data. All three share the same ID. The offsets counted in 8 byt units are zero, 185 and 370 and the more fragments flag</span> <span data-t="132">is set on all but the last. Only the destination reassembles them. Lose one fragment and the whole packet is lost.</span></p>
@@ -60,11 +61,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=zhn8vmWRQ7A&amp;t=221s" data-seek="221" aria-label="Play from 3:41">3:41</a><span data-t="221">Last come the 32-bit source and destination addresses. They stay the same end to end unless net rewrites them along the way. Private ranges like 10/8</span> <span data-t="230">never cross the public internet. Net swaps them at the edge. Options can follow, but they&#x27;re rarely used today and many networks drop packets that carry them.</span> <span data-t="241">Let&#x27;s decode a real header. The packet from our Ethernet episode 45 version 4 20 byt header 00 best effort 003 C 60</span> <span data-t="251">bytes in total 40 0 don&#x27;t fragment set offset zero 40 ttl 6406 TCP then the</span> <span data-t="260">checkum and the addresses 1010 101011 to 10 1025 to recap version and length describe the</span> <span data-t="269">header DSCP and DC and set treatment ID E flags and offset handle fragments. TTL limits hops. Protocol names the payload</span> <span data-t="278">and two addresses say where. Routers change only TTL and checks them on the way unless NAD steps in. Next in the</span> <span data-t="285">protocol deep dives, ICMP the messages behind ping trace route and path MTU discovery. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../arp/"><small>Previous</small>ARP</a><a class="next" href="../icmp/"><small>Next</small>ICMP</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

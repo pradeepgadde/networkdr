@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/vxlan-evpn/">
 <meta property="og:title" content="VXLAN + EVPN · Network Dr">
 <meta property="og:description" content="Welcome to episode 23. Last time we saw BGP build routed leaf and spine fabrics. Every link is layer three. Every path is used and failure stay local. But applications still want l">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/_1cWD80SNnk?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="VXLAN + EVPN" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>VXLAN + EVPN</h1>
-          <p class="meta"><time datetime="2026-10-19T12:57:36-07:00">19 Oct 2026</time><span>10:30</span><a href="https://www.youtube.com/watch?v=_1cWD80SNnk" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../bgp/"><small>Previous</small>BGP</a><a class="next" href="../rdma-roce/"><small>Next</small>RDMA + RoCE</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/_1cWD80SNnk?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="VXLAN + EVPN" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>VXLAN + EVPN</h1>
+      <p class="meta"><time datetime="2026-10-19T12:57:36-07:00">19 Oct 2026</time><span>10:30</span><a href="https://www.youtube.com/watch?v=_1cWD80SNnk" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,564 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_1cWD80SNnk&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 23. Last time we saw BGP build routed leaf and spine fabrics.</span> <span data-t="7">Every link is layer three. Every path is used and failure stay local. But applications still want layer 2, the same subnet stretched across racks.</span> <span data-t="15">Virtual machines that move without changing address and separate networks for every tenant. VXLAN and EVPN deliver all of that on top of a routed fabric.</span> <span data-t="26">Classic VLANs hit hard limits. The 12-bit VLAN ID allows only 4094 networks. A large cloud has far more</span> <span data-t="33">tenants than that. Stretching VLANs across a data center also means stretching spanning tree which blocks redundant links and floods broadcasts</span> <span data-t="41">everywhere. And a routed fabric ends layer 2 at every leaf. So how do two hosts in different racks share one subnet?</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_1cWD80SNnk&amp;t=51s" data-seek="51" aria-label="Play from 0:51">0:51</a><span data-t="51">The answer is to split the network in two. The underlay is the physical routed fabric. It only needs to deliver IP</span> <span data-t="58">packets between switches using BGP or OPF with ECMP across every spine. The overlay is a set of virtual networks</span> <span data-t="66">carried inside tunnels across the underlay. The host see a simple layer 2 segment. The fabric sees only routed IP packets.</span> <span data-t="75">The EXLAN virtual extensible ln defined in RFC 7348 is the most common way to</span> <span data-t="82">build the overlay. It wraps an entire Ethernet frame inside a UDP packet that&#x27;s mechan. The standard UDP destination port is 4789.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_1cWD80SNnk&amp;t=92s" data-seek="92" aria-label="Play from 1:32">1:32</a><span data-t="92">Each virtual network gets a VXLAN network identifier or VNI is 24 bits wide which allows about 16 million segments instead of 4094.</span> <span data-t="104">Let&#x27;s build the packet from the inside out. The original frame from hosted to host B stays untouched. In front of it</span> <span data-t="111">go the 8 byt VxLAN header, an 8 byt UDP header, a 20 byt outer IP header between the two switches, and a 14 byt outer</span> <span data-t="118">Ethernet header for the next hop. That&#x27;s 50 bytes of overhead. If a host sends a full 1500 byt packet, the underlay must</span> <span data-t="126">carry at least 1550 bytes. So fabrics run jumbo frames, usually a 9,000 or 926 byt MTU, and the problem disappears.</span></p>
@@ -69,11 +70,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_1cWD80SNnk&amp;t=628s" data-seek="628" aria-label="Play from 10:28">10:28</a><span data-t="628">See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../bgp/"><small>Previous</small>BGP</a><a class="next" href="../rdma-roce/"><small>Next</small>RDMA + RoCE</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

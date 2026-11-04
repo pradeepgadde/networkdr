@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/bgp/">
 <meta property="og:title" content="BGP · Network Dr">
 <meta property="og:description" content="Welcome to episode 22. OPF builds a map inside one network, but the internet is tens of thousands of separate networks run by competitors, each with its own rules. Something has to">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Ujw71ZOW0F8?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="BGP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>BGP</h1>
-          <p class="meta"><time datetime="2026-10-19T12:52:08-07:00">19 Oct 2026</time><span>13:07</span><a href="https://www.youtube.com/watch?v=Ujw71ZOW0F8" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../ospf/"><small>Previous</small>OSPF</a><a class="next" href="../vxlan-evpn/"><small>Next</small>VXLAN + EVPN</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Ujw71ZOW0F8?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="BGP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>BGP</h1>
+      <p class="meta"><time datetime="2026-10-19T12:52:08-07:00">19 Oct 2026</time><span>13:07</span><a href="https://www.youtube.com/watch?v=Ujw71ZOW0F8" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,935 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Ujw71ZOW0F8&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 22. OPF builds a map inside one network, but the internet is tens of thousands of separate networks</span> <span data-t="8">run by competitors, each with its own rules. Something has to tie them together. That&#x27;s BGP, the bore gateway protocol, the routing protocol of the</span> <span data-t="17">internet, and increasingly of the data center.</span> <span data-t="22">The internet is built from autonomous systems networks under one administration with one routing policy, an ISP, a cloud provider, a university,</span> <span data-t="31">a large company. Each one has an autonomous system number. They started as 16- bit numbers and were extended to 32 bits like private IP ranges. There</span> <span data-t="41">are private ASNs 64512 to 65534 for internal use. Today, more than 75,000</span> <span data-t="49">autonomous systems announce around a million IPv4 prefixes and over 200,000 IPv6 prefixes. BGP carries all of them.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Ujw71ZOW0F8&amp;t=58s" data-seek="58" aria-label="Play from 0:58">0:58</a><span data-t="58">Why not just use OPF everywhere? Because a link state protocol shares everything with everyone and picks paths purely on cost between companies that won&#x27;t work.</span> <span data-t="68">Networks won&#x27;t reveal their internal topology and they choose routes by business relationships, not just distance. BGP version 4 defined in RFC</span> <span data-t="78">4271 is a path vector protocol. It shares reachability which networks can be reached and the path of autonomous</span> <span data-t="85">systems to get there. Then each network applies its own policy.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Ujw71ZOW0F8&amp;t=90s" data-seek="90" aria-label="Play from 1:30">1:30</a><span data-t="90">Unlike OPF BGP doesn&#x27;t discover neighbors. Every pier is configured by hand and the two routers connect over</span> <span data-t="97">TCP port 179. TCP handles reliability so BGP doesn&#x27;t have to. They exchange open</span> <span data-t="105">messages carrying the version, their AS number, a whole time, a 32-bit BGP identifier and capabilities like support</span> <span data-t="112">for IPv6 or 32-bit ASNs. Then keep a liibs flow every 60 seconds by default on Cisco with a hold time of 180. If a</span> <span data-t="121">hold time expires with nothing heard, the session is torn down.</span></p>
@@ -74,11 +75,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Ujw71ZOW0F8&amp;t=752s" data-seek="752" aria-label="Play from 12:32">12:32</a><span data-t="752">To recap, BGP connects autonomous systems over TCP sessions, exchanging prefixes with path attributes. Vas path</span> <span data-t="760">prevents loops. IBGP carries routes inside an AS with route reflectors. And the best path algorithm picks one route by local pref as path med and more.</span> <span data-t="771">Policy follows business relationships. RPKI fights hijacks and in data centers.</span> <span data-t="776">EBGP builds the fabric. Next in the protocol deep dives, VXLAN and EVPN, the overlays that BGP now carries. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../ospf/"><small>Previous</small>OSPF</a><a class="next" href="../vxlan-evpn/"><small>Next</small>VXLAN + EVPN</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

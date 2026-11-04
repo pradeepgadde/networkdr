@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ldp/">
 <meta property="og:title" content="LDP · Network Dr">
 <meta property="og:description" content="Welcome to episode 49. Last time ISIS built the map of a provider backbone, but NLS forwards on labels, not maps, and someone has to hand those labels out. The classic answer is LD">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Rf7WNgJXl2c?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="LDP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>LDP</h1>
-          <p class="meta"><time datetime="2026-10-21T12:45:37-07:00">21 Oct 2026</time><span>14:39</span><a href="https://www.youtube.com/watch?v=Rf7WNgJXl2c" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../is-is/"><small>Previous</small>IS-IS</a><a class="next" href="../rsvp/"><small>Next</small>RSVP</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Rf7WNgJXl2c?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="LDP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>LDP</h1>
+      <p class="meta"><time datetime="2026-10-21T12:45:37-07:00">21 Oct 2026</time><span>14:39</span><a href="https://www.youtube.com/watch?v=Rf7WNgJXl2c" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,997 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Rf7WNgJXl2c&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 49. Last time ISIS built the map of a provider backbone, but NLS forwards on labels, not maps,</span> <span data-t="9">and someone has to hand those labels out. The classic answer is LDP, the label distribution protocol. Today we</span> <span data-t="16">take it apart. Discovery sessions, the PDU and message formats, field by field, label mappings, distribution modes,</span> <span data-t="24">penultimate hot popping, and how LDP keeps up with the IGP. Here is our lab. A small MPs backbone, two</span> <span data-t="33">provider edge routers PE1 and PE2, and four core routers P1 to P4. All running ISIS with loop packs in 192.0.2.0/24.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Rf7WNgJXl2c&amp;t=45s" data-seek="45" aria-label="Play from 0:45">0:45</a><span data-t="45">The top path through P1 and P2 has the lowest IGP cost. LDP will build label switched pads along it from PE1 to PE2&#x27;s loop back 192.0.2.2.</span> <span data-t="57">two.</span> <span data-t="59">First, a quick recap of what LDP is distributing. An NLS label is a 4 by shim inserted between the layer 2 header</span> <span data-t="67">and the IP header. It holds a 20- bit label value, three bits of traffic class, the bottom of stack bit, and an</span> <span data-t="74">8-bit TTL. Labels have local meaning only. Each router chooses its own labels and must tell its neighbors which label</span> <span data-t="81">means which destination. That&#x27;s LDP&#x27;s whole job.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Rf7WNgJXl2c&amp;t=86s" data-seek="86" aria-label="Play from 1:26">1:26</a><span data-t="86">LDP talks about forwarding equivalence classes or FECS groups of packets forwarded the same way. In practice, a</span> <span data-t="94">FEC is an IP prefix from the routing table, usually a loop back. Binding a label to a FEC creates a local binding.</span> <span data-t="102">Learning a neighbor&#x27;s label for the same FEC creates a remote binding. All bindings live in the label information base, the LIIB. The best ones are</span> <span data-t="110">programmed into the label forwarding table, the LEIBB, which the hardware uses to swap labels at line rate.</span></p>
@@ -74,11 +75,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Rf7WNgJXl2c&amp;t=844s" data-seek="844" aria-label="Play from 14:04">14:04</a><span data-t="844">Let&#x27;s recap. LDP finds neighbors with UDP hoss on port 646, then runs a TCP session on port 646. The higher</span> <span data-t="852">transport address opens it. Address messages map next hops to peers, and label mapping messages bind labels to</span> <span data-t="859">FECS, which flow upstream to build each LSP along the IGP shortest path.</span> <span data-t="865">Implicit null gives penultimate hop hopping and IGP synchronization and session protection keep it robust. Next time RSVP and how traffic engineering</span> <span data-t="875">takes the path away from the IGP. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../is-is/"><small>Previous</small>IS-IS</a><a class="next" href="../rsvp/"><small>Next</small>RSVP</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

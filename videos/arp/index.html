@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/arp/">
 <meta property="og:title" content="ARP · Network Dr">
 <meta property="og:description" content="Welcome to episode 10. Last time we built the Ethernet frame and every frame needs a destination MAC address. But applications only know IP addresses ARP the address resolution pro">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Xvzo8spseqY?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="ARP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>ARP</h1>
-          <p class="meta"><time datetime="2026-10-17T21:00:35-07:00">17 Oct 2026</time><span>4:57</span><a href="https://www.youtube.com/watch?v=Xvzo8spseqY" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../ethernet-ieee-802-3/"><small>Previous</small>Ethernet IEEE 802 3</a><a class="next" href="../ipv4/"><small>Next</small>IPv4</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Xvzo8spseqY?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="ARP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>ARP</h1>
+      <p class="meta"><time datetime="2026-10-17T21:00:35-07:00">17 Oct 2026</time><span>4:57</span><a href="https://www.youtube.com/watch?v=Xvzo8spseqY" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">755 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Xvzo8spseqY&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 10. Last time we built the Ethernet frame and every frame needs a destination MAC address. But</span> <span data-t="7">applications only know IP addresses ARP the address resolution protocol bridges that gap. Let&#x27;s see exactly how we&#x27;ll</span> <span data-t="15">follow one request and reply decode the 28 byt packet then cover caching gratuitous and attacks.</span> <span data-t="24">Host A at 10101 wants to send a packet to host B at 101020.</span> <span data-t="29">IP gives it the destination address, but to build the Ethernet frame, it also needs B&#x27;s MAC address, and it doesn&#x27;t have it. ARP defined in RFC826 back in</span> <span data-t="39">1982 finds the MAC address that belongs to an IPv4 address on the local network.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Xvzo8spseqY&amp;t=46s" data-seek="46" aria-label="Play from 0:46">0:46</a><span data-t="46">First, a decides who to ask about. It compares the destination with its own subnet using the mask with a /24 101020</span> <span data-t="54">is local, but 203 0113 10 is not. If the destination is local, a resolves it directly. If it&#x27;s remote, like a server</span> <span data-t="63">on the internet, a resolves its default gateway instead. A host never ars for a remote address. The frame goes to the router&#x27;s MAC while the IP header still carries the final destination.</span> <span data-t="75">A broadcasts an ARP request to FF ff with ether type 0806.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Xvzo8spseqY&amp;t=83s" data-seek="83" aria-label="Play from 1:23">1:23</a><span data-t="83">It asks who has 10 10 1020 till 10 1011.</span> <span data-t="88">The frame comes from aone MAC. So every switch along the way also learns where A is. Every host in the VLAN receives it.</span> <span data-t="95">Most check the target address and quietly discard it.</span> <span data-t="100">B recognizes its own address. It saves A&#x27;s mapping from the request, then sends a reply straight back to A as uniccast.</span> <span data-t="108">The reply says 10 1020 is a 3 C 52 82 1 A 4 B 7 E. A store is it and the waiting packet finally goes out.</span></p>
@@ -62,11 +63,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Xvzo8spseqY&amp;t=274s" data-seek="274" aria-label="Play from 4:34">4:34</a><span data-t="274">To recap, ARP maps an IPv4 address to a MAC address. The request is broadcast, the reply is uniccast, and the answer is</span> <span data-t="282">cached. Ratuitous ARP announces dynamic ARP inspection protects and IPv6 uses neighbor discovery instead. Next in the</span> <span data-t="290">protocol deep dives, the IPv4 header field by field. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../ethernet-ieee-802-3/"><small>Previous</small>Ethernet IEEE 802 3</a><a class="next" href="../ipv4/"><small>Next</small>IPv4</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

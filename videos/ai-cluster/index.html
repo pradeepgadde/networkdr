@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ai-cluster/">
 <meta property="og:title" content="AI Cluster · Network Dr">
 <meta property="og:description" content="Welcome to episode 52, a deep dive inside an I training cluster. In episode 7, we saw I networking from a distance. And in episode 24, we studied RDMA. Today, we open the whole mac">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/v1bOdWr045M?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="AI Cluster" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>AI Cluster</h1>
-          <p class="meta"><time datetime="2026-10-22T13:11:43-07:00">22 Oct 2026</time><span>14:58</span><a href="https://www.youtube.com/watch?v=v1bOdWr045M" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../rpki/"><small>Previous</small>RPKI</a><a class="next" href="../mpls-layer3-vpns/"><small>Next</small>MPLS Layer3 VPNs</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/v1bOdWr045M?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="AI Cluster" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>AI Cluster</h1>
+      <p class="meta"><time datetime="2026-10-22T13:11:43-07:00">22 Oct 2026</time><span>14:58</span><a href="https://www.youtube.com/watch?v=v1bOdWr045M" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">2,401 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=v1bOdWr045M&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 52, a deep dive inside an I training cluster. In episode 7, we saw I networking from a distance.</span> <span data-t="8">And in episode 24, we studied RDMA.</span> <span data-t="11">Today, we open the whole machine. We&#x27;ll follow one training step, look inside a GPU server, compare scale up and scale</span> <span data-t="18">out networks, see how models are split across thousands of GPS, and how collective operations move their data.</span> <span data-t="24">Then we&#x27;ll design the fabric, deal with its unusual traffic, meet ultraethernet, and see how blisters store checkpoints, survive failures, and are operated.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=v1bOdWr045M&amp;t=35s" data-seek="35" aria-label="Play from 0:35">0:35</a><span data-t="35">A large model doesn&#x27;t train on one GPU.</span> <span data-t="38">It trains on thousands, sometimes tens of thousands, all working on the same job at the same time. Those GPUs constantly exchange results. Every</span> <span data-t="47">training step ends with a synchronization, and no GPU can start the next step until the slowest one has finished. So one congested link or one</span> <span data-t="55">slow server holds back the entire cluster. That&#x27;s why in I clusters the network is part of the computer. Time spent waiting for data is time thousands of very expensive GPA sit idle.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=v1bOdWr045M&amp;t=68s" data-seek="68" aria-label="Play from 1:08">1:08</a><span data-t="68">Let&#x27;s follow a single training step.</span> <span data-t="70">First the forward pass. Each GPU takes a batch of training examples and runs them through the model to make predictions.</span> <span data-t="77">Then the backward pass compares predictions with the right answers and computes gradients. how every weight in the model should change. Next comes the</span> <span data-t="85">communication phase. The gradients from every GPU are combined so all of them agree on one update. Finally, the optimizer applies the update to the</span> <span data-t="94">weights and the next step begins. Hood systems overlap these phases while later layers are still computing. Gradients</span> <span data-t="101">from finished layers are already on the network. The goal is to hide communication behind computation.</span></p>
@@ -78,11 +79,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=v1bOdWr045M&amp;t=841s" data-seek="841" aria-label="Play from 14:01">14:01</a><span data-t="841">To recap, AI training is a synchronized job across thousands of GPS. So the slowest link sets the pace. Each step</span> <span data-t="848">computes then communicates, ideally overlapping the two. Inside a server, NVL link and NV switch form the scale up</span> <span data-t="855">domain, now growing to a rack. between them. The scaleout network gives each GPU its own RDM a capable nick alongside</span> <span data-t="863">separate front-end storage and management networks. Data tensor pipeline and expert parallelism each</span> <span data-t="870">create different traffic carried by collectives like all reduce and all to all implemented by libraries over rings</span> <span data-t="877">and trees. Rail optimized non-block enclosed fabrics carry few huge synchronized flows which need adaptive</span> <span data-t="885">routing, packet spraying and fast congestion control over infini band or ultra ethernet. Fast checkpoints, failure handling and constant</span> <span data-t="894">measurement keep it all running. Thanks for watching.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../rpki/"><small>Previous</small>RPKI</a><a class="next" href="../mpls-layer3-vpns/"><small>Next</small>MPLS Layer3 VPNs</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

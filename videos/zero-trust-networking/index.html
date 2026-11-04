@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/zero-trust-networking/">
 <meta property="og:title" content="Zero Trust Networking · Network Dr">
 <meta property="og:description" content="Welcome to episode 45, the first of three bonus episodes. We&#x27;ve mentioned zero trust many times. Today, we take it apart properly. We&#x27;ll see why the old perimeter model failed, the">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/0a7d6S_rmJI?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Zero Trust Networking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Zero Trust Networking</h1>
-          <p class="meta"><time datetime="2026-10-21T12:29:50-07:00">21 Oct 2026</time><span>8:35</span><a href="https://www.youtube.com/watch?v=0a7d6S_rmJI" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../capstone/"><small>Previous</small>Capstone</a><a class="next" href="../802-1x/"><small>Next</small>802.1x</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/0a7d6S_rmJI?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Zero Trust Networking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Zero Trust Networking</h1>
+      <p class="meta"><time datetime="2026-10-21T12:29:50-07:00">21 Oct 2026</time><span>8:35</span><a href="https://www.youtube.com/watch?v=0a7d6S_rmJI" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,236 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=0a7d6S_rmJI&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 45, the first of three bonus episodes. We&#x27;ve mentioned zero trust many times. Today, we take it</span> <span data-t="7">apart properly. We&#x27;ll see why the old perimeter model failed, the principles of zero trust, its architecture of</span> <span data-t="14">decision and enforcement points, identity for users, devices, and workloads, micro segmentation, access</span> <span data-t="22">proxies, encryption everywhere, visibility, and how to migrate without breaking everything.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=0a7d6S_rmJI&amp;t=29s" data-seek="29" aria-label="Play from 0:29">0:29</a><span data-t="29">Traditional networks were built like a castle with a moat. A strong firewall at the edge kept attackers out. Inside, the network was trusted. Any device on the</span> <span data-t="38">len or on the VPN could reach almost anything. The trouble is that one compromised laptop, one fished password</span> <span data-t="45">or one infected server puts an attacker inside the walls. From there, they move sideways, server to server, which is called lateral movement. Most major breaches spread exactly this way.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=0a7d6S_rmJI&amp;t=57s" data-seek="57" aria-label="Play from 0:57">0:57</a><span data-t="57">Meanwhile, the perimeter itself disappeared. Users work from home and coffee shops. Applications move to SAS and the public cloud. Contractors,</span> <span data-t="66">partners, and personal devices all need access. Traffic no longer passes through one firewall at headquarters. Being on the network is no longer a meaningful</span> <span data-t="75">sign of trust. So, zero trust stops treating it as one.</span> <span data-t="80">Zero trust is summed up as never trust, always verify. NIS described it in 2020 in special publication 800-207.</span></p>
@@ -68,11 +69,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=0a7d6S_rmJI&amp;t=470s" data-seek="470" aria-label="Play from 7:50">7:50</a><span data-t="470">To recap, the perimeter dissolved. So zero trust removes trust based on location. Verify every request explicitly. Grant least privilege and</span> <span data-t="479">assume breach. Decision and enforcement points. Use user identity with fishing resistant MFA. Device posture and</span> <span data-t="486">workload identity with mutual TLS, micro segmentation, access proxies, encryption, and continuous visibility</span> <span data-t="493">complete the picture. Two of those building blocks live right at the network edge and deserve episodes of</span> <span data-t="499">their own. Next bonus episode 46, 802.1x portbased access control. How a switch port decides who is allowed onto the</span> <span data-t="508">network. Then episode 47, MAC sec, which encrypts the link itself. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../capstone/"><small>Previous</small>Capstone</a><a class="next" href="../802-1x/"><small>Next</small>802.1x</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

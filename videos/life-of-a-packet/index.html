@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/life-of-a-packet/">
 <meta property="og:title" content="Life of a Packet · Network Dr">
 <meta property="og:description" content="In the first episode, we saw the big picture of networking. Now, we zoom in on a single packet. We&#x27;ll follow one web request from a laptop on a home network to a server across the ">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/_Ym6RIqQSp8?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Life of a Packet" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Life of a Packet</h1>
-          <p class="meta"><time datetime="2026-10-17T11:53:26-07:00">17 Oct 2026</time><span>14:59</span><a href="https://www.youtube.com/watch?v=_Ym6RIqQSp8" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../welcome-to-networking/"><small>Previous</small>Welcome to Networking</a><a class="next" href="../switching-deep-dive/"><small>Next</small>Switching Deep Dive</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/_Ym6RIqQSp8?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Life of a Packet" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Life of a Packet</h1>
+      <p class="meta"><time datetime="2026-10-17T11:53:26-07:00">17 Oct 2026</time><span>14:59</span><a href="https://www.youtube.com/watch?v=_Ym6RIqQSp8" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">2,171 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_Ym6RIqQSp8&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">In the first episode, we saw the big picture of networking. Now, we zoom in on a single packet. We&#x27;ll follow one web request from a laptop on a home network</span> <span data-t="9">to a server across the internet and back again. Along the way, you&#x27;ll learn subnitting, ARP, routing, lookups, NAD, and trace route by watching every header change.</span> <span data-t="19">Here is our lab. The laptop has the address 192.16 to810.25 with a /26 prefix. Its default gateway</span> <span data-t="28">is the home router at 192.168.10.1 which also performs net to the public address 203.0.113.7.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_Ym6RIqQSp8&amp;t=36s" data-seek="36" aria-label="Play from 0:36">0:36</a><span data-t="36">Beyond that are the ISP&#x27;s routers, a transit network, and finally the web server at 192.0.2.80.</span> <span data-t="43">Keep one rule in mind for the whole journey. MAC addresses change at every hop. IP addresses stay the same unless Natri writes them.</span> <span data-t="52">Subnetting is just binary arithmetic. So let&#x27;s start there. Each octet of an IPv4 address is 8 bits from left to right.</span> <span data-t="60">The bits are worth 128 64 32 16 8 4 2 and 1. To turn 25 into binary, add up</span> <span data-t="68">the values you need. 16 + 8 + 1. So 25 is 0 0 1 1 0 0 1. And 192 is 128 + 64 or 11 1 0 0.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_Ym6RIqQSp8&amp;t=81s" data-seek="81" aria-label="Play from 1:21">1:21</a><span data-t="81">You&#x27;ll see that pattern a lot.</span> <span data-t="84">A subnet mask marks which bits belong to the network. Ones mean network, zeros mean host. /26 means the first 26 bits</span> <span data-t="92">or ones written in decimal. That&#x27;s 255.255.255.192. Common masks are worth memorizing.</span> <span data-t="100">SL25NS in 128 SL 26 and 192 SL27 and 124</span> <span data-t="108">SL28 and 240 SL 29 and 248 and SL30 and 252 to find the network and address</span> <span data-t="116">belongs to the device does a bitwise and between the address and the mask 25 and 192 give zero so our laptop lies on the</span> <span data-t="125">network 192.160810.0/26 0/26.</span></p>
@@ -75,11 +76,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=_Ym6RIqQSp8&amp;t=867s" data-seek="867" aria-label="Play from 14:27">14:27</a><span data-t="867">Let&#x27;s recap the life of a packet. The host uses its mask to decide local or remote. ARP finds the next hops MAC address and the switch forwards the</span> <span data-t="875">frame. Each router strips the frame, finds the longest prefix match, decrements the TTL, and builds a new frame that rewrites addresses at the</span> <span data-t="883">edge. MAC addresses change at every hop and IP addresses stay the same end to end except where NAT steps in. In the</span> <span data-t="891">next episode, we&#x27;ll go deeper into switching VLANs, trunks, spanning tree, and link aggregation. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../welcome-to-networking/"><small>Previous</small>Welcome to Networking</a><a class="next" href="../switching-deep-dive/"><small>Next</small>Switching Deep Dive</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

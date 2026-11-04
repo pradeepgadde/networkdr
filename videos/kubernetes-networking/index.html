@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/kubernetes-networking/">
 <meta property="og:title" content="Kubernetes Networking · Network Dr">
 <meta property="og:description" content="Welcome to episode 39. We&#x27;ve built networks from cables up to clouds. Today we look at the network inside a Kubernetes cluster where thousands of short-lived containers need to fin">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/QpdN7Ll3-vg?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Kubernetes Networking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Kubernetes Networking</h1>
-          <p class="meta"><time datetime="2026-10-20T13:13:15-07:00">20 Oct 2026</time><span>11:19</span><a href="https://www.youtube.com/watch?v=QpdN7Ll3-vg" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../multicast/"><small>Previous</small>Multicast</a><a class="next" href="../mobile-networks/"><small>Next</small>Mobile Networks</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/QpdN7Ll3-vg?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Kubernetes Networking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Kubernetes Networking</h1>
+      <p class="meta"><time datetime="2026-10-20T13:13:15-07:00">20 Oct 2026</time><span>11:19</span><a href="https://www.youtube.com/watch?v=QpdN7Ll3-vg" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,719 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=QpdN7Ll3-vg&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 39. We&#x27;ve built networks from cables up to clouds. Today we look at the network inside a Kubernetes cluster where thousands of</span> <span data-t="9">short-lived containers need to find and talk to each other. We&#x27;ll cover the Kubernetes network model, pods and network name spaces, how traffic crosses</span> <span data-t="17">nodes, CNI plugins, services and Q proxy, cluster DNS, getting traffic in with load balancers, ingress and the</span> <span data-t="24">gateway API, network policies, egress, service meshes and ebpf.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=QpdN7Ll3-vg&amp;t=31s" data-seek="31" aria-label="Play from 0:31">0:31</a><span data-t="31">Kubernetes runs containers and pods, groups of containers that share a network identity, and it makes a few simple promises about the network. Every</span> <span data-t="40">pod gets its own IP address. Every pod can reach every other pod on any node without net. And the address a pod sees</span> <span data-t="47">for itself is the same address others use to reach it. Kubernetes doesn&#x27;t implement this itself. It defines the rules and leaves the plumbing to a</span> <span data-t="55">network plug-in. That separation is why there are so many ways to build a cluster network.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=QpdN7Ll3-vg&amp;t=62s" data-seek="62" aria-label="Play from 1:02">1:02</a><span data-t="62">On a node, each pod lives in its own Linux network namespace with its own interfaces, routes, and firewall rules.</span> <span data-t="69">All containers in a pod share that namespace, so they reach each other on local host and must not use the same ports. A tiny pause container holds the</span> <span data-t="77">namespace open while app containers come and go. The pods f0 is one end of a ve pair, a virtual cable. The other end</span> <span data-t="85">sits in the node&#x27;s root namespace, so packets leaving the pod appear on the host.</span></p>
@@ -72,11 +73,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=QpdN7Ll3-vg&amp;t=637s" data-seek="637" aria-label="Play from 10:37">10:37</a><span data-t="637">To recap, every pod gets its own IP and reaches every other pod without net.</span> <span data-t="642">Pods live in network name spaces connected by veth pairs and cross nodes by overlay or native routing set up by</span> <span data-t="648">CNI plugins. Services give pods a stable cluster IP and DNS name implemented by cube proxy rules or ebpf node ports load</span> <span data-t="658">balancers ingress and gateway API bring traffic in network policies restrict who talks to whom. Igress gateways fix</span> <span data-t="665">source addresses and service meshes add mutual TLS retries and visibility. Next in the protocol deep dives, mobile</span> <span data-t="673">networks from LTE to the 5G core. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../multicast/"><small>Previous</small>Multicast</a><a class="next" href="../mobile-networks/"><small>Next</small>Mobile Networks</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

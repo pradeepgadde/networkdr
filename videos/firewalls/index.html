@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/firewalls/">
 <meta property="og:title" content="Firewalls · Network Dr">
 <meta property="og:description" content="Welcome to episode 31. Load balancers decide where traffic goes. Firewalls decide whether it goes at all. Today we follow firewalls from simple access control lists through statefu">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Kzewgg17ct4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Firewalls" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Firewalls</h1>
-          <p class="meta"><time datetime="2026-10-20T12:44:43-07:00">20 Oct 2026</time><span>10:46</span><a href="https://www.youtube.com/watch?v=Kzewgg17ct4" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../load-balancing/"><small>Previous</small>Load Balancing</a><a class="next" href="../wi-fi/"><small>Next</small>Wi-Fi</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/Kzewgg17ct4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Firewalls" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Firewalls</h1>
+      <p class="meta"><time datetime="2026-10-20T12:44:43-07:00">20 Oct 2026</time><span>10:46</span><a href="https://www.youtube.com/watch?v=Kzewgg17ct4" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,612 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Kzewgg17ct4&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 31. Load balancers decide where traffic goes. Firewalls decide whether it goes at all. Today we</span> <span data-t="8">follow firewalls from simple access control lists through stateful inspection and connection tracking to next generation firewalls at recognize</span> <span data-t="16">applications and users and onto Linux NF tables, cloud security groups and Kubernetes network policies.</span> <span data-t="25">A firewall is a policy enforcement point. Every packet that crosses it is checked against rules and either allowed or dropped. Traditionally, it sits at</span> <span data-t="33">the perimeter between your network and the internet. But it also separates internal segments like users from servers or production from development.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Kzewgg17ct4&amp;t=41s" data-seek="41" aria-label="Play from 0:41">0:41</a><span data-t="41">The guiding principle is default deny.</span> <span data-t="44">Block everything then allow only what&#x27;s needed.</span> <span data-t="48">The simplest firewall is an access control list on a router. Each rule matches on source and destination addresses, protocol, and ports and says</span> <span data-t="57">permit or deny. Rules are checked from the top and the first match wins. So order matters. A broad permit near the top makes every rule below it pointless.</span> <span data-t="66">And at the end of every list sits an invisible rule. Deny everything else.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Kzewgg17ct4&amp;t=72s" data-seek="72" aria-label="Play from 1:12">1:12</a><span data-t="72">A plain CL is stateless. It judges each packet on its own with no memory of what came before. So when an inside client</span> <span data-t="80">connects to a web server on port 443, the reply comes back from port 443 to a random ephemeral port on the client to</span> <span data-t="88">let it in. You must permit inbound traffic to ports 1,024 to 65,535.</span> <span data-t="94">That&#x27;s a huge hole. Old tricks like matching only packets with a TCP act flag set help a little, but attackers can craft those too.</span></p>
@@ -70,11 +71,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=Kzewgg17ct4&amp;t=586s" data-seek="586" aria-label="Play from 9:46">9:46</a><span data-t="586">Idle connections that silently die usually hit a state timeout. Database and SSH sessions need keepives shorter than the firewalls idle timeout and</span> <span data-t="595">don&#x27;t block all ICMP path. MTU discovery depends on ICMP messages and without them large transfers hang while small ones work.</span> <span data-t="606">To recap, firewalls enforce policy with default deny. A CLS match addresses and ports. Top down first match wins with an</span> <span data-t="615">implicit deny. Dateful firewalls track connections so replies are allowed automatically. Zones and DMZs contain</span> <span data-t="622">compromises and ALGS handle protocols with embedded addresses. Next generation firewalls identify applications and</span> <span data-t="630">users with TLS inspection and IPS and the same ideas live on an NF tables, security groups, network policies and</span> <span data-t="638">micro segmentation. Next in the protocol deep dives, Wi-Fi from 802.11 to Wi-Fi 7. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../load-balancing/"><small>Previous</small>Load Balancing</a><a class="next" href="../wi-fi/"><small>Next</small>Wi-Fi</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

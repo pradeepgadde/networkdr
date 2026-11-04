@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ipsec-vpns/">
 <meta property="og:title" content="IPsec VPNs · Network Dr">
 <meta property="og:description" content="Welcome to episode 27. MLSVPNs keep customers apart, but they trust the provider&#x27;s network. Why if you don&#x27;t trust the network at all, like the public internet? Then you encrypt to">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/hOBKRdIGmf4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPsec VPNs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>IPsec VPNs</h1>
-          <p class="meta"><time datetime="2026-10-19T13:15:11-07:00">19 Oct 2026</time><span>9:27</span><a href="https://www.youtube.com/watch?v=hOBKRdIGmf4" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../mpls-sr/"><small>Previous</small>MPLS + SR</a><a class="next" href="../tls-https/"><small>Next</small>TLS + HTTPS</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/hOBKRdIGmf4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPsec VPNs" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>IPsec VPNs</h1>
+      <p class="meta"><time datetime="2026-10-19T13:15:11-07:00">19 Oct 2026</time><span>9:27</span><a href="https://www.youtube.com/watch?v=hOBKRdIGmf4" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,322 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 27. MLSVPNs keep customers apart, but they trust the provider&#x27;s network. Why if you don&#x27;t</span> <span data-t="8">trust the network at all, like the public internet? Then you encrypt today, ipseack, the standard for encrypting IP</span> <span data-t="15">packets, plus the VPNs built on it, and modern alternatives like wire guard and max.</span> <span data-t="22">A secure tunnel has to provide four things. Confidentiality. Nobody on the path can read the data. Integrity.</span> <span data-t="30">Nobody can change it without being detected. Authentication. You&#x27;re really talking to the gateway you think you are. And anti-re replay. An attacker</span> <span data-t="38">can&#x27;t record packets and send them again later.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=43s" data-seek="43" aria-label="Play from 0:43">0:43</a><span data-t="43">Three kinds of cryptography make this work. Symmetric ciphers like AES and GCM mode encrypt bulk data fast using a key</span> <span data-t="50">both sides share. GCM also produces an authentication tag. So one operation gives both confidentiality and</span> <span data-t="57">integrity. But how do two gateways agree on a shared key over an open network with diffy helman key exchange? Each</span> <span data-t="64">side sends a public value and both compute the same secret which an eavesdropper can&#x27;t derive. Fresh divy helman keys for every session give</span> <span data-t="73">perfect forward secrecy stealing a long-term key can&#x27;t decrypt past traffic.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=80s" data-seek="80" aria-label="Play from 1:20">1:20</a><span data-t="80">IPSAC isn&#x27;t one protocol. It&#x27;s a suite working at layer three protecting any IP traffic regardless of the application.</span> <span data-t="88">Ike the internet key exchange is the control plane. It authenticates the peers and negotiates keys and algorithms. ESP the encapsulating</span> <span data-t="97">security payload is the data plane. It encrypts and authenticates the actual packets.</span> <span data-t="104">There are two data protocols. ah the authentication header IP protocol 51 provides integrity including parts of</span> <span data-t="112">the outer IP header but it doesn&#x27;t encrypt and since net changes that header IH breaks behind net ESP IP</span> <span data-t="120">protocol 50 encrypts and authenticates the payload it&#x27;s what virtually everyone uses today</span> <span data-t="128">can run in two modes in transport mode the original IP header stays and only the payload is protected It&#x27;s used</span> <span data-t="136">between two hosts that are themselves the end points. In tunnel mode, the entire original packet header and all is</span> <span data-t="143">encrypted and wrapped in a new outer IP header between the two gateways. Sight to sight VPNs use tunnel mode on the</span> <span data-t="150">internet. An observer sees only the two gateway addresses, never the internal ones.</span></p>
@@ -67,11 +68,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hOBKRdIGmf4&amp;t=518s" data-seek="518" aria-label="Play from 8:38">8:38</a><span data-t="518">TS unacceptable means the traffic selectors don&#x27;t match. Authentication failed means a wrong key or certificate.</span> <span data-t="525">And if the tunnel is up but large transfers stall, suspect the MTU just like with the XLAN.</span> <span data-t="532">To recap, IPSec protects IP packets with confidentiality, integrity, authentication, and anti-replay.</span> <span data-t="540">IKE version 2 authenticates peers and negotiates keys with Diffy Helman ESP encrypts in tunnel mode for sight to</span> <span data-t="547">sightvpns wrapped in UDP4500 when ad is in the way. Wire Guard offers a simpler fixed design and max second crypts links</span> <span data-t="556">at line rate. Next in the protocol deep dives TLS and HTTPS the encryption behind almost every web connection. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../mpls-sr/"><small>Previous</small>MPLS + SR</a><a class="next" href="../tls-https/"><small>Next</small>TLS + HTTPS</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

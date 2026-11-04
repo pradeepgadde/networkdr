@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/http/">
 <meta property="og:title" content="HTTP · Network Dr">
 <meta property="og:description" content="Welcome to episode 29. Last time TLS encrypted the connection. Today we look at what travels inside it. HTTP the hypertext transfer protocol. It carries web pages but also almost e">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/WGn-AdsAqS0?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="HTTP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>HTTP</h1>
-          <p class="meta"><time datetime="2026-10-19T13:30:07-07:00">19 Oct 2026</time><span>12:33</span><a href="https://www.youtube.com/watch?v=WGn-AdsAqS0" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../tls-https/"><small>Previous</small>TLS + HTTPS</a><a class="next" href="../load-balancing/"><small>Next</small>Load Balancing</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/WGn-AdsAqS0?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="HTTP" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>HTTP</h1>
+      <p class="meta"><time datetime="2026-10-19T13:30:07-07:00">19 Oct 2026</time><span>12:33</span><a href="https://www.youtube.com/watch?v=WGn-AdsAqS0" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,777 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WGn-AdsAqS0&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 29. Last time TLS encrypted the connection. Today we look at what travels inside it. HTTP the</span> <span data-t="9">hypertext transfer protocol. It carries web pages but also almost every API mobile app and AI inference request.</span> <span data-t="17">We&#x27;ll follow it from HTTP11 through HTTP2 to HTTP3 on quick.</span> <span data-t="25">HTTP is a request and response protocol.</span> <span data-t="28">A client sends a request and the server sends back exactly one response. It&#x27;s stateless. Each request stands on its</span> <span data-t="35">own and the server doesn&#x27;t need to remember the previous one. Every request names a resource with a URL, a scheme</span> <span data-t="42">like HTTPS, a host, an optional port, a path, and an optional query string.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WGn-AdsAqS0&amp;t=49s" data-seek="49" aria-label="Play from 0:49">0:49</a><span data-t="49">In HTTP11, a request is pine text. The first line is the request line, a method like get the path and the version http11.</span> <span data-t="60">Then headers one per line as a name, a colon and a value. Host says which site except says what formats the client</span> <span data-t="68">wants and user agent identifies the client. A blank line ends the headers.</span> <span data-t="73">Then comes an optional body. For example, the JSON sent with a post.</span> <span data-t="78">The response looks similar. A status line with a version, a three-digit status code, and a short reason like</span> <span data-t="85">200. Okay. Then header is describing the body, content type, content length, and caching rules, a blank line, and then</span> <span data-t="93">the body itself, the HTML, JSON or image.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WGn-AdsAqS0&amp;t=99s" data-seek="99" aria-label="Play from 1:39">1:39</a><span data-t="99">The method says what the client wants to do. Get reads a resource and head reads only its headers. Post submits data or creates something. Put replaces a</span> <span data-t="107">resource. Patch modifies part of it and delete removes it. Options asks what&#x27;s allowed. Two properties matter. Safe</span> <span data-t="114">methods like get and head don&#x27;t change anything. ID potent methods like put and delete have the same effect whether you send them once or five times. That&#x27;s</span> <span data-t="123">what makes retry safe and why proxies may retry again but never post.</span></p>
@@ -70,11 +71,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WGn-AdsAqS0&amp;t=713s" data-seek="713" aria-label="Play from 11:53">11:53</a><span data-t="713">To recap, HTTP is stateless request and response with methods, status codes, and headers. Safe and potent methods make</span> <span data-t="721">retries possible, and caching with E tags avoids needless transfers. HTTP11 added persistent connections but suffers</span> <span data-t="729">head of line blocking. HTTP2 multiplexes binary frames over one TCP connection with HPAC. HTTP3 moves streams into</span> <span data-t="739">quick over UDP removing transport head of line blocking with TLS 1.3 built-in and connection migration. Next in the</span> <span data-t="747">protocol deep dives load balancing from layer 4 to layer 7. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../tls-https/"><small>Previous</small>TLS + HTTPS</a><a class="next" href="../load-balancing/"><small>Next</small>Load Balancing</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

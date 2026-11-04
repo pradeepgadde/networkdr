@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/nat/">
 <meta property="og:title" content="NAT · Network Dr">
 <meta property="og:description" content="Welcome to episode 18. DHCP gave your laptop the address 192 168 157, but the internet can&#x27;t reach that address. So, how do replies find their way back? The answer is that network ">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/hYTJnnlGMy0?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="NAT" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>NAT</h1>
-          <p class="meta"><time datetime="2026-10-18T16:10:30-07:00">18 Oct 2026</time><span>4:48</span><a href="https://www.youtube.com/watch?v=hYTJnnlGMy0" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../dhcp/"><small>Previous</small>DHCP</a><a class="next" href="../ipv6/"><small>Next</small>IPv6</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/hYTJnnlGMy0?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="NAT" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>NAT</h1>
+      <p class="meta"><time datetime="2026-10-18T16:10:30-07:00">18 Oct 2026</time><span>4:48</span><a href="https://www.youtube.com/watch?v=hYTJnnlGMy0" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">650 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 18. DHCP gave your laptop the address 192 168 157, but the</span> <span data-t="8">internet can&#x27;t reach that address. So, how do replies find their way back? The answer is that network address translation. The trick that has kept IPv4 alive for decades.</span> <span data-t="20">IPv4 has about 4.3 billion addresses, fewer than the devices online, and the central pool ran dry in 2011. So RFC1918</span> <span data-t="29">set aside private ranges 10.0/8 172.16/12 and 192.168/16.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=39s" data-seek="39" aria-label="Play from 0:39">0:39</a><span data-t="39">Anyone can use them inside a network but they&#x27;re never routed on the internet.</span> <span data-t="44">Net connects the two worlds, swapping private addresses for public ones at the edge.</span> <span data-t="50">Your laptop connects from 192, 168, 157, port 51,334</span> <span data-t="57">to a web server at 198, 51, 120, port 443.</span> <span data-t="64">The router replaces the source with its public address 203 0137, records the mapping, and recalculates</span> <span data-t="72">the checksums. When the reply comes back, the router looks up the mapping, rewrites the destination to 192, 168,</span> <span data-t="80">157, and forwards it inside.NAT comes in three flavors. ThaddicNet maps one private address to one public</span> <span data-t="89">address permanently. DynamicNat borrows one from a pool, but the most common is port address translation or PAT. Cisco</span> <span data-t="96">calls it net overload and Linux calls it masquerading. Many hosts share one public address told apart by ports.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=105s" data-seek="105" aria-label="Play from 1:45">1:45</a><span data-t="105">Suppose your laptop and phone both pick source port 51,334 to the same server. The router can&#x27;t give them the same public port, so it</span> <span data-t="114">assigns new ones. 40,0001 for the laptop and 40,0002 for the phone. Each translation is one row in a table with</span> <span data-t="122">about 65,000 ports per address per protocol. One public IP can serve a whole office.</span> <span data-t="129">On Linux, these mappings live in the connection tracking table and contract-l lists them. Entries expire. TCP entries</span> <span data-t="137">last until the connection closes or a long idle timeout. UDP entries expire after seconds or minutes of silence, which is why long live UDP apps send keys.</span></p>
@@ -61,11 +62,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=hYTJnnlGMy0&amp;t=265s" data-seek="265" aria-label="Play from 4:25">4:25</a><span data-t="265">To recap, NAT rewrites addresses at the edge so private ranges can reach the internet. Patch shares one public</span> <span data-t="272">address using ports tracked in a table with timeouts. Inbound needs port forwarding. Peer-to-peer needs done and turn and carriers add another layer.</span> <span data-t="281">Next in the protocol deep dives, IPv6 built so we wouldn&#x27;t need NAT. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../dhcp/"><small>Previous</small>DHCP</a><a class="next" href="../ipv6/"><small>Next</small>IPv6</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

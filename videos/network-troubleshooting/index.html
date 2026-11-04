@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/network-troubleshooting/">
 <meta property="og:title" content="Network Troubleshooting · Network Dr">
 <meta property="og:description" content="Welcome to episode 43. Over 42 episodes, we&#x27;ve taken the network apart protocol by protocol. Today, we put it back together with a skill every network engineer needs most. Finding ">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/7gmjDu2HPPg?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Network Troubleshooting" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Network Troubleshooting</h1>
-          <p class="meta"><time datetime="2026-10-21T12:27:24-07:00">21 Oct 2026</time><span>9:53</span><a href="https://www.youtube.com/watch?v=7gmjDu2HPPg" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../satellite-networks/"><small>Previous</small>Satellite Networks</a><a class="next" href="../capstone/"><small>Next</small>Capstone</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/7gmjDu2HPPg?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Network Troubleshooting" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Network Troubleshooting</h1>
+      <p class="meta"><time datetime="2026-10-21T12:27:24-07:00">21 Oct 2026</time><span>9:53</span><a href="https://www.youtube.com/watch?v=7gmjDu2HPPg" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,472 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=7gmjDu2HPPg&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 43. Over 42 episodes, we&#x27;ve taken the network apart protocol by protocol. Today, we put it back</span> <span data-t="8">together with a skill every network engineer needs most. Finding out why something doesn&#x27;t work. We&#x27;ll build a troubleshooting method, then walk the</span> <span data-t="16">stack from the cable up with commands that answer each question. links, switching, addressing, routing, MTU,</span> <span data-t="23">DNS, transport, firewalls, TLS, applications, performance, packet capture, intermittent problems, the cloud, and the postm.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=7gmjDu2HPPg&amp;t=34s" data-seek="34" aria-label="Play from 0:34">0:34</a><span data-t="34">Most troubleshooting time is lost before it starts chasing a vague complaint like the network is slow. Pin it down. Who is</span> <span data-t="41">affected and who isn&#x27;t? What exactly fails? A name, a connection, a page, or just speed. Since when? And always ask</span> <span data-t="49">what changed. Most outages follow a change. Then reproduce it yourself with a specific source, destination, port,</span> <span data-t="56">and time. A precise problem statement often points straight at the answer.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=7gmjDu2HPPg&amp;t=62s" data-seek="62" aria-label="Play from 1:02">1:02</a><span data-t="62">There are a few classic strategies built on the layered model from the very first episodes. Bottom up starts at the cable and works upward. Good when nothing</span> <span data-t="71">works at all. Top down starts at the application. Good when only one thing fails. Divide and conquer starts in the middle. If ping works, layers one to three are probably fine. So, look above.</span> <span data-t="83">Two more are powerful. Follow the path hop by hop from source to destination and compare. Find something that works and find the difference.</span></p>
@@ -70,11 +71,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=7gmjDu2HPPg&amp;t=551s" data-seek="551" aria-label="Play from 9:11">9:11</a><span data-t="551">bottom up, top down, divide and conquer, follow the path or compare, walk the layers, link errors and optics, mech</span> <span data-t="559">tables, VLANs and ARP, addressing and DHCP, routes and trace route, MTU with don&#x27;t fragment pings and DNS with</span> <span data-t="567">digports with NC and SS firewalls and net tables, TLS with open applications with curl</span> <span data-t="574">timings, performance with MTR and iperf 3 and packets with TCP dump. Fix carefully, document, and prevent. Next</span> <span data-t="582">in the protocol deep dives, a capstone, we&#x27;ll design a complete network from a single office to a global cloud platform using everything from the series. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../satellite-networks/"><small>Previous</small>Satellite Networks</a><a class="next" href="../capstone/"><small>Next</small>Capstone</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

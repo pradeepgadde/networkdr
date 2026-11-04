@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/wi-fi/">
 <meta property="og:title" content="Wi-Fi · Network Dr">
 <meta property="og:description" content="Welcome to episode 32. Every protocol we&#x27;ve covered so far ran over wires or fiber. Today, the packets take to the air. Wi-Fi e 802.11 is how most people reach the network. We&#x27;ll c">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/butU-OQdMeo?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Wi-Fi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Wi-Fi</h1>
-          <p class="meta"><time datetime="2026-10-20T12:48:10-07:00">20 Oct 2026</time><span>11:56</span><a href="https://www.youtube.com/watch?v=butU-OQdMeo" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../firewalls/"><small>Previous</small>Firewalls</a><a class="next" href="../spanning-tree-lacp/"><small>Next</small>Spanning Tree + LACP</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/butU-OQdMeo?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Wi-Fi" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Wi-Fi</h1>
+      <p class="meta"><time datetime="2026-10-20T12:48:10-07:00">20 Oct 2026</time><span>11:56</span><a href="https://www.youtube.com/watch?v=butU-OQdMeo" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,728 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=butU-OQdMeo&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 32. Every protocol we&#x27;ve covered so far ran over wires or fiber. Today, the packets take to the</span> <span data-t="7">air. Wi-Fi e 802.11 is how most people reach the network. We&#x27;ll cover radio bands and channels, how clients join,</span> <span data-t="16">how they share the air, the modulation tricks behind each generation up to Wi-Fi 7, security from web to WPA3, roaming, and how to design and troubleshoot a wireless network.</span> <span data-t="28">Wi-Fi uses unlicensed spectrum in three bands, 2.4, 5, and 6 GHz. Lower frequencies travel farther and pass</span> <span data-t="36">through walls more easily. Higher frequencies carry less far, but offer far more spectrum and therefore more capacity. 2.4 GHz is crowded, shared with Bluetooth and even microwave ovens.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=butU-OQdMeo&amp;t=48s" data-seek="48" aria-label="Play from 0:48">0:48</a><span data-t="48">5 GHz is the workhorse, and 6 GHz, opened for Wi-Fi 6E, is wide, clean, and reserved for modern devices.</span> <span data-t="58">Each band is divided into 20 megahertz channels in 2.4 GHz channels overlap and only 3 1 6 and 11 are usable side by</span> <span data-t="68">side. 5 GHz has many more channels though some required DFS dynamic frequency selection. If radar is</span> <span data-t="75">detected the access point must leave the channel. In the US, 6 GHz adds 1,200 MHz</span> <span data-t="82">room for 59 channels of 20 MHz. Channels can be bonded into 40, 80, 160, and with</span> <span data-t="89">Wi-Fi 7 320 MHz. Wider channels mean faster links, but fewer separate channels to spread access points across.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=butU-OQdMeo&amp;t=99s" data-seek="99" aria-label="Play from 1:39">1:39</a><span data-t="99">802.11 has evolved through many amendments, now with friendlier names.</span> <span data-t="103">802.11bg brought Wi-Fi to the mainstream and 11 and 54 megabits 802.11ni</span> <span data-t="110">4 added my mo 802.11ci 5 focused on 5 GHz and wider channels</span> <span data-t="117">802.11 ax Wi-Fi 6 and 6 for the 6 GHz band focused on efficiency in crowded</span> <span data-t="124">places and 802.11b Wi-Fi 7 pushes peak rates far higher the peak numbers are theoretical readal</span> <span data-t="132">throughput is much or an access point and its associated clients form a basic service set. The</span> <span data-t="139">network name you see is the SSID. Each AP radio has its own identifier, the BSSID, which is a MAC address. Many</span> <span data-t="147">access points can broadcast the same SSID. Together, they form an extended service set. So, clients can move between them, staying on the same</span> <span data-t="155">network. The IPS connect to the wired network, usually through switches, often with power over Ethernet. They&#x27;re managed by a controller or from the</span> <span data-t="164">cloud which pushes configuration and coordinates channels and power.</span></p>
@@ -70,11 +71,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=butU-OQdMeo&amp;t=647s" data-seek="647" aria-label="Play from 10:47">10:47</a><span data-t="647">Split the problem by symptom. Can&#x27;t connect? Check the passphrase, the security mode, and for enterprise, the radius logs. connected but no internet</span> <span data-t="656">usually DHCP or DNS not the radio at all connected but slow look at signal strength the MCS retry rates and channel</span> <span data-t="666">utilization drops when moving its roaming check 802.11R K and V support and a P overlap</span> <span data-t="675">to recap Wi-Fi uses 2.4 four, five, and 6 GHz with wider channels trading reach and count for speed. Clients find a PS</span> <span data-t="683">by beacons and probes. Associate and run the four-way handshake CSMA CA shares the half duplex air with X Beckoff and</span> <span data-t="691">RTS and CTS OFDM and Qual my mo of FDMA and Wi-Fi 7&#x27;s multilink operation raise</span> <span data-t="700">capacity WP3 and 802.1x curit and 802.11k V and R make roaming smooth. Next in the</span> <span data-t="709">protocol deep dives spanning tree and link aggregation keeping Ethernet loop free. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../firewalls/"><small>Previous</small>Firewalls</a><a class="next" href="../spanning-tree-lacp/"><small>Next</small>Spanning Tree + LACP</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

@@ -55,6 +55,14 @@
     if (window.innerWidth < 1000) frame.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
+  var expandBtn = document.getElementById("expand-tx");
+  if (expandBtn) expandBtn.addEventListener("click", function () {
+    var open = tx.classList.toggle("open");
+    expandBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    expandBtn.textContent = open ? "Show less" : "Show all";
+    if (!open) tx.scrollTop = 0;
+  });
+
   if (copyBtn) copyBtn.addEventListener("click", function () {
     var text = Array.prototype.map.call(tx.querySelectorAll("p"), function (p) {
       var stamp = p.querySelector(".stamp");

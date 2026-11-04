@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/load-balancing/">
 <meta property="og:title" content="Load Balancing · Network Dr">
 <meta property="og:description" content="Welcome to episode 30. Last time we kept running into proxies and load balancer sitting in front of applications. Today they get an episode of their own. Load balancers spread traf">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/DSF99ql3YXc?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Load Balancing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Load Balancing</h1>
-          <p class="meta"><time datetime="2026-10-19T13:33:17-07:00">19 Oct 2026</time><span>10:59</span><a href="https://www.youtube.com/watch?v=DSF99ql3YXc" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../http/"><small>Previous</small>HTTP</a><a class="next" href="../firewalls/"><small>Next</small>Firewalls</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/DSF99ql3YXc?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Load Balancing" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Load Balancing</h1>
+      <p class="meta"><time datetime="2026-10-19T13:33:17-07:00">19 Oct 2026</time><span>10:59</span><a href="https://www.youtube.com/watch?v=DSF99ql3YXc" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,713 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=DSF99ql3YXc&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 30. Last time we kept running into proxies and load balancer sitting in front of applications. Today</span> <span data-t="7">they get an episode of their own. Load balancers spread traffic across many servers, hide failures, and make it possible to change a service without</span> <span data-t="16">anyone noticing. We&#x27;ll go from layer 4, which moves packets and connections, to layer 7, which understands every HTTP request.</span> <span data-t="26">One server eventually isn&#x27;t enough. Load balancing gives you three things. Jail, add more servers instead of a bigger</span> <span data-t="33">one. Availability. When a server fails, traffic moves to the others and users don&#x27;t notice. And maintenance, drain a</span> <span data-t="41">server, patch it, and put it back with no downtime.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=DSF99ql3YXc&amp;t=46s" data-seek="46" aria-label="Play from 0:46">0:46</a><span data-t="46">Clients connect to one address, the virtual IP or VIP. Here 203 013 10 port 443.</span> <span data-t="55">Behind it sits a pool of backends.</span> <span data-t="57">sometimes called real servers or targets. The load balancer picks one for each new connection or request and it keeps checking each backend&#x27;s health.</span> <span data-t="66">So, a fail server stops receiving traffic.</span> <span data-t="70">The simplest approach doesn&#x27;t need a load balancer at all. Publish several records for one name and clients spread themselves across them. A DNS answers</span> <span data-t="79">are cached for the TTL or longer. When a server dies, clients keep using its address until their caches expire. And DNS can&#x27;t see how busy each server is.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=DSF99ql3YXc&amp;t=88s" data-seek="88" aria-label="Play from 1:28">1:28</a><span data-t="88">So DNS is used for coarse global decisions like which region to send a user to. And real load balancers do the fine grained work.</span> <span data-t="98">A layer 4 load balancer looks only at IP addresses, ports, and the protocol, the five tupil. When a new UTCP connection</span> <span data-t="106">or UDP flow arrives, it picks a back end and then sends every later packet of that flow to the same back end. It never</span> <span data-t="113">reads HTTP. So, it works for any protocol, databases, DNS, gRPC, game traffic, and because it does so little per packet, it&#x27;s extremely fast.</span></p>
@@ -72,11 +73,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=DSF99ql3YXc&amp;t=651s" data-seek="651" aria-label="Play from 10:51">10:51</a><span data-t="651">Next in the protocol deep dives firewalls from a CLS to next generation firewalls. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../http/"><small>Previous</small>HTTP</a><a class="next" href="../firewalls/"><small>Next</small>Firewalls</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

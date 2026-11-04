@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/802-1x/">
 <meta property="og:title" content="802.1x · Network Dr">
 <meta property="og:description" content="Welcome to episode 46, the second of three bonus episodes. Zero trust says nothing gets onto the network without proving who it is on a wired or wireless len. The standard that doe">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/uiohuozx5Po?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="802.1x" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>802.1x</h1>
-          <p class="meta"><time datetime="2026-10-21T12:33:12-07:00">21 Oct 2026</time><span>9:52</span><a href="https://www.youtube.com/watch?v=uiohuozx5Po" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../zero-trust-networking/"><small>Previous</small>Zero Trust Networking</a><a class="next" href="../macsec/"><small>Next</small>MACsec</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/uiohuozx5Po?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="802.1x" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>802.1x</h1>
+      <p class="meta"><time datetime="2026-10-21T12:33:12-07:00">21 Oct 2026</time><span>9:52</span><a href="https://www.youtube.com/watch?v=uiohuozx5Po" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,521 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=uiohuozx5Po&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 46, the second of three bonus episodes. Zero trust says nothing gets onto the network without proving who it is on a wired or wireless</span> <span data-t="9">len. The standard that does that is 802.1x.</span> <span data-t="13">We&#x27;ll cover the open port problem, the three rules, a pole on the wire, a full authentication exchange, radius, the e</span> <span data-t="20">methods, certificates, dynamic VLANs and CL, MAC authentication bypass, fallback VLANs, host modes, change of</span> <span data-t="28">authorization, rolling it out safely, and troubleshooting.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=uiohuozx5Po&amp;t=33s" data-seek="33" aria-label="Play from 0:33">0:33</a><span data-t="33">Walk into most offices, find an Ethernet jack and plug in a laptop. On many networks, it gets an address from DHCP</span> <span data-t="40">and reaches everything. The switch has no idea who is connected. A visitor, a contractor, or an attacker&#x27;s tiny device hidden behind a printer all look the</span> <span data-t="48">same. 802.1x defined by the ITLE E is port-based network access control fixes this. A</span> <span data-t="56">port stays closed until the device on it authenticates. 802.1x always involves three parties.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=uiohuozx5Po&amp;t=64s" data-seek="64" aria-label="Play from 1:04">1:04</a><span data-t="64">The supplicant is the software on the device that wants access. built into Windows, Mac OS, Linux, phones, and many printers and phones. The authenticator</span> <span data-t="73">is the switch or the wireless access point that controls the port. The authentication server, usually a radius</span> <span data-t="80">server, makes the decision, checking credentials against a directory or a certificate authority. The authenticator never decides on its own. It only relays and then enforces.</span></p>
@@ -72,11 +73,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=uiohuozx5Po&amp;t=582s" data-seek="582" aria-label="Play from 9:42">9:42</a><span data-t="582">Next, the final bonus episode, Max, which uses those 802.1x keys to encrypt every Ethernet frame on the link. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../zero-trust-networking/"><small>Previous</small>Zero Trust Networking</a><a class="next" href="../macsec/"><small>Next</small>MACsec</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

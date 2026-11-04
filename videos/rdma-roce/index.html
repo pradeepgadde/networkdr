@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/rdma-roce/">
 <meta property="og:title" content="RDMA + RoCE · Network Dr">
 <meta property="og:description" content="Welcome to episode 24. Last time we saw that IC clusters split their networks in two and that the backend GPU network stays pure layer three. Today we go inside that backend networ">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/IFZpGLS2Mx4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="RDMA + RoCE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>RDMA + RoCE</h1>
-          <p class="meta"><time datetime="2026-10-19T13:01:55-07:00">19 Oct 2026</time><span>10:43</span><a href="https://www.youtube.com/watch?v=IFZpGLS2Mx4" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../vxlan-evpn/"><small>Previous</small>VXLAN + EVPN</a><a class="next" href="../qos/"><small>Next</small>QoS</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/IFZpGLS2Mx4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="RDMA + RoCE" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>RDMA + RoCE</h1>
+      <p class="meta"><time datetime="2026-10-19T13:01:55-07:00">19 Oct 2026</time><span>10:43</span><a href="https://www.youtube.com/watch?v=IFZpGLS2Mx4" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,592 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=IFZpGLS2Mx4&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 24. Last time we saw that IC clusters split their networks in two and that the backend GPU network</span> <span data-t="7">stays pure layer three. Today we go inside that backend network. It runs RDMA remote direct memory access mostly</span> <span data-t="16">over Ethernet. As Rocky, it&#x27;s the most demanding traffic a data center has ever carried and it changes the rules we&#x27;ve learned so far.</span> <span data-t="25">Training a large model spreads the work across thousands of GPUs. After every step, they must exchange and combine their results in a collective operation</span> <span data-t="33">like all reduce. Every GPU waits until the slowest transfer finishes. So the network doesn&#x27;t just need high bandwidth. It needs predictable low tail</span> <span data-t="42">latency because one slow link stalls the entire job. And the volumes are huge.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=IFZpGLS2Mx4&amp;t=47s" data-seek="47" aria-label="Play from 0:47">0:47</a><span data-t="47">Hundreds of gigabits per second per GPU in synchronized bursts from every GPU at once.</span> <span data-t="55">With ordinary TCP, every bite passes through the operating system. The application calls the kernel. Data is copied between buffers. The TCP stack</span> <span data-t="64">does its work, interrupts fire, and the CPU is involved at every step. At 400 Gbits per second, that&#x27;s tens of millions of packets per second per link.</span> <span data-t="73">The CPU becomes the bottleneck, and latency rises and wobbles.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=IFZpGLS2Mx4&amp;t=79s" data-seek="79" aria-label="Play from 1:19">1:19</a><span data-t="79">RDMA takes the CPU and the kernel out of the data path. The network card reads data straight from the application&#x27;s memory sends it and a remote card writes it straight into the destination memory.</span> <span data-t="90">No kernel, no copies and no remote CPU involvement. That&#x27;s kernel bypass zero copy and CPU offload. RDMA came from</span> <span data-t="99">Infinibi band the interconnect blong used in supercomputers.</span> <span data-t="105">Applications use RDMA through an interface called verbs. Communication happens over a Q pair, a send Q and a</span> <span data-t="113">receive Q on the network card. The application posts work requests to these cues and rings a doorbell to tell the card. When the card finishes, it posts</span> <span data-t="122">an entry to a completion queue which the application pulls. Before any of this, memory must be registered. The card pins</span> <span data-t="129">the buffer and hands out keys. A remote pier needs the right key to touch that memory.</span></p>
@@ -70,11 +71,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=IFZpGLS2Mx4&amp;t=626s" data-seek="626" aria-label="Play from 10:26">10:26</a><span data-t="626">Collectives create few huge flows. So ECMP collisions, rail optimized designs and adaptive routing matter enormously.</span> <span data-t="634">Next in the protocol deep dives, quality of service, how networks classify, queue and shape traffic. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../vxlan-evpn/"><small>Previous</small>VXLAN + EVPN</a><a class="next" href="../qos/"><small>Next</small>QoS</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/mpls-sr/">
 <meta property="og:title" content="MPLS + SR · Network Dr">
 <meta property="og:description" content="Welcome to episode 26. Every router we&#x27;ve studied so far forwards by looking up the destination IP address. Hop I hop. MLS takes a different approach. Put a short label on the pack">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/q8zTsFQ1kbw?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="MPLS + SR" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>MPLS + SR</h1>
-          <p class="meta"><time datetime="2026-10-19T13:09:45-07:00">19 Oct 2026</time><span>9:38</span><a href="https://www.youtube.com/watch?v=q8zTsFQ1kbw" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../qos/"><small>Previous</small>QoS</a><a class="next" href="../ipsec-vpns/"><small>Next</small>IPsec VPNs</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/q8zTsFQ1kbw?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="MPLS + SR" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>MPLS + SR</h1>
+      <p class="meta"><time datetime="2026-10-19T13:09:45-07:00">19 Oct 2026</time><span>9:38</span><a href="https://www.youtube.com/watch?v=q8zTsFQ1kbw" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,444 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 26. Every router we&#x27;ve studied so far forwards by looking up the destination IP address. Hop I</span> <span data-t="7">hop. MLS takes a different approach. Put a short label on the packet at the edge and forward on the label in the core.</span> <span data-t="14">Segment routing then takes the idea further letting the source choose the path. Together they run most service provider and backbone networks.</span> <span data-t="24">MLS multiprotocol label switching appeared in the late 1990s. Back then, longest prefix match lookups were slow</span> <span data-t="32">while matching a short fixed label was fast. Hardware has since made IP lookups fast, too. But MLS survived because</span> <span data-t="40">labels turned out to be useful for much more than speed. They let a network build VPNs for thousands of customers, steer traffic along chosen paths, and reroute around failures in milliseconds.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=53s" data-seek="53" aria-label="Play from 0:53">0:53</a><span data-t="53">An MLS label is a four byte shim inserted between the Ethernet header and the IP header. That&#x27;s why MLS is sometimes called layer 2 and a half.</span> <span data-t="62">Ethernet marks it with ether type 8847.</span> <span data-t="65">It is four fields. A 20 bit label value, a three-bit traffic class for QoS. From the last episode, a one bit bottom of</span> <span data-t="72">stack flag and an 8 bit TTL. Labels 0 to 15 are reserved for special meanings.</span> <span data-t="78">Label three implicit null, for example, tells the upstream router to remove the label entirely.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=86s" data-seek="86" aria-label="Play from 1:26">1:26</a><span data-t="86">An MLS network has two kinds of routers.</span> <span data-t="89">Label edge routers, also called provider edge or PE routers, sit at the boundary.</span> <span data-t="94">The ingress PE classifies each packet into a forwarding equivalence class and pushes a label. Label switching routers</span> <span data-t="101">in the core called P routers never look at the IP header. They look up the incoming label, swap it for an outgoing label, and forward. The path a labeled</span> <span data-t="110">packet follows is a label switched path or lsps are one way.</span></p>
@@ -68,11 +69,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=q8zTsFQ1kbw&amp;t=540s" data-seek="540" aria-label="Play from 9:00">9:00</a><span data-t="540">To recap, MLS forwards on short labels pushed at the edge, swapped in the core, and popped near the exit. LDP follows</span> <span data-t="548">the IGP label stack separate transport from service and NLSDPNS keep thousands of customers apart. RSVP and fast reroute add control and resilience.</span> <span data-t="559">Segment routing puts the path into the packet using node and adjacency SIDS with TIFFI for protection and SRV6</span> <span data-t="567">brings it all to IPv6. Next in the protocol deep dives IPS and VPNs encrypting traffic across networks you don&#x27;t trust. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../qos/"><small>Previous</small>QoS</a><a class="next" href="../ipsec-vpns/"><small>Next</small>IPsec VPNs</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

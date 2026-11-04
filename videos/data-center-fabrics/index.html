@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/data-center-fabrics/">
 <meta property="og:title" content="Data Center Fabrics · Network Dr">
 <meta property="og:description" content="Welcome to episode 5. So far, we&#x27;ve built campus networks and connected them with routing. Now, we step inside the data center where thousands of servers talk to each other at enor">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/T3TIiaUU1eM?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Data Center Fabrics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Data Center Fabrics</h1>
-          <p class="meta"><time datetime="2026-10-17T12:37:24-07:00">17 Oct 2026</time><span>13:22</span><a href="https://www.youtube.com/watch?v=T3TIiaUU1eM" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../routing-deep-dive/"><small>Previous</small>Routing Deep Dive</a><a class="next" href="../cloud-networking/"><small>Next</small>Cloud Networking</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/T3TIiaUU1eM?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Data Center Fabrics" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Data Center Fabrics</h1>
+      <p class="meta"><time datetime="2026-10-17T12:37:24-07:00">17 Oct 2026</time><span>13:22</span><a href="https://www.youtube.com/watch?v=T3TIiaUU1eM" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">2,119 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T3TIiaUU1eM&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 5. So far, we&#x27;ve built campus networks and connected them with routing. Now, we step inside the data center where thousands of servers talk to each other at enormous speed.</span> <span data-t="11">This is the data center fabrics episode.</span> <span data-t="13">We&#x27;ll cover spine and leaf designs, ECMP, the routed underlay, the XLAN overlays, the EVPN control plane,</span> <span data-t="21">multi-tenency, and how all of this leads to AI fabrics.</span> <span data-t="25">Here is our lab. a small data center fabric. Two spine switches S1 and S2 sit at the top. Four leaf switches L1 to L4</span> <span data-t="34">connect the servers and every leaf connects to every spine. L4 is the border leaf. It connects the fabric to the firewall and the outside world. Web</span> <span data-t="43">servers on L1 and L3 share VLAN 10 mapped VXLAN segment 10,010. App servers on L2 use VLAN 20 mapped to 10,020. They all belong to a tenant called prod.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T3TIiaUU1eM&amp;t=56s" data-seek="56" aria-label="Play from 0:56">0:56</a><span data-t="56">Why did data centers need a new design? Because traffic changed direction.</span> <span data-t="60">Traditional enterprise traffic was mostly north south. Users outside talking to a server inside. Modern applications are split into many</span> <span data-t="68">services, databases, and storage clusters. So most traffic is now east west, server to server inside the data center. One user click and trigger</span> <span data-t="76">dozens of internal calls. The network between the servers became the main event.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T3TIiaUU1eM&amp;t=82s" data-seek="82" aria-label="Play from 1:22">1:22</a><span data-t="82">The classic three- tier design struggled with this. Traffic between servers often hair bended up through the aggregation and core layers and back down again.</span> <span data-t="90">Banning tree blocked half of the links so expensive bandwidth sat idle paths at different lengths so latency was unpredictable and growing the network</span> <span data-t="98">meant buying bigger and bigger core switches. The answer came from a 1953 idea for telephone exchanges by Charles Klo. Build a big switch out of many</span> <span data-t="107">small ones arranged in stages in a spine and leaf fabric. The rules are simple. Every leaf connects to every</span> <span data-t="115">spine. Leaves never connect to each other and spines never connect to each other. So any server can reach any other server in at most three switch hops.</span></p>
@@ -75,11 +76,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T3TIiaUU1eM&amp;t=764s" data-seek="764" aria-label="Play from 12:44">12:44</a><span data-t="764">Traffic went east west. So, designs move to spine and leaf. Every leaf connects to every spine. Every path has the same length and to scale by adding switches.</span> <span data-t="773">ECMP spreads flows across all the spines over a simple routed underlay of loop backs and eB with jumbo frames. The XLAN</span> <span data-t="782">tunnels a layer 2 over layer 3 with 16 million segments and EVPN replaces flooding with BGP adding in a cast gateways multi-comming and multi-tenant</span> <span data-t="791">via RFS. In the next episode we move into the public cloud PPC design transit gateways private links and hybrid connectivity. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../routing-deep-dive/"><small>Previous</small>Routing Deep Dive</a><a class="next" href="../cloud-networking/"><small>Next</small>Cloud Networking</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

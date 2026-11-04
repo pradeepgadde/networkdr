@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ipv6-transition/">
 <meta property="og:title" content="IPv6 Transition · Network Dr">
 <meta property="og:description" content="Welcome to episode 60 IPv6 transition. Back in episode 19, we met IPv6 itself. Today we look at the harder problem. How the internet actually moves from IPv4 to IPv6 while both hav">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/ADoF6cCUEro?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPv6 Transition" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>IPv6 Transition</h1>
-          <p class="meta"><time datetime="2026-11-01T13:21:54-08:00">1 Nov 2026</time><span>13:32</span><a href="https://www.youtube.com/watch?v=ADoF6cCUEro" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../smartnics/"><small>Previous</small>SmartNICs</a><a class="next" href="../networking-landscape-2026/"><small>Next</small>Networking Landscape 2026</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/ADoF6cCUEro?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPv6 Transition" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>IPv6 Transition</h1>
+      <p class="meta"><time datetime="2026-11-01T13:21:54-08:00">1 Nov 2026</time><span>13:32</span><a href="https://www.youtube.com/watch?v=ADoF6cCUEro" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">2,003 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=ADoF6cCUEro&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 60 IPv6 transition. Back in episode 19, we met IPv6 itself.</span> <span data-t="7">Today we look at the harder problem. How the internet actually moves from IPv4 to IPv6 while both have to keep working.</span> <span data-t="14">We&#x27;ll cover why the move is hard where adoption stands. The three families of techniques dual stack and happy eyeballs. A Junos dual stack example</span> <span data-t="23">tunnels 6PE over MLSNT 64 and DNS64 with a full walkthrough. What breaks 464XL</span> <span data-t="31">lats light map carrier great net IPv6 mostly networks data centers security</span> <span data-t="38">verification and how to choose the free pool of IPv4 addresses ran out years ago handed out its last blocks in</span> <span data-t="47">2011 and the regional registries followed today new IPv4 space mostly comes from transfers a real price per</span> <span data-t="54">address IPv6 fixes the shortage but it isn&#x27;t compatible on wire. An IPv4 only host cannot talk to an IPv6 only host.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=ADoF6cCUEro&amp;t=63s" data-seek="63" aria-label="Play from 1:03">1:03</a><span data-t="63">The header is different, the addresses are different, and there&#x27;s no built-in way to convert, and nobody can switch everything on one day. Billions of</span> <span data-t="71">devices, applications, and networks move at their own pace. So, for many years, both protocols must run, and the two worlds must be connected.</span> <span data-t="81">Adoption is real, but uneven. Google&#x27;s measurements show a little under half of its users reaching it over IPv6 and some countries are well above that. Mobile</span> <span data-t="90">networks lead. Many large mobile carriers run IPv6 only to the phone because they have more subscribers than they could ever get IPv4 addresses for.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=ADoF6cCUEro&amp;t=98s" data-seek="98" aria-label="Play from 1:38">1:38</a><span data-t="98">Big content networks and clouds are almost all reachable over IPv6.</span> <span data-t="103">Enterprises and many internal networks lag behind their IPv4 private space still works. So the pressure is lower.</span> <span data-t="110">That&#x27;s why transition techniques must work in every direction and for a long time.</span> <span data-t="116">Every transition technique falls into one of three families. Dual stack runs IPv4 and IPv6 side by side on the same</span> <span data-t="124">hosts and blinks. Tunneling carries one protocol inside the other across a part of the network that only speaks one. And translation converts packets between</span> <span data-t="132">IPv4 and IPv6. So an IPv6 only host can reach an IPv4 only server. Real networks usually combine all three.</span></p>
@@ -73,11 +74,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=ADoF6cCUEro&amp;t=774s" data-seek="774" aria-label="Play from 12:54">12:54</a><span data-t="774">Let&#x27;s recap. IPv4 ran out and IPv6 isn&#x27;t compatible on the wire. So transition takes dual stack, tunnels and</span> <span data-t="781">translation working together. Happy eyeballs makes dual stack usable 6P and tunnels carried IPv6 across older cores</span> <span data-t="788">that 64 and DNS 64 let IPv6 only hosts reach IPv4 and 464x lat covers that apps</span> <span data-t="795">that break. DS light map and CNA stretch IPv4 for broadband and IPv6 mostly</span> <span data-t="802">networks retire it gradually. Secure both protocols, measure each separately, and keep moving traffic to IPv6. Thanks for watching.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../smartnics/"><small>Previous</small>SmartNICs</a><a class="next" href="../networking-landscape-2026/"><small>Next</small>Networking Landscape 2026</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

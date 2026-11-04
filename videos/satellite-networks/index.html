@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/satellite-networks/">
 <meta property="og:title" content="Satellite Networks · Network Dr">
 <meta property="og:description" content="Welcome to episode 42. Most of the internet runs on fiber under the ground and the sea. Today we leave the ground entirely and look at networks in orbit. We&#x27;ll cover why satellites">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/daL8Q9k57G4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Satellite Networks" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Satellite Networks</h1>
-          <p class="meta"><time datetime="2026-10-21T12:25:52-07:00">21 Oct 2026</time><span>9:49</span><a href="https://www.youtube.com/watch?v=daL8Q9k57G4" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../ddos/"><small>Previous</small>DDoS</a><a class="next" href="../network-troubleshooting/"><small>Next</small>Network Troubleshooting</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/daL8Q9k57G4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Satellite Networks" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Satellite Networks</h1>
+      <p class="meta"><time datetime="2026-10-21T12:25:52-07:00">21 Oct 2026</time><span>9:49</span><a href="https://www.youtube.com/watch?v=daL8Q9k57G4" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,434 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=daL8Q9k57G4&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 42. Most of the internet runs on fiber under the ground and the sea. Today we leave the ground entirely and look at networks in orbit.</span> <span data-t="9">We&#x27;ll cover why satellites matter, the three kinds of orbits, the physics of latency, classic geostationary links, TCP over satellite and</span> <span data-t="18">performance-enhancing proxies, low Earth orbit constellations, laser links between satellites, routing in a moving network, direct to phone service and troubleshooting.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=daL8Q9k57G4&amp;t=29s" data-seek="29" aria-label="Play from 0:29">0:29</a><span data-t="29">Fiber is fast and cheap, but it can&#x27;t reach everywhere. Ships at sea, aircraft, remote villages, oil</span> <span data-t="36">platforms, mountain research stations, and disaster zones where ground networks are destroyed all depend on satellites.</span> <span data-t="44">Satellites also backhold cell towers in remote areas serve as a diverse backup path for enterprise sites and deliver broadcast TV to millions of homes at once.</span> <span data-t="54">Communication satellites sit in three bands of orbit. Geostationary orbit GEO is about 35,786</span> <span data-t="63">km above the equator. At that height, a satellite circles once a day, so it appears fixed in the sky. Three satellites can cover most of the planet.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=daL8Q9k57G4&amp;t=72s" data-seek="72" aria-label="Play from 1:12">1:12</a><span data-t="72">Medium Earth orbit Mio ranges from roughly 2,000 to 35,000 km, and low Earth orbit, LEO, is a few hundred to</span> <span data-t="80">about 2,000 km up. Alo satellite circles the earth in about 90 minutes crossing the sky in just a few.</span> <span data-t="89">Radio travels at the speed of light about 300,000 km/s. But Jio is far away.</span> <span data-t="95">A packet goes up 36,000 km and back down about 120 milliseconds one away through one satellite or request and its</span> <span data-t="104">response cross that path twice. So the round trip is about 500 to 600 milliseconds once processing is added.</span></p>
@@ -70,11 +71,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=daL8Q9k57G4&amp;t=544s" data-seek="544" aria-label="Play from 9:04">9:04</a><span data-t="544">To recap, satellites reach where fiber can&#x27;t. Gio sits 36,000 km up and appears fixed, but costs about 600 milliseconds</span> <span data-t="552">of round trip. Aido and Elo trade more satellites for much lower latency.</span> <span data-t="557">Geolinks are bent pipes through transponders to teleports with spot beams, rain fade, adaptive modulation,</span> <span data-t="564">and PEPS to help TCP. LEO constellations use thousands of satellites, phased array terminals, gateways, and laser</span> <span data-t="572">links with routes precomputed for a constantly moving topology. Directto device service and 5G non-aterrestrial networks brings satellites to ordinary</span> <span data-t="580">phones. Next in the protocol deep dives, network troubleshooting, a layerbylayer method that ties the whole series together. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../ddos/"><small>Previous</small>DDoS</a><a class="next" href="../network-troubleshooting/"><small>Next</small>Network Troubleshooting</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

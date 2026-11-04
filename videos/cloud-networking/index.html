@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/cloud-networking/">
 <meta property="og:title" content="Cloud Networking · Network Dr">
 <meta property="og:description" content="Welcome to episode 6. We&#x27;ve built campus networks, routed between them, and designed data center fabrics. Now, we move all of that into the public cloud. This is the cloud networki">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/WM2uMV01au4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Cloud Networking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Cloud Networking</h1>
-          <p class="meta"><time datetime="2026-10-17T12:49:37-07:00">17 Oct 2026</time><span>12:19</span><a href="https://www.youtube.com/watch?v=WM2uMV01au4" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../data-center-fabrics/"><small>Previous</small>Data Center Fabrics</a><a class="next" href="../ai-networking/"><small>Next</small>AI Networking</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/WM2uMV01au4?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Cloud Networking" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Cloud Networking</h1>
+      <p class="meta"><time datetime="2026-10-17T12:49:37-07:00">17 Oct 2026</time><span>12:19</span><a href="https://www.youtube.com/watch?v=WM2uMV01au4" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,885 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WM2uMV01au4&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 6. We&#x27;ve built campus networks, routed between them, and designed data center fabrics. Now, we move all of that into the public cloud.</span> <span data-t="9">This is the cloud networking episode.</span> <span data-t="11">We&#x27;ll cover regions and VPCS, IP planning, security groups, connecting VPCS with transit gateways, private</span> <span data-t="18">endpoints, hybrid connectivity, DNS, load balancing, Kubernetes networking, and how to run it all as code.</span> <span data-t="26">Here is our lab, a company running in one cloud region across three availability zones. It has three VPCs.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WM2uMV01au4&amp;t=34s" data-seek="34" aria-label="Play from 0:34">0:34</a><span data-t="34">Production on 1010.0.0/16, development on 10.20.0.0/16 and shared services on 10.30.0.0/16.</span> <span data-t="46">A transit gateway connects them like a router in the middle of a hub and spoke design. The on premises data center on 10.0.0.016.</span> <span data-t="54">0/16 connects through a private direct connect link with a VPN over the internet as a backup will use AWS names</span> <span data-t="62">and mention via Azure and Google Cloud equivalents along the way.</span> <span data-t="67">Cloud providers organize their infrastructure into regions such as US East 1 or Europe West. Each region is a separate geographic area. Inside each</span> <span data-t="75">region are availability zones, one or more separate data centers with independent power and cooling linked by fast low latency fiber. regions are</span> <span data-t="84">connected by the provider&#x27;s own private global backbone, the kind of network we saw in episode one. To survive a data center failure, you spread your</span> <span data-t="92">application across at least two availability zones.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WM2uMV01au4&amp;t=96s" data-seek="96" aria-label="Play from 1:36">1:36</a><span data-t="96">A virtual private cloud or VPC is your own private network inside the provider&#x27;s data centers. Azure calls it a virtual network or VNET. Under the</span> <span data-t="105">hood, it&#x27;s an overlay much like the VXLAN fabrics from the last episode.</span> <span data-t="110">Your packets are encapsulated and carried across the provider&#x27;s physical network. That overlay changes some rules. There&#x27;s no real layer too.</span> <span data-t="118">Broadcast and multiccast don&#x27;t work by default and HARP is answered by the virtualization layer itself. And every VPC is isolated from every other VPC unless you explicitly connect them.</span></p>
@@ -74,11 +75,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=WM2uMV01au4&amp;t=700s" data-seek="700" aria-label="Play from 11:40">11:40</a><span data-t="700">Let&#x27;s recap. Cloud networking. AVPC is your private overlay network split into subnets per availability zone. Plan your</span> <span data-t="708">IP ranges so they never overlap. Route tables make subnets public or private.</span> <span data-t="713">Security groups protect each interface and transit gateways connect many VPCs and on premises sites with segmentation and points keep service traffic private.</span> <span data-t="722">VPN and direct connect bring the cloud home with BGP and everything is defined as code. In the next episode, we go deep</span> <span data-t="729">into AI networking, RDMA, Rocky, congestion control, collective communication, and rail optimized designs. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../data-center-fabrics/"><small>Previous</small>Data Center Fabrics</a><a class="next" href="../ai-networking/"><small>Next</small>AI Networking</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

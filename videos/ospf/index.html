@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ospf/">
 <meta property="og:title" content="OSPF · Network Dr">
 <meta property="og:description" content="Welcome to episode 21. Last time we saw that link state protocols give every router a full map of the network. Now let&#x27;s see exactly how OPF does it. OPF open shortest path first i">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/djj7SLJSd60?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="OSPF" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>OSPF</h1>
-          <p class="meta"><time datetime="2026-10-19T12:49:06-07:00">19 Oct 2026</time><span>11:56</span><a href="https://www.youtube.com/watch?v=djj7SLJSd60" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../routing/"><small>Previous</small>Routing</a><a class="next" href="../bgp/"><small>Next</small>BGP</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/djj7SLJSd60?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="OSPF" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>OSPF</h1>
+      <p class="meta"><time datetime="2026-10-19T12:49:06-07:00">19 Oct 2026</time><span>11:56</span><a href="https://www.youtube.com/watch?v=djj7SLJSd60" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,761 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=djj7SLJSd60&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 21. Last time we saw that link state protocols give every router a full map of the network. Now</span> <span data-t="7">let&#x27;s see exactly how OPF does it. OPF open shortest path first is the most widely used interior routing protocol in enterprise networks.</span> <span data-t="19">OPF version 2 for IPv4 is defined in RFC 2328. OPF version 3 carries IPv6.</span> <span data-t="28">It runs directly over IP as protocol 89 with no TCP or UDP routers talk using</span> <span data-t="34">multiccast. 224 05 reaches all OPF rotors and 224 06 reaches the designated</span> <span data-t="43">rotors. The idea every rotor learns the whole topology then runs Dystra&#x27;s shortest path algorithm on its own.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=djj7SLJSd60&amp;t=53s" data-seek="53" aria-label="Play from 0:53">0:53</a><span data-t="53">Each router has a router ID, a 32-bit number written like an IP address such as 1.1.1.1.</span> <span data-t="60">Routers send hellows every 10 seconds on each OSPF link. If nothing is heard for 40 seconds, the dead interval, the</span> <span data-t="67">neighbor is declared down. To become neighbors, both sides must agree on the area, the subnet and mask, the timers, and authentication. A mismatch, and</span> <span data-t="76">they&#x27;ll never form an adjacency. A mismatched MTU is another classic. they&#x27;ll get stuck part way.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=djj7SLJSd60&amp;t=84s" data-seek="84" aria-label="Play from 1:24">1:24</a><span data-t="84">A hello carries more than a greeting.</span> <span data-t="86">The network mask, the hello and dead intervals, the router&#x27;s priority, the current designated router and backup, and a list of every neighbor it has</span> <span data-t="94">heard. That neighbor list is how two-way is detected. When I see my own router ID and your hello, we both know the link works in both directions. If you don&#x27;t</span> <span data-t="102">set a router ID, the router picks its highest loop back address, then its highest interface address. Best practice, set it by hand. So it never changes.</span></p>
@@ -73,11 +74,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=djj7SLJSd60&amp;t=697s" data-seek="697" aria-label="Play from 11:37">11:37</a><span data-t="697">Each router runs SPF on cost. Designated routers tame shared segments, areas, and stub types keep databases small, and</span> <span data-t="705">authentication and BFD keep it safe and fast. Next in the protocol deep dives, BGP, the protocol that holds the internet together. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../routing/"><small>Previous</small>Routing</a><a class="next" href="../bgp/"><small>Next</small>BGP</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

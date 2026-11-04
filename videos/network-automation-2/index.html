@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/network-automation-2/">
 <meta property="og:title" content="Network Automation · Network Dr">
 <meta property="og:description" content="Welcome to episode 8, the final episode. Over seven episodes, we&#x27;ve built campus networks, routing, data center fabrics, cloud networks, and I fabrics. Every one of them was config">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/3sE0CtGMF1A?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Network Automation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Network Automation</h1>
-          <p class="meta"><time datetime="2026-10-17T13:27:03-07:00">17 Oct 2026</time><span>11:32</span><a href="https://www.youtube.com/watch?v=3sE0CtGMF1A" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../ai-networking/"><small>Previous</small>AI Networking</a><a class="next" href="../ethernet-ieee-802-3/"><small>Next</small>Ethernet IEEE 802 3</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/3sE0CtGMF1A?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Network Automation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Network Automation</h1>
+      <p class="meta"><time datetime="2026-10-17T13:27:03-07:00">17 Oct 2026</time><span>11:32</span><a href="https://www.youtube.com/watch?v=3sE0CtGMF1A" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">1,948 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=3sE0CtGMF1A&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 8, the final episode.</span> <span data-t="3">Over seven episodes, we&#x27;ve built campus networks, routing, data center fabrics, cloud networks, and I fabrics. Every one of them was configured device by device.</span> <span data-t="13">Now, we learned to run networks the modern way with code. This is network automation using Python.</span> <span data-t="20">Here is our lab, the data center fabric from episode 5 with two spine switches and four leaf switches running BGP. Next</span> <span data-t="28">to it is an automation server running Python with SSH and a PI access to every switch. Our goal for this episode, add a</span> <span data-t="35">new VLAN to every leaf. Check it worked and watch the network all without typing a single command on the switch.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=3sE0CtGMF1A&amp;t=42s" data-seek="42" aria-label="Play from 0:42">0:42</a><span data-t="42">Why automate? Picture an engineer adding a VLAN by hand. Log in, type the commands, check, log out, then repeat on</span> <span data-t="50">the next switch. With six switches, that&#x27;s tedious. With 600, it takes days.</span> <span data-t="55">and somewhere along the way someone makes a typo. Most network outages are caused by changes and many of those are</span> <span data-t="62">human error. Automation makes changes fast, consistent, and repeatable. It doesn&#x27;t replace engineers. It lets them work on design instead of typing.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=3sE0CtGMF1A&amp;t=72s" data-seek="72" aria-label="Play from 1:12">1:12</a><span data-t="72">A good automation system has a few layers. At the top is the source of truth, a database that describes how the network should look. Next, templates and</span> <span data-t="81">code turn that intent into device configuration. A pipeline tests and deploys it. Finally, telemetry watches the live network and checks that reality</span> <span data-t="90">matches the intent. We&#x27;ll build each layer in turn.</span> <span data-t="94">Python is the most popular language for network automation. It&#x27;s easy to read and it has excellent libraries for networking. Network data maps neatly</span> <span data-t="102">onto Python&#x27;s building blocks. A list holds your switches. A dictionary holds each devices details like its name, management address, and platform. Real</span> <span data-t="112">networks keep this data in files in YAML or JSON format. Python loads them in one line and loops over every device.</span></p>
@@ -71,11 +72,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=3sE0CtGMF1A&amp;t=641s" data-seek="641" aria-label="Play from 10:41">10:41</a><span data-t="641">Before we finish, let&#x27;s look back at the whole series. We started with the big picture from telephone lines to the global internet. Then we followed a</span> <span data-t="649">packet, switched frames, routed between networks, and built data center fabrics.</span> <span data-t="654">We moved into the cloud, scaled up to I fabrics, and finally learned to run it all as code. Each layer builds on the one before.</span> <span data-t="662">Let&#x27;s recap. Automation turns network changes into code. A source of truth holds the intent. Templates and APIs turn it into configuration and YAN</span> <span data-t="670">models keep it valid. Get and CI pipelines review, test, and deploy every change safely with verification and roll back. Dreaming telemetry watches the</span> <span data-t="679">result and closes the loop. And that completes the series. From a 64 kilobit phone line, dry fabrics and coddriven networks, you now have the big picture</span> <span data-t="688">and the tools to go deeper. Thanks for watching.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../ai-networking/"><small>Previous</small>AI Networking</a><a class="next" href="../ethernet-ieee-802-3/"><small>Next</small>Ethernet IEEE 802 3</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

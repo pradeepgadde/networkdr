@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/ipv6/">
 <meta property="og:title" content="IPv6 · Network Dr">
 <meta property="og:description" content="Welcome to episode 19. Net kept IPv4 alive, but it&#x27;s a workaround. IPv6 is the real fix. Addresses four times as long, a simpler header, no broadcast, and no need for MAT. Let&#x27;s ta">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/fbM7siDvB8I?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPv6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>IPv6</h1>
-          <p class="meta"><time datetime="2026-10-18T16:13:08-07:00">18 Oct 2026</time><span>4:51</span><a href="https://www.youtube.com/watch?v=fbM7siDvB8I" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../nat/"><small>Previous</small>NAT</a><a class="next" href="../routing/"><small>Next</small>Routing</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/fbM7siDvB8I?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="IPv6" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>IPv6</h1>
+      <p class="meta"><time datetime="2026-10-18T16:13:08-07:00">18 Oct 2026</time><span>4:51</span><a href="https://www.youtube.com/watch?v=fbM7siDvB8I" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">688 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 19. Net kept IPv4 alive, but it&#x27;s a workaround. IPv6 is the real fix. Addresses four times as</span> <span data-t="9">long, a simpler header, no broadcast, and no need for MAT. Let&#x27;s take it apart.</span> <span data-t="16">IPv4 addresses are 32 bits. IPv6 addresses are 128 bits. That&#x27;s about 340</span> <span data-t="23">and addresses, a three followed by 38 digits. A typical home network gets 2 to the 64 addresses, more than the entire</span> <span data-t="30">IPv4 internet squared. IPv6 was standardized in 1998, and today close to half of Google&#x27;s users reach it over IPv6.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=41s" data-seek="41" aria-label="Play from 0:41">0:41</a><span data-t="41">An IPv6 address is written as eight groups of four hex digits separated by colons. Two rules shorten it. Leading</span> <span data-t="48">zeros in a group can be dropped, and one run of all zero groups can be replaced by a double colon only once per address.</span> <span data-t="55">Most addresses split in half, a 64-bit prefix that identifies the network and a 64-bit interface ID for the host.</span> <span data-t="65">Global uniccast addresses starting with two or three are routable on the internet. Every interface also has a link local address starting with FE80.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=74s" data-seek="74" aria-label="Play from 1:14">1:14</a><span data-t="74">It works only on the local link and it&#x27;s used for neighbor discovery and routing protocols. Unique local addresses starting with FD are private like RFC1918.</span> <span data-t="84">Multiccast starts with FF and the loop back is col 1. There&#x27;s no broadcast at all. Multiccast does that job. More</span> <span data-t="92">precisely, the IPv6 header is a fixed 40 bytes with just eight fields. Version six, the</span> <span data-t="100">traffic class for QoS and a 20 bit flow label to keep a flows packets together.</span></p>
@@ -62,11 +63,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=fbM7siDvB8I&amp;t=265s" data-seek="265" aria-label="Play from 4:25">4:25</a><span data-t="265">To recap, IPv6 uses 128 bit addresses written in hex with double shorthand, usually split into a 64-bit prefix and</span> <span data-t="274">interface ID. A fixed 40 byt header, extension headers, no router fragmentation, neighbor discovery instead of ARP, and Slack for self-configuration.</span> <span data-t="283">Next in the protocol deep dives.</span> <span data-t="285">Routing. How routers decide where packets go. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../nat/"><small>Previous</small>NAT</a><a class="next" href="../routing/"><small>Next</small>Routing</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

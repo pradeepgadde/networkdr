@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/cloud-vpc/">
 <meta property="og:title" content="Cloud VPC · Network Dr">
 <meta property="og:description" content="Welcome to episode 56, a cloud VPC from the inside. In episode 6, we saw cloud networking from the outside. Today, we&#x27;d open the box and see how a provider builds millions of priva">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/VWZKzY2eRbc?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Cloud VPC" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>Cloud VPC</h1>
-          <p class="meta"><time datetime="2026-10-22T13:37:11-07:00">22 Oct 2026</time><span>15:24</span><a href="https://www.youtube.com/watch?v=VWZKzY2eRbc" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../internet-exchanges-and-peering/"><small>Previous</small>Internet Exchanges and Peering</a><a class="next" href="../bgp-looking-glasses/"><small>Next</small>BGP Looking Glasses</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/VWZKzY2eRbc?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="Cloud VPC" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>Cloud VPC</h1>
+      <p class="meta"><time datetime="2026-10-22T13:37:11-07:00">22 Oct 2026</time><span>15:24</span><a href="https://www.youtube.com/watch?v=VWZKzY2eRbc" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">2,319 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=VWZKzY2eRbc&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 56, a cloud VPC from the inside. In episode 6, we saw cloud networking from the outside. Today, we&#x27;d</span> <span data-t="9">open the box and see how a provider builds millions of private networks on one shared physical network. We&#x27;ll cover the VPC building blocks, the physical</span> <span data-t="17">underlay, encapsulation, the mapping service, the virtual rotor, offload cards, security groups and network CLS,</span> <span data-t="26">internet and net gateways, load balancers, DNS and metadata, connecting VPCS, private endpoints, hybrid links,</span> <span data-t="34">flow logs, limits and quirks, Kubernetes, and troubleshooting. We&#x27;ll use AWS names and mention the equivalents in Azure and Google Cloud.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=VWZKzY2eRbc&amp;t=44s" data-seek="44" aria-label="Play from 0:44">0:44</a><span data-t="44">When you create a virtual private cloud, a VPC, it feels like your own network.</span> <span data-t="49">You choose an address range like 10.0.0.0/16, create subnets, attach virtual machines,</span> <span data-t="57">and write route tables. Nobody else&#x27;s traffic appears in it, but there are no dedicated switches or routers behind it.</span> <span data-t="63">Your VMs share physical servers and physical links with thousands of other customers who may use exactly the same addresses. Everything that makes it feel</span> <span data-t="72">private is software running at enormous scale. The rest of this episode is about how that software works.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=VWZKzY2eRbc&amp;t=80s" data-seek="80" aria-label="Play from 1:20">1:20</a><span data-t="80">First, the pieces a customer sees. A VPC has one or more address ranges. It&#x27;s divided into subnets, each in one</span> <span data-t="87">availability zone. A separate data center or group of data centers. Each subnet is associated with a route table which decides where traffic goes to</span> <span data-t="96">local addresses, an internet gateway, a net gateway or a connection to another network. VMs connect to elastic network</span> <span data-t="103">interfaces. EN is each with private addresses and security groups. Azure calls the same ideas vets and nicks.</span></p>
@@ -78,11 +79,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=VWZKzY2eRbc&amp;t=909s" data-seek="909" aria-label="Play from 15:09">15:09</a><span data-t="909">peering, transit gateways, private endpoints, BPNS, and dedicated interconnects connected all flow logs</span> <span data-t="917">show what happened and MTU limits and cross zone costs for the classic surprises. Thanks for watching.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../internet-exchanges-and-peering/"><small>Previous</small>Internet Exchanges and Peering</a><a class="next" href="../bgp-looking-glasses/"><small>Next</small>BGP Looking Glasses</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>

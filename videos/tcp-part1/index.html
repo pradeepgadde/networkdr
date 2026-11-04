@@ -8,20 +8,25 @@
 <link rel="canonical" href="https://pradeepgadde.com/networkdr/videos/tcp-part1/">
 <meta property="og:title" content="TCP Part1 · Network Dr">
 <meta property="og:description" content="Welcome to episode 14. UDP sends and forgets. TCP does the opposite. It makes sure every bite arrives in order exactly once. TCP is big enough for two episodes. This first part cov">
+<meta property="og:image" content="https://pradeepgadde.com/networkdr/assets/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1C2125">
+<meta property="og:image:alt" content="Network Dr street sign over a map of network links">
+<meta property="og:site_name" content="Network Dr">
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,500;125,700;125,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/style.css">
 <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../../assets/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../../assets/apple-touch-icon-180.png">
+<link rel="manifest" href="../../assets/site.webmanifest">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <header class="masthead">
-  <a class="brand" href="../../" aria-label="Network Dr home">
-    <svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true"><rect x="2" y="9" width="28" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="13" width="5" height="6" rx="1" fill="currentColor"/><rect x="14" y="13" width="5" height="6" rx="1" fill="currentColor"/><circle cx="24.5" cy="16" r="2.2" class="led"/></svg>
-    <span>Network Dr</span>
-  </a>
+  <a class="brand" href="../../"><img src="../../assets/logo-wide.svg" alt="Network Dr home" width="164" height="32"></a>
   <nav aria-label="Primary">
     <a href="../../">Episodes</a>
     <a href="https://www.youtube.com/@networkdr" rel="noopener">YouTube</a>
@@ -30,28 +35,24 @@
 <main id="main">
 
 <article class="episode">
-  <div class="stage">
-    <div class="stage-inner">
-      <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/T66OmVHHdn0?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="TCP Part1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
-      <div class="ep-head">
-        
-        <div>
-          <h1>TCP Part1</h1>
-          <p class="meta"><time datetime="2026-10-18T13:39:10-07:00">18 Oct 2026</time><span>4:59</span><a href="https://www.youtube.com/watch?v=T66OmVHHdn0" rel="noopener">Watch on YouTube</a></p>
-        </div>
-      </div>
-      
-      <nav class="pager" aria-label="More episodes"><a class="prev" href="../udp/"><small>Previous</small>UDP</a><a class="next" href="../tcp-part2/"><small>Next</small>TCP Part2</a></nav>
+  <div class="player"><iframe id="yt" src="https://www.youtube-nocookie.com/embed/T66OmVHHdn0?enablejsapi=1&amp;rel=0&amp;modestbranding=1" title="TCP Part1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <header class="ep-head">
+    
+    <div>
+      <h1>TCP Part1</h1>
+      <p class="meta"><time datetime="2026-10-18T13:39:10-07:00">18 Oct 2026</time><span>4:59</span><a href="https://www.youtube.com/watch?v=T66OmVHHdn0" rel="noopener">Watch on YouTube</a></p>
     </div>
-  </div>
+  </header>
+  
   <section class="transcript" aria-labelledby="tx-h">
     <div class="tx-bar">
       <h2 id="tx-h">Transcript</h2>
       <span class="tx-count">735 words</span>
       <label class="follow"><input type="checkbox" id="follow" checked> Follow along</label>
+      <button type="button" id="expand-tx" class="btn btn-quiet" aria-controls="tx" aria-expanded="false">Show all</button>
       <button type="button" id="copy-tx" class="btn">Copy text</button>
     </div>
-    <div class="tx-body" id="tx">
+    <div class="tx-body" id="tx" tabindex="0" aria-label="Transcript text">
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T66OmVHHdn0&amp;t=0s" data-seek="0" aria-label="Play from 0:00">0:00</a><span data-t="0">Welcome to episode 14. UDP sends and forgets. TCP does the opposite. It makes sure every bite arrives in order exactly</span> <span data-t="9">once. TCP is big enough for two episodes. This first part covers connections and reliability. The header,</span> <span data-t="16">the handshake, sequence numbers, and recovering from loss.</span> <span data-t="21">IP makes no promises. Packets get lost, arrive out of order, or even arrive twice. TCP IP protocol 6 turns that into</span> <span data-t="30">a reliable ordered stream of bytes between two applications. It was defined in RFC 793 in 1981 and updated as RFC</span> <span data-t="39">9293 in 2022. Web pages, email file transfers, and SSH all ride on it.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T66OmVHHdn0&amp;t=47s" data-seek="47" aria-label="Play from 0:47">0:47</a><span data-t="47">The TCP header is at least 20 bytes like UDP. It starts with the source and destination ports. Then two 32-bit</span> <span data-t="55">numbers that make reliability work. The sequence number and the acknowledgement number. Next, the header length, the flags and the receive window. Then the</span> <span data-t="64">checksum and the urgent pointer. Options can extend it up to 60 bytes. Maximum segment size, window scaling, selective acknowledgements, and timestamps.</span> <span data-t="75">The flags are single bits that say what a segment is for. Sin starts a connection act says that acknowledgement number is valid. Finn ends a connection</span> <span data-t="83">gracefully and reset aborts it. Push asks the receiver to deliver data right away and urgent marks urgent data which</span> <span data-t="90">is rarely used. ECE and CWR carry congestion signals.</span></p>
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T66OmVHHdn0&amp;t=96s" data-seek="96" aria-label="Play from 1:36">1:36</a><span data-t="96">Before any data moves, the two sides perform the three-way handshake. The client sends a SIM with its initial sequence number, say 1,000. The server</span> <span data-t="105">answers with a sync, its own sequence number, 5,000, and an acknowledgement of 1,0001. The client sends an act of 50001</span> <span data-t="114">and the connection is established. One round trip and both sides are ready. The handshake also negotiates options like a</span> <span data-t="121">maximum segment size of 1460. Initial sequence numbers are random so attackers can&#x27;t guess them.</span></p>
@@ -62,11 +63,13 @@
 <p><a class="stamp" href="https://www.youtube.com/watch?v=T66OmVHHdn0&amp;t=270s" data-seek="270" aria-label="Play from 4:30">4:30</a><span data-t="270">That&#x27;s where part two begins.</span> <span data-t="274">To recap, TCP builds a reliable ordered byte stream on top of IP. The handshake sync sequence numbers. Every bite is numbered and axe confirm what arrived.</span> <span data-t="284">Timers duplicate acts and sack recover losses. Fin closes gracefully and reset aborts. In part two, how fast TCP may</span> <span data-t="293">send flow control windows and congestion control. See you there.</span></p>
     </div>
   </section>
+  <nav class="pager" aria-label="More episodes"><a class="prev" href="../udp/"><small>Previous</small>UDP</a><a class="next" href="../tcp-part2/"><small>Next</small>TCP Part2</a></nav>
 </article>
 <script src="../../assets/player.js" defer></script>
 
 </main>
 <footer class="foot">
+  <a class="foot-mark" href="https://www.youtube.com/@networkdr" rel="noopener"><img src="../../assets/logo-square.svg" alt="Network Dr on YouTube" width="40" height="40"></a>
   <p>Transcripts are YouTube's automatic captions and may contain errors. Videos &copy; Network Dr.</p>
 </footer>
 </body>
