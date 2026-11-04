@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Build the Network Dr static site from a JSON dump of video metadata + transcripts.
 
-Usage: python3 generate.py data.json out_dir
+Usage: python3 tools/generate.py data/videos.json <out_dir>
+  Run from the repo root. Use "." as out_dir to rebuild the repo in place.
 Input JSON: {video_id: {id, title, len, date, desc, kw, tx: [[ts, text], ...]}}
 
 Pages produced:
@@ -17,6 +18,9 @@ from pathlib import Path
 CHANNEL = "https://www.youtube.com/@networkdr"
 SITE_URL = "https://pradeepgadde.com/networkdr/"
 
+# Old series addresses that should keep working: old key -> current key.
+RENAMED_SERIES = {"company-histories": "networking-landscape"}
+
 # Series, in the order they appear on the home page. Course parts are ranges of
 # the course's episode numbers; the company series uses the EPnn in titles.
 SERIES = [
@@ -28,8 +32,8 @@ SERIES = [
          blurb="Zero trust, 802.1X and MACsec: securing who and what gets onto the network."),
     dict(key="bonus-deep-dives", name="Bonus Deep Dives", kind="course", lo=48, hi=999,
          blurb="Provider and data-center topics in more depth: IS-IS, LDP, RSVP, RPKI, AI clusters, peering, SmartNICs and more."),
-    dict(key="company-histories", name="Company Histories", kind="company", lo=1, hi=999,
-         blurb="How the companies that build the network got here, from Cisco and Juniper to Zscaler and HPE Aruba."),
+    dict(key="networking-landscape", name="Networking Landscape", kind="company", lo=1, hi=999,
+         blurb="Who builds the network: a 2026 overview of the industry, then the stories of Cisco, Juniper, Arista, Broadcom, Palo Alto Networks, Zscaler, HPE Aruba and more."),
 ]
 
 
@@ -214,9 +218,12 @@ def build(data_path, out):
         slugs.add(s)
         v["slug"] = s
 
+    # Assets live in the repo's assets/ folder (or beside this script during development).
+    src = next(p for p in (here / "assets", here.parent / "assets") if p.is_dir())
     (out / "assets").mkdir(parents=True, exist_ok=True)
-    for f in (here / "assets").iterdir():
-        shutil.copy(f, out / "assets" / f.name)
+    if src.resolve() != (out / "assets").resolve():
+        for f in src.iterdir():
+            shutil.copy(f, out / "assets" / f.name)
 
     # ---- video pages -------------------------------------------------------
     for v in vids:
@@ -295,6 +302,17 @@ def build(data_path, out):
         d = out / "series" / s["key"]
         d.mkdir(parents=True, exist_ok=True)
         (d / "index.html").write_text(page(f"{s['name']} · Network Dr", body, s["blurb"], 2, f"{SITE_URL}series/{s['key']}/"))
+
+    # ---- redirects for renamed series --------------------------------------
+    for old, new in RENAMED_SERIES.items():
+        d = out / "series" / old
+        d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(f"""<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Moved · Network Dr</title>
+<meta http-equiv="refresh" content="0; url=../{new}/">
+<link rel="canonical" href="{SITE_URL}series/{new}/"><meta name="robots" content="noindex"></head>
+<body><p>This series moved to <a href="../{new}/">its new page</a>.</p></body></html>
+""")
 
     # ---- all videos --------------------------------------------------------
     chips = "".join(f'<option value="{s["key"]}">{esc(s["name"])} ({len(s["vids"])})</option>' for s in SERIES if s["vids"])
@@ -385,7 +403,8 @@ def build(data_path, out):
 {''.join(shelves)}
 """
     (out / "index.html").write_text(page("Network Dr: networking explained, with transcripts", body, "Clear networking explainers and company histories, each with its full transcript.", 0, SITE_URL, "home"))
-    (out / ".nojekyll").write_text("Serve files as-is; no Jekyll processing.\n")
+    if not (out / ".nojekyll").exists():
+        (out / ".nojekyll").write_text("Serve files as-is; no Jekyll processing.\n")
     for s in SERIES:
         print(f"{s['name']}: {len(s['vids'])} -> " + ", ".join(str(v['no']) for v in s['vids']))
     print(f"built {len(vids)} video pages into {out}")

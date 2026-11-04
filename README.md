@@ -9,6 +9,8 @@ Live site: https://pradeepgadde.com/networkdr/
 - `series/<name>/`: one page per series, in episode order.
 - `videos/<slug>/`: one page per video. Click any timestamp or line in the transcript to jump the player there; "Follow along" highlights the line being spoken.
 - `assets/`: stylesheet, scripts, logo (`logo.svg`), banner and icons. To change the logo, replace `assets/logo.svg`.
-- `tools/generate.py`: rebuilds the site from a JSON export of video metadata and transcripts.
+- `data/videos.json`: titles, dates and transcripts for every video (all public YouTube data); the source the pages are built from.
+- `tools/add_videos.py`: merges newly collected videos into `data/videos.json`.
+- `tools/generate.py`: rebuilds every page from `data/videos.json`. Run `python3 tools/generate.py data/videos.json .` from the repo root.
 
 Transcripts come from YouTube's automatic captions and may contain errors. The site is plain static HTML served by GitHub Pages from the `main` branch.
